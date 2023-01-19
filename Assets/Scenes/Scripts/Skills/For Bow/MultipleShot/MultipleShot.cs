@@ -7,6 +7,11 @@ public class MultipleShot : MonoBehaviour,BaseSkill
     [SerializeField]
     GameObject MuiTen;
 
+    public int getButtonIndex()
+    {
+        return 1;
+    }
+
     public float GetCD()
     {
         return 2;
@@ -36,6 +41,12 @@ public class MultipleShot : MonoBehaviour,BaseSkill
         //an.Play("name of animation");
 
     }
+
+    public void SupportUISkill(GameObject character)
+    {
+        return;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

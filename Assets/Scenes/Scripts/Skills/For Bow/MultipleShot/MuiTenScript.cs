@@ -29,7 +29,6 @@ public class MuiTenScript : MonoBehaviour
                 }
         }
         if (nearestEnemy != null) {
-            Debug.Log("is flying");
             if (transform.position.x != nearestEnemy.transform.position.x && transform.position.y != nearestEnemy.transform.position.y)
             {
                 transform.position = Vector3.MoveTowards(transform.position, nearestEnemy.transform.position, speed * Time.deltaTime);

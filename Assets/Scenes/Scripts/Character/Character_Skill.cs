@@ -16,11 +16,13 @@ public class Character_Skill : MonoBehaviour
         //danh sach cach hoat dong cua cac skill
         skills = new LinkedList<UnityEvent<GameObject>>();
     }
-    public void AddSkillListener(UnityAction<GameObject> action)
+    //ref:https://stackoverflow.com/questions/489317/how-to-pass-an-arbitrary-number-of-parameters-in-c-sharp
+    public void AddSkillListener(params UnityAction<GameObject>[] action)
     {
         if (skills.Count > 5) throw new System.Exception("So luong skill duoc su dung vuot qua gioi han");
         UnityEvent<GameObject> unityEvent = new UnityEvent<GameObject>();
-        unityEvent.AddListener(action);
+        foreach (UnityAction<GameObject> unityAction in action)
+            unityEvent.AddListener(unityAction);
         skills.AddLast(unityEvent);
 
     }
@@ -39,7 +41,7 @@ public class Character_Skill : MonoBehaviour
             //dua vao cac phim dc an ma kich hoat skill da duoc dang ki truoc do
             if (Input.GetKeyDown(buttons[i]))
             {
-                Debug.Log("clicked");
+                //Debug.Log("clicked");
                 skills.ElementAt(i).Invoke(gameObject);
             }
         }

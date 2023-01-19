@@ -10,7 +10,7 @@ public class CharacterManager : MonoBehaviour
 {
     //tam thoi do chua them tinh nang luu trang thai nguoi choi,
     //nen can test skill nao cu tao class va them ten class vo day
-    string[] skill_usings = { "MultipleShot" };
+    string[] skill_usings = { "MultipleShot", "WeightShot" };
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +33,7 @@ public class CharacterManager : MonoBehaviour
     }
     void loadData()
     {
-
+        // them thong tin skill dang dung vo skill_usings;
     }
     void addSkill()
     {
@@ -46,11 +46,23 @@ public class CharacterManager : MonoBehaviour
         }
         for (int i = 0; i < skills.Length; i++)
         {
-            if (skills[i].GetName().Contains(skill_usings[i]))
+            string nameOfSkill = skills[i].GetName();
+            for (int j = 0; j < skill_usings.Length; j++)
             {
-                cs.AddSkillListener(skills[i].RunSkill);
+                if (nameOfSkill.Contains(skill_usings[j]))
+                {
+                    //using anonymous method : (para) =>{}
+
+                    cs.AddSkillListener(skills[i].RunSkill, skills[i].SupportUISkill,(c) =>
+                    {
+                        Debug.Log(nameOfSkill + " Actived");
+                        //Thong bao UI o day
+                    });
+                    return;
+                }
             }
         }
-        
+
     }
+
 }
