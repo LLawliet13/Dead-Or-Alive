@@ -51,12 +51,5 @@ public class Character_Skill : MonoBehaviour
     {
         this.buttons = buttons;
     }
-    //// class mieu ta cac thong so phu cua ki nang ho tro cho UI
-    //class Skill_Detail
-    //{
-    //    public string Name;
-    //    public string Image;
-    //    public bool IsActive;
-    //    public float Cd;
-    //}
+    
 }

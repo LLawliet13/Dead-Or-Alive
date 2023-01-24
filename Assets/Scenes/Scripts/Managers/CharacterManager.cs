@@ -10,7 +10,7 @@ public class CharacterManager : MonoBehaviour
 {
     //tam thoi do chua them tinh nang luu trang thai nguoi choi,
     //nen can test skill nao cu tao class va them ten class vo day
-    string[] skill_usings = { "MultipleShot", "WeightShot" };
+    string[] skill_usings = { "MultipleShot", "WeightShot", "TornadoShot" };
     // Start is called before the first frame update
     void Start()
     {
@@ -38,12 +38,19 @@ public class CharacterManager : MonoBehaviour
     void addSkill()
     {
         Character_Skill cs = GameObject.FindGameObjectWithTag("Character").GetComponent<Character_Skill>();
+        UIManager uIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
         BaseSkill[] skills = (BaseSkill[])gameObject.GetComponents<BaseSkill>();
         if (skills == null)
         {
             Debug.Log("no Skill");
             return;
         }
+        if (skills.Length < skill_usings.Length)
+        {
+            Debug.LogError("Missing Skill In GameObject GameMaster");
+            return;
+        }
+        skills.OrderBy<BaseSkill,int>(s => s.getButtonIndex());
         for (int i = 0; i < skills.Length; i++)
         {
             string nameOfSkill = skills[i].GetName();
@@ -53,12 +60,17 @@ public class CharacterManager : MonoBehaviour
                 {
                     //using anonymous method : (para) =>{}
 
-                    cs.AddSkillListener(skills[i].RunSkill, skills[i].SupportUISkill,(c) =>
+                    cs.AddSkillListener(skills[i].RunSkill, (c) =>
                     {
                         Debug.Log(nameOfSkill + " Actived");
                         //Thong bao UI o day
                     });
-                    return;
+                    uIManager.AddSkillListener(skills[i].getPathOfImage(),skills[i].RunSkill, (c) =>
+                    {
+                        Debug.Log(nameOfSkill + " Actived");
+                        //Thong bao UI o day
+                    });
+                    break;
                 }
             }
         }

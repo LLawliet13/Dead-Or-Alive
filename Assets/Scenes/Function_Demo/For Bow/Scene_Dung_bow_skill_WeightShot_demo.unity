@@ -123,51 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &30623947
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 30623949}
-  - component: {fileID: 30623948}
-  m_Layer: 0
-  m_Name: WeighBow
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &30623948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 30623947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04a087063394f2a4e98f9c79034db891, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0
---- !u!4 &30623949
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 30623947}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.7504344, y: 0.29507524, z: 0.4938372}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &382510071
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +439,7 @@ GameObject:
   - component: {fileID: 1109467876}
   - component: {fileID: 1109467877}
   m_Layer: 0
-  m_Name: weapon
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -498,7 +453,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109467875}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.3, y: 0.18, z: -8.72}
+  m_LocalPosition: {x: 0.3, y: 0.18, z: 0}
   m_LocalScale: {x: 1, y: 1.0376, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -602,7 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c7b3140e4f3fa4b8c5738d7ed0f1d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeightArrow: {fileID: 0}
+  WeightArrow: {fileID: 6664546073030781736, guid: dc1fc6602e891e648a4393f7ee49e766, type: 3}
 --- !u!114 &1193757093
 MonoBehaviour:
   m_ObjectHideFlags: 0

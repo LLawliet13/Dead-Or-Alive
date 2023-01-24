@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class WeightArrow : MonoBehaviour
@@ -16,7 +18,7 @@ public class WeightArrow : MonoBehaviour
     {
         timeExist = 1;
         fire = false;
-        nextTimeToScaleUp = Time.time;
+        startTime = Time.time;
         baseScale = transform.localScale;
     }
     public void Fire(GameObject character)
@@ -24,36 +26,48 @@ public class WeightArrow : MonoBehaviour
         this.character = character;
         fire = true;
     }
-    float nextTimeToScaleUp;
+    float startTime;
+    float ScaleOfArrow;
+    float timeToCharge;
+    public void SetScaleOfArrow(float size)
+    {
+        ScaleOfArrow = size;
+    }
     // Update is called once per frame
     void Update()
     {
         if(fire == true)
         {
-            CalculateMoveVector();
+            moveVector = MovementSetting.CalculateMoveVector(character.transform.position, character.transform.Find("Weapon").transform.position);
             transform.position += moveVector * moveSpeed * Time.deltaTime;
-            Debug.Log("WeightBow Fired");
         }
         else
         {
+            Debug.Log(transform.localScale.x / baseScale.x);
             //tang kich co bow khi hold
-            if(transform.localScale.x / baseScale.x < 5&&Time.time > nextTimeToScaleUp)
+            if(transform.localScale.x / baseScale.x <= ScaleOfArrow)
             {
-                timeExist = timeExist*1.2f;
-                transform.localScale = transform.localScale * 1.2f;
-                nextTimeToScaleUp = Time.time + 1;
+                float ratio = (Time.time - startTime)/ timeToCharge;
+                if (ratio > 1) ratio = 1;
+                timeExist = timeExist+0.2f;
+                transform.localScale = new Vector3(ScaleOfArrow * ratio,
+                    ScaleOfArrow * ratio, 0);
             }
         }
     }
-    public void CalculateMoveVector()
-    {
-        moveVector = (character.transform.Find("Weapon").transform.position - character.transform.position).normalized;
-    }
+   
     // Update is called once per frame
 
-    private void OnCollisionEnter2D(Collision2D collision)
+  
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        //mui ten bi pha huy sau 1 khoang thoi gian
-        Destroy(gameObject,timeExist);
+        if (fire == true)
+            if (collision.CompareTag("Enemy"))
+                //mui ten bi pha huy sau 1 khoang thoi gian sau khi cham vao 1 dot quai dau tien
+                Destroy(gameObject, timeExist);
+    }
+    internal void SetChargeTime(float timeCharge)
+    {
+        timeToCharge = timeCharge;
     }
 }

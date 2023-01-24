@@ -8,10 +8,11 @@ public class MuiTenScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Destroy(gameObject,5);
     }
     GameObject nearestEnemy;
     [SerializeField]
+    [Header("speed di chuyen ve huong muc tieu")]
     float speed;
     // Update is called once per frame
     void Update()
@@ -28,16 +29,21 @@ public class MuiTenScript : MonoBehaviour
                     nearestEnemy = enemy;
                 }
         }
-        if (nearestEnemy != null) {
+        if (nearestEnemy != null)
+        {
             if (transform.position.x != nearestEnemy.transform.position.x && transform.position.y != nearestEnemy.transform.position.y)
             {
-                transform.position = Vector3.MoveTowards(transform.position, nearestEnemy.transform.position, speed * Time.deltaTime);
+
+                transform.position += MovementSetting.CalculateSlopeMoveVector(nearestEnemy.transform.position, gameObject) * speed * Time.deltaTime;
             }
 
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        if (collision.CompareTag("Enemy"))
+            Destroy(gameObject);
     }
+
 }
