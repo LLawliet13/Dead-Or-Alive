@@ -37,7 +37,7 @@ public class CharacterManager : MonoBehaviour
     }
     void addSkill()
     {
-        Character_Skill cs = GameObject.FindGameObjectWithTag("Character").GetComponent<Character_Skill>();
+        Character_Skill cs = GameObject.FindGameObjectWithTag("Player").GetComponent<Character_Skill>();
         UIManager uIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
         BaseSkill[] skills = (BaseSkill[])gameObject.GetComponents<BaseSkill>();
         if (skills == null)

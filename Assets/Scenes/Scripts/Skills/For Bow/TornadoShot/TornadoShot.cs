@@ -29,7 +29,7 @@ public class TornadoShot : MonoBehaviour, BaseSkill
     {
         moveCharacter = true;
         this.character = character;
-        currentWeaponVector = MovementSetting.CalculateMoveVector(character.transform.position, character.transform.Find("Square").Find("Weapon").transform.position);
+        currentWeaponVector = MovementSetting.CalculateMoveVector(character.transform.position, character.transform.Find("WeaponParent").Find("Weapon").transform.position);
     }
     Vector3 moveVector;
     [SerializeField]
@@ -37,7 +37,7 @@ public class TornadoShot : MonoBehaviour, BaseSkill
 
     public void MoveCharacter(GameObject character)
     {
-        moveVector = MovementSetting.CalculateMoveVector(character.transform.position, character.transform.Find("Square").Find("Weapon").transform.position);
+        moveVector = MovementSetting.CalculateMoveVector(character.transform.position, character.transform.Find("WeaponParent").Find("Weapon").transform.position);
         character.transform.position += moveVector * moveSpeed * Time.deltaTime;
     }
 

@@ -22,15 +22,15 @@ public class UIManager : MonoBehaviour
     }
     public void Button1Onclick()
     {
-        skills.ElementAt(0).Invoke(GameObject.FindGameObjectWithTag("Character"));
+        skills.ElementAt(0).Invoke(GameObject.FindGameObjectWithTag("Player"));
     }
     public void Button2Onclick()
     {
-        skills.ElementAt(1).Invoke(GameObject.FindGameObjectWithTag("Character"));
+        skills.ElementAt(1).Invoke(GameObject.FindGameObjectWithTag("Player"));
     }
     public void Button3Onclick()
     {
-        skills.ElementAt(2).Invoke(GameObject.FindGameObjectWithTag("Character"));
+        skills.ElementAt(2).Invoke(GameObject.FindGameObjectWithTag("Player"));
     }
     LinkedList<UnityEvent<GameObject>> skills;
     public void AddSkillListener(string imageSkill,params UnityAction<GameObject>[] action)

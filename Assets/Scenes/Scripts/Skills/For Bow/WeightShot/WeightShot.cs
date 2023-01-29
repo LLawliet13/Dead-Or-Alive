@@ -42,20 +42,20 @@ public class WeightShot : MonoBehaviour, BaseSkill
         if (!hold)
         {
             hold = true;
-            Vector3 diff = MovementSetting.CalculateMoveVector(character.transform.position, character.transform.Find("Square").Find("Weapon").position);
+            Vector3 diff = MovementSetting.CalculateMoveVector(character.transform.position, character.transform.Find("WeaponParent").Find("Weapon").position);
             float curAngle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
             HoldArrow = Instantiate(WeightArrow, character.transform.position, Quaternion.Euler(0, 0, curAngle));
-            HoldArrow.transform.parent = character.transform.Find("Square").Find("Weapon");
+            HoldArrow.transform.parent = character.transform.Find("WeaponParent").Find("Weapon");
             HoldArrow.GetComponent<WeightArrow>().SetScaleOfArrow(ScaleOfArrow);
             HoldArrow.GetComponent<WeightArrow>().SetChargeTime(timeCharge);
             HoldArrow.GetComponent<SpriteRenderer>().enabled = false;
-            character.transform.Find("Square").Find("Weapon").GetComponent<Animator>().Play("WeightBow_Charge");
+            character.transform.Find("WeaponParent").Find("Weapon").GetComponent<Animator>().Play("WeightBow_Charge");
         }
         else
         {
             hold = false;
             HoldArrow.GetComponent<SpriteRenderer>().enabled = true;
-            character.transform.Find("Square").Find("Weapon").GetComponent<Animator>().Play("Normal");
+            character.transform.Find("WeaponParent").Find("Weapon").GetComponent<Animator>().Play("Normal");
             HoldArrow.GetComponent<WeightArrow>().Fire(character);
         }
 

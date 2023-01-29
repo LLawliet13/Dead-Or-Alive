@@ -38,7 +38,7 @@ public class WeightArrow : MonoBehaviour
     {
         if(fire == true)
         {
-            moveVector = MovementSetting.CalculateMoveVector(character.transform.position, character.transform.Find("Square").Find("Weapon").transform.position);
+            moveVector = MovementSetting.CalculateMoveVector(character.transform.position, character.transform.Find("WeaponParent").Find("Weapon").transform.position);
             transform.position += moveVector * moveSpeed * Time.deltaTime;
         }
         else
