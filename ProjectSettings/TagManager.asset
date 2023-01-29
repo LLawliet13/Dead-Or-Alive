@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - imgJoystickBg
+  - playerSprite
+  - weaponParent
   layers:
   - Default
   - TransparentFX
