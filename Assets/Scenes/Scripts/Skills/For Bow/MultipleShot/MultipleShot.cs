@@ -39,7 +39,7 @@ public class MultipleShot : MonoBehaviour, BaseSkill
     float totalAngle = 360;
     public void RunSkill(GameObject character)
     {
-        Vector3 diff = MovementSetting.CalculateMoveVector(character.transform.position, character.transform.Find("Weapon").transform.position);
+        Vector3 diff = MovementSetting.CalculateMoveVector(character.transform.position, character.transform.Find("Square").Find("Weapon").transform.position);
         float curAngle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         Quaternion baseAngle = Quaternion.Euler(0, 0, curAngle);
         float diffAngle = totalAngle / baseArrowAmount;
