@@ -10,7 +10,7 @@ public class CharacterManager : MonoBehaviour
 {
     //tam thoi do chua them tinh nang luu trang thai nguoi choi,
     //nen can test skill nao cu tao class va them ten class vo day
-    string[] skill_usings = { "MultipleShot", "WeightShot", "TornadoShot" };
+    string[] skill_usings = { "MultipleShot", "WeightShot", "TornadoShot", "Dash" };
     // Start is called before the first frame update
     void Start()
     {
@@ -50,7 +50,7 @@ public class CharacterManager : MonoBehaviour
             Debug.LogError("Missing Skill In GameObject GameMaster");
             return;
         }
-        skills.OrderBy<BaseSkill,int>(s => s.getButtonIndex());
+        skills.OrderBy<BaseSkill, int>(s => s.getButtonIndex());
         for (int i = 0; i < skills.Length; i++)
         {
             string nameOfSkill = skills[i].GetName();
@@ -65,7 +65,7 @@ public class CharacterManager : MonoBehaviour
                         Debug.Log(nameOfSkill + " Actived");
                         //Thong bao UI o day
                     });
-                    uIManager.AddSkillListener(skills[i].getPathOfImage(),skills[i].RunSkill, (c) =>
+                    uIManager.AddSkillListener(skills[i].getPathOfImage(), skills[i].RunSkill, (c) =>
                     {
                         Debug.Log(nameOfSkill + " Actived");
                         //Thong bao UI o day
