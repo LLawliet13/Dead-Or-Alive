@@ -377,7 +377,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 39.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1581,6 +1581,7 @@ GameObject:
   - component: {fileID: 1193757092}
   - component: {fileID: 1193757094}
   - component: {fileID: 1193757096}
+  - component: {fileID: 1193757097}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -1679,6 +1680,22 @@ MonoBehaviour:
   force: 20
   duration: 5
   timeDelay: 0.001
+--- !u!114 &1193757097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193757090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c9d9d56c889fe458f021b9299f6b82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flySpear: {fileID: 7174924564657482986, guid: 3288d227a6c625849b0fbfc79cb6d718, type: 3}
+  durationToSpawn: 0.5
+  duration: 5
+  spearHole: {fileID: 1158175928712103859, guid: 18ed30b3a6ff67e4da630842f1c36f2a, type: 3}
 --- !u!1 &1589353701
 GameObject:
   m_ObjectHideFlags: 0
