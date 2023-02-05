@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//NOTE:
+//skill bi dong  khong co kha nang kich hoat, cach ham chi dien cho co, chu yeu la viet run_skill
+// vs skill bi dong thi AbleToTrigger luon phai tra ve false, con lai cac ham khac tra ve gi cung dc
 public interface BaseSkillBoss
 {
     //moi skill se co 1 cooldown de boss co the dung 1 luc nhieu skill hoac lan luot( vi du skill co cd cao se dung sau cd thap)
@@ -22,6 +24,9 @@ public interface BaseSkillBoss
     //vi du nhu boss phai o 1 trang thai nhat dinh moi dc trigger
 
     public bool AbleToTrigger();
+    //NOTE: khi lv nhan vat cang cao rangeSkill se thay doi . vi ki nang duoc them nhieu hon
     public bool RangeSkill(Vector3 position);
     public void RunSkill(GameObject Boss);
+    //nang cap cac skill khi nhan vat len cap
+    public void UpdateSkillBaseOnCharacterLv();
 }
