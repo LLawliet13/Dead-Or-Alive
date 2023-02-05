@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public class Dash : MonoBehaviour, BaseSkill
 {
@@ -11,7 +14,7 @@ public class Dash : MonoBehaviour, BaseSkill
 
     public int getButtonIndex()
     {
-        return 4;
+        return 1;
     }
 
     public float GetCD()
@@ -26,19 +29,33 @@ public class Dash : MonoBehaviour, BaseSkill
 
     public string getPathOfImage()
     {
-        throw new System.NotImplementedException();
+        return "Sprites/Skills/For Sword/Dash";
     }
 
     public bool IsActive()
     {
-        throw new System.NotImplementedException();
+        return true;
     }
-
+    bool moveCharacter;
+    GameObject character;
+    Vector3 moveVector;
+    [SerializeField]
+    float DashSpeed;
     public void RunSkill(GameObject character)
     {
-        throw new System.NotImplementedException();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            Dashing(player);
+        }
+
     }
 
+    public void Dashing(GameObject character)
+    {
+        moveVector = MovementSetting.CalculateMoveVector(character.transform.position, character.transform.Find("WeaponParent").Find("Weapon").transform.position);
+        character.transform.position += moveVector * DashSpeed * Time.deltaTime;
+    }
     public void SupportUISkill(GameObject character)
     {
         throw new System.NotImplementedException();

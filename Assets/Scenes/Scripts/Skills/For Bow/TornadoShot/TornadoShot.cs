@@ -61,19 +61,24 @@ public class TornadoShot : MonoBehaviour, BaseSkill
     float targetEdge = 0;
     float nextSpawnTime = 0;
     float duration = 5;
+    float delayTimeShot = 0;// khoang thoi gian phai cho toi luot ban tiep theo
+
     void Update()
     {
         if (moveCharacter)
         {
+
             if (endMoveTime > Time.time)
             {
-                targetEdge +=  numberOfRotation*360* Time.deltaTime/duration;
+                targetEdge +=  numberOfRotation*360* delayTimeShot / duration;
+                //Debug.Log(targetEdge);
                 MoveCharacter(character);
                 if (Time.time > nextSpawnTime )
                 {
                     GameObject arrowSpawn = Instantiate(arrow, character.transform.position, Quaternion.Euler(0,0, targetEdge));
-                    arrowSpawn.GetComponent<TornadoArrow>().SetVector(CaculateVectorB(currentWeaponVector, targetEdge));
-                    nextSpawnTime = Time.time + 2* Time.deltaTime;
+                    arrowSpawn.GetComponent<TornadoArrow>().SetVector(CaculateVectorB(new Vector3(1,0,0), targetEdge));
+                    nextSpawnTime = Time.time + delayTimeShot;
+                    delayTimeShot = 2 * Time.deltaTime;
                 }
             }
             else
@@ -87,6 +92,7 @@ public class TornadoShot : MonoBehaviour, BaseSkill
             targetEdge = 0;
             endMoveTime = Time.time + duration;
             nextSpawnTime = 0;
+            delayTimeShot = 0;
         }
     }
     Vector3 CaculateVectorB(Vector3 a, float angle)

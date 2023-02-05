@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8582720815270257743}
   - component: {fileID: 8582720815270257742}
   - component: {fileID: 8582720815270257729}
-  - component: {fileID: 8582720815270257741}
   m_Layer: 0
   m_Name: EnemyBat
   m_TagString: Enemy
@@ -120,31 +119,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  distance: 0
-  enemyspeed: 0
---- !u!61 &8582720815270257741
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8582720815270257728}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.23732042, y: -0.3844599}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.9, y: 2.22}
-    newSize: {x: 2.9, y: 2.22}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.6757879, y: 0.56020904}
-  m_EdgeRadius: 0

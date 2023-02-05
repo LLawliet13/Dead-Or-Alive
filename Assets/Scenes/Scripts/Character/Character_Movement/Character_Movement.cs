@@ -33,12 +33,10 @@ public class Character_Movement : MonoBehaviour
             if (inputX > 0 && !facingRight)
             {
                 Flip();
-                Debug.Log("right");
             }
             else if (inputX < 0 && facingRight)
             {
                 Flip();
-                Debug.Log("left");
             }
             Vector2 movementDirection = new Vector2(inputX, inputY);
             float inputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
@@ -52,7 +50,6 @@ public class Character_Movement : MonoBehaviour
     }
     private void Flip()
     {
-        Debug.Log("find");
         // Switch the way the player is labelled as facing.
         facingRight = !facingRight;
 
