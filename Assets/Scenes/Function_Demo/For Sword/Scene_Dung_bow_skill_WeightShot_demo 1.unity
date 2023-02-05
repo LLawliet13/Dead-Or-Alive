@@ -1573,7 +1573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba2c5870698f8494d86d13c5b7860e4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DashSpeed: 1500
+  DashSpeed: 1000
 --- !u!1 &1589353701
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,6 +1949,14 @@ PrefabInstance:
     - target: {fileID: 3124988882651503097, guid: 7cf1b4439d74a8f4c9363d6498aa9ede, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.0895
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124988882651503098, guid: 7cf1b4439d74a8f4c9363d6498aa9ede, type: 3}
+      propertyPath: m_Size.x
+      value: 1.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 3124988882651503098, guid: 7cf1b4439d74a8f4c9363d6498aa9ede, type: 3}
+      propertyPath: m_Size.y
+      value: 0.84
       objectReference: {fileID: 0}
     - target: {fileID: 3124988882651503098, guid: 7cf1b4439d74a8f4c9363d6498aa9ede, type: 3}
       propertyPath: m_Sprite
