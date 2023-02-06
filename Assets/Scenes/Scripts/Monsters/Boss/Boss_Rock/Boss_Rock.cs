@@ -27,6 +27,7 @@ public class Boss_Rock : MonoBehaviour
     // neu khong check vi tri nguoi choi thi se khong co dieu kien tien quyet la dung skill nao... co the tao 1 list luu cac skill co the kich hoat sau do uu tien skill alone
     void Update()
     {
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -103,5 +104,10 @@ public class Boss_Rock : MonoBehaviour
         transform.Find("Head").transform.localScale = theScale;
         isLeft = !isLeft;
     }
+
+
+    //mo ta boss : o nhung cap do thap boss se chi ban ra it dan va di chuyen cham, dash it, len cap do cao boss se dash nhieu, ban dan rong hon nhieu hon ep nguoi choi phai di xa no ra
+    // khi do boss se co the su dung dc jumpSkill gay chan dong 1 vung, len cap cao hon vung chan dong se rong ra va ThrowHand( ki nang ban tay truy duoi va dap)
+
 
 }

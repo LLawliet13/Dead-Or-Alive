@@ -11,7 +11,9 @@ public class GarenUlti : MonoBehaviour, BaseSkill
 
     public int getButtonIndex()
     {
+
         return 2;
+
     }
 
     public float GetCD()
@@ -40,9 +42,11 @@ public class GarenUlti : MonoBehaviour, BaseSkill
         Vector3 weaponPosition;
         if (player != null)
         {
+
             GameObject weapon = player.transform.Find("WeaponParent").Find("Weapon").gameObject;
             Vector3 targetPosition = 2 * weapon.transform.position - player.transform.position + new Vector3(0, garenSword.GetComponent<SpriteRenderer>().bounds.extents.y, 0);
             GameObject a = Instantiate(garenSword, new Vector3(targetPosition.x, targetPosition.y + 10, targetPosition.z), Quaternion.identity);
+
             a.GetComponent<GarenSword>().Trigger(targetPosition);
         }
     }

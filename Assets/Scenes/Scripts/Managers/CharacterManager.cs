@@ -11,8 +11,7 @@ public class CharacterManager : MonoBehaviour
     //tam thoi do chua them tinh nang luu trang thai nguoi choi,
     //nen can test skill nao cu tao class va them ten class vo day
 
-    string[] skill_usings = { "Dash", "SpearManipulation", "GarenUlti" };
-
+    string[] skill_usings = { "InfinitySpear", "SpearManipulation", "GarenUlti" };
     // Start is called before the first frame update
     void Start()
     {
