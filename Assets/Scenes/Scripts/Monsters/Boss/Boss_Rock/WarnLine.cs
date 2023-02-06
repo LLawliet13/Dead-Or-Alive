@@ -10,8 +10,9 @@ public class WarnLine : MonoBehaviour
     void Start()
     {
         trailRenderer = GetComponent<TrailRenderer>();
-        trailRenderer.startColor = new Color(1, 0, 0, 0.7f);
-        trailRenderer.endColor = new Color(1, 0, 0, 0.7f);
+
+        //trailRenderer.startColor = new Color(1, 0, 0, 0.7f);
+        //trailRenderer.endColor = new Color(1, 0, 0, 0.7f);
         //Destroy(gameObject, 3f);
 
     }
