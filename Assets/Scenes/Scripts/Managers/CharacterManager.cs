@@ -16,9 +16,13 @@ public class CharacterManager : MonoBehaviour
     void Start()
     {
         loadData();//load thong tin tu file luu tru len day
+        SignUpSkill();//xoa ham nay di
+    }
+    public void SignUpSkill()
+    {
+        //dieu kien
         addSkill();
     }
-
     // Update is called once per frame
     void Update()
     {
