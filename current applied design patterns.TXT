@@ -1,0 +1,2 @@
+subclass sandbox
+type object

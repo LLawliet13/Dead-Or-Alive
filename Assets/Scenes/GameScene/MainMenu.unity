@@ -833,7 +833,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CaCanKoo
+  m_Text: Dead Or Alive
 --- !u!222 &690590237
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1174,7 +1174,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CaCanKoo
+  m_Text: 'Dead Or Alive
+
+'
 --- !u!222 &1003450208
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1785,7 +1787,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 2123801667}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
