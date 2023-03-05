@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 721ce449191abe54ba10e82a73adbef3, type: 3}
   m_Name: Boss_1
   m_EditorClassIdentifier: 
-  Atk: 0
-  Hp: 0
-  Def: 0
-  Speed: 0
-  AvatarPath: 
+  Atk: 5
+  Hp: 1000
+  Def: 10
+  Speed: 3
+  AvatarPath: Sprites/Boss/Boss_Rock
   EnemyType: 0
-  EnemyName: 
-  HeSoNangCapHp: 0
-  HeSoNangCapAtk: 0
-  HeSoNangCapDef: 0
-  HeSoNangCapSpeed: 0
+  EnemyName: Boss_Rock
+  HeSoNangCapHp: 1.03
+  HeSoNangCapAtk: 1.03
+  HeSoNangCapDef: 1.03
+  HeSoNangCapSpeed: 1

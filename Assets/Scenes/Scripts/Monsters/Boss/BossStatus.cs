@@ -9,7 +9,7 @@ public class BossStatus : EnemyStatus
     void Start()
     {
         typeEnemy = BaseStats.EnemyType;
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer = transform.Find("Head").GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = Resources.Load<Sprite>(BaseStats.AvatarPath);
     }
 

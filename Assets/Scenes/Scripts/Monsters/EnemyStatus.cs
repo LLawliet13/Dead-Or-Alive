@@ -7,7 +7,14 @@ public abstract class EnemyStatus : MonoBehaviour
 {
 
     public MonsterType BaseStats;//apply type object
-    protected int MaxHp, CurrentHp,Atk,Def,Speed;
+    public int MaxHp { get; protected set; }
+    public int CurrentHp { get; protected set; }
+    public int Atk { get; protected set; }
+
+    public int Def { get; protected set; }
+
+    public int Speed { get; protected set; }
+
     protected int currentPlayerLevel;
     protected int typeEnemy;// dung de thong bao cho Scene Manager biet tinh toan exp cho nhan vat
     //tinh level nhan vat de tang chi so cho quai dc goi khi quai enable

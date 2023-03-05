@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: BossFactory_1
   m_EditorClassIdentifier: 
   BossOrder: 
-  TypesPath: 
+  TypesPath: MonsterType/Boss/Boss_1
