@@ -1412,6 +1412,8 @@ GameObject:
   - component: {fileID: 1193757092}
   - component: {fileID: 1193757094}
   - component: {fileID: 1193757096}
+  - component: {fileID: 1193757098}
+  - component: {fileID: 1193757097}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -1507,6 +1509,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   garenSword: {fileID: 6524356903658246425, guid: f12cac4f4741a9a438c697ef86c24359, type: 3}
+--- !u!114 &1193757097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193757090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82d0ff627f10a41478e8df1cb64995e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spear: {fileID: 0}
+  force: 20
+  duration: 5
+  timeDelay: 0.03
+--- !u!114 &1193757098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193757090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c9d9d56c889fe458f021b9299f6b82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flySpear: {fileID: 0}
+  durationToSpawn: 0.5
+  duration: 5
+  spearHole: {fileID: 0}
 --- !u!1001 &1506517533
 PrefabInstance:
   m_ObjectHideFlags: 0
