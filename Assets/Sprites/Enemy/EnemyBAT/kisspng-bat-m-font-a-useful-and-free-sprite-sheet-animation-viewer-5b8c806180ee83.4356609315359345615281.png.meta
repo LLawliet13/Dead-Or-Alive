@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -103,7 +103,91 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: kisspng-bat-m-font-a-useful-and-free-sprite-sheet-animation-viewer-5b8c806180ee83.4356609315359345615281_0
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 269
+        width: 255
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c261fffcbd44ab64c8b2e41608ba8293
+      internalID: 2001446219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-bat-m-font-a-useful-and-free-sprite-sheet-animation-viewer-5b8c806180ee83.4356609315359345615281_1
+      rect:
+        serializedVersion: 2
+        x: 363
+        y: 354
+        width: 180
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a26194f83c64415499507154da1dfa5f
+      internalID: 1893684809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-bat-m-font-a-useful-and-free-sprite-sheet-animation-viewer-5b8c806180ee83.4356609315359345615281_2
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 335
+        width: 225
+        height: 156
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c643e4baa1b0b2c4ba51bcbadcd9ae80
+      internalID: 2027225228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kisspng-bat-m-font-a-useful-and-free-sprite-sheet-animation-viewer-5b8c806180ee83.4356609315359345615281_3
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 146
+        width: 242
+        height: 163
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3f7a0d394b2a3447b5283fd9030db26
+      internalID: -245507470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -114,7 +198,11 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      kisspng-bat-m-font-a-useful-and-free-sprite-sheet-animation-viewer-5b8c806180ee83.4356609315359345615281_1: 1893684809
+      kisspng-bat-m-font-a-useful-and-free-sprite-sheet-animation-viewer-5b8c806180ee83.4356609315359345615281_3: -245507470
+      kisspng-bat-m-font-a-useful-and-free-sprite-sheet-animation-viewer-5b8c806180ee83.4356609315359345615281_2: 2027225228
+      kisspng-bat-m-font-a-useful-and-free-sprite-sheet-animation-viewer-5b8c806180ee83.4356609315359345615281_0: 2001446219
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
