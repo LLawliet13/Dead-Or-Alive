@@ -20,7 +20,7 @@ public class SpearManipulation : MonoBehaviour, BaseSkill
     GameObject spawnPoint;
     public string description()
     {
-        return "chưa biết mô tả gì";
+        return "nanana";
     }
 
     public int getButtonIndex()

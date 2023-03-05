@@ -19,7 +19,7 @@ public class InfinitySpear : MonoBehaviour, BaseSkill
     public float timeDelay = 0.03f;
     public string description()
     {
-        return "chưa biết mô tả gì";
+        return "bbbbbbbbbbbbbb";
     }
 
     public int getButtonIndex()

@@ -1,5 +1,7 @@
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -11,16 +13,11 @@ public class CharacterManager : MonoBehaviour
     //tam thoi do chua them tinh nang luu trang thai nguoi choi,
     //nen can test skill nao cu tao class va them ten class vo day
 
-    string[] skill_usings = { "InfinitySpear", "SpearManipulation", "GarenUlti" };
+    string[] skill_usings;
     // Start is called before the first frame update
     void Start()
     {
         loadData();//load thong tin tu file luu tru len day
-        SignUpSkill();//xoa ham nay di
-    }
-    public void SignUpSkill()
-    {
-        //dieu kien
         addSkill();
     }
     // Update is called once per frame
@@ -38,7 +35,10 @@ public class CharacterManager : MonoBehaviour
     }
     void loadData()
     {
-        // them thong tin skill dang dung vo skill_usings;
+        string path = Application.dataPath;
+        string jsonFilePathListSkill = $"{path}/Scenes/Scripts/Skills/SelectSkill/SkillChosen.json";
+        string json = File.ReadAllText(jsonFilePathListSkill);
+        skill_usings = JsonConvert.DeserializeObject<string[]>(json);
     }
     void addSkill()
     {
