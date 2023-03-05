@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ScenesManager : MonoBehaviour
+public class SceneManager : MonoBehaviour
 {
     public void Playgame()
     {
-        SceneManager.LoadScene("Scene_Dung_Boss_Rock 1");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Scene_Dung_Boss_Rock 1");
     }
     public void Quitgame()
     {
@@ -16,14 +16,14 @@ public class ScenesManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("");
     }
     public void Option()
     {
-        SceneManager.LoadScene("Option");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Option");
     }
     public void BacktoMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 }
