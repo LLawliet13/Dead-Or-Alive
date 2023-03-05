@@ -16,7 +16,6 @@ public class WarnLine : MonoBehaviour
         //Destroy(gameObject, 3f);
 
     }
-    float speed = 3.4f;
     // Update is called once per frame
     void Update()
     {

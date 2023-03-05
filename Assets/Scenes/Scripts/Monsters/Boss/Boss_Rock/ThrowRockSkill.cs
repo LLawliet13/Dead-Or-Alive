@@ -64,7 +64,6 @@ public class ThrowRockSkill : MonoBehaviour, BaseSkillBoss
 
     }
     bool runSkill = true;
-    float bossSpeed = 2;
     // Update is called once per frame
     [SerializeField]
     [Header("Chi so nang cap")]

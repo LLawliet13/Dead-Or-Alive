@@ -9,6 +9,7 @@ public class BossStatus : EnemyStatus
     void Start()
     {
         typeEnemy = BaseStats.EnemyType;
+        spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = Resources.Load<Sprite>(BaseStats.AvatarPath);
     }
 
@@ -17,7 +18,7 @@ public class BossStatus : EnemyStatus
     {
         
     }
-    protected override void caculateStatus()
+    public override void caculateStatus()
     {
         detectPlayerLevel();
         Atk = (int)(BaseStats.Atk * Mathf.Pow(BaseStats.HeSoNangCapAtk, currentPlayerLevel));

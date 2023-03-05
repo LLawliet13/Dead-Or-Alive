@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SceneManager : MonoBehaviour
 {
@@ -15,4 +16,6 @@ public class SceneManager : MonoBehaviour
     {
         
     }
+    UnityEvent AllowCreepSpawn, TriggerBossSpawn;// turn on - off viec spawn boss
+    //TO-DO check dieu kien level sinh boss 
 }

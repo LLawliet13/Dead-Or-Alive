@@ -1,20 +1,29 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-using UnityEngine;
-using UnityEngine.Pool;
-
-
-public class GenericFactory<T> : MonoBehaviour where T : MonoBehaviour
+public abstract class GenericFactory<T> : MonoBehaviour where T : EnemyStatus
 {
     [SerializeField]
-    private T prefab;
-
-
+    protected T prefab;
+    protected MonsterType[] monsterTypes;
+    //loai monster - so luong 
+    protected Dictionary<MonsterType, int> GenerateMonster;
+    // so luong quai se tao ra
+    public int TotalGenerateMonster;
+    //khoi chay factory
+    public abstract void Enable();
     
+    
+
     public T GetNewInstance()
     {
-        return Instantiate(prefab);
+        
+        return GenerateMonsterStrategy();
     }
+    //quy dinh quai co the tao ra trong lan tao tiep theo
+    protected abstract T GenerateMonsterStrategy();
+    
+    
+
 }

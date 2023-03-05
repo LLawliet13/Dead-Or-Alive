@@ -39,7 +39,6 @@ public class GarenUlti : MonoBehaviour, BaseSkill
     public void RunSkill(GameObject character)
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        Vector3 weaponPosition;
         if (player != null)
         {
 

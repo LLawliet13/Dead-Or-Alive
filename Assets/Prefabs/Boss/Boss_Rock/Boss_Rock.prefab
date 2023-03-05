@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 2058451528283208340}
   - component: {fileID: 9129919303677565992}
   - component: {fileID: 2058451528283208338}
+  - component: {fileID: 2302979651788105309}
   m_Layer: 0
   m_Name: Boss_Rock
   m_TagString: Enemy
@@ -249,6 +250,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!114 &2302979651788105309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058451528283208334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c93308922eaca9740b87e05432324794, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BaseStats: {fileID: 11400000, guid: 558ca1429deaa0546abc3c2f77e8d6b9, type: 2}
+  onDestroy:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2058451528730160768
 GameObject:
   m_ObjectHideFlags: 0
