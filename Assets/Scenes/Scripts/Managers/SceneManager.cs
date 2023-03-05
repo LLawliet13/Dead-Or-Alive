@@ -5,16 +5,26 @@ using UnityEngine.Events;
 
 public class SceneManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Playgame()
     {
-        
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Scene_Dung_Boss_Rock 1");
+    }
+    public void Quitgame()
+    {
+        Application.Quit();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Restart()
     {
-        
+        UnityEngine.SceneManagement.SceneManager.LoadScene("");
+    }
+    public void Option()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Option");
+    }
+    public void BacktoMenu()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
     UnityEvent AllowCreepSpawn, TriggerBossSpawn;// turn on - off viec spawn boss
     //TO-DO check dieu kien level sinh boss 
