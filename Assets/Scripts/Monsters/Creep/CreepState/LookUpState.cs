@@ -6,6 +6,7 @@ public class LookUpState : CreepBaseState
 {
     public override bool EnterState()
     {
+        if (!FindPlayer()) return false;
         if ((player.transform.position.x > transform.position.x && isLeft) ||
             (player.transform.position.x < transform.position.x && !isLeft))
             return true;

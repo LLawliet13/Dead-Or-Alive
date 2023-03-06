@@ -2,41 +2,55 @@ using Assets.Scenes.Scripts.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CharacterStatus : MonoBehaviour
 {
-    private int MaxHP, CurrentHp, Def, Atk;
+    public int MaxHP { get; private set; }
+    public int CurrentHp { get; private set; }
+    public int Def { get; private set; }
+    public int Atk { get; private set; }
+
     [SerializeField]
-    private BaseStatus baseStatus;
-    private void autoConfigHP()
+    private PlayerBaseStatus baseStatus;
+    public int playerLevel;
+    private void ConfigStatus()
     {
-        StatusManager.getHP(gameObject);
+        SceneManager sceneManager = FindObjectOfType<SceneManager>();
+        sceneManager.AddLevelUpCharacterEffect(LevelUpEffectEvent);
+        if (sceneManager == null)
+            throw new System.Exception("Missing Scene Manager in this Scene");
+        playerLevel = sceneManager.GetPlayerLevel();
+        MaxHP = CurrentHp = Mathf.RoundToInt(baseStatus.MaxHp * Mathf.Pow(baseStatus.HeSoLevelUpMaxHp, playerLevel));
+        Def = Mathf.RoundToInt(baseStatus.Def * Mathf.Pow(baseStatus.HeSoLevelUpDef, playerLevel));
+        Atk = Mathf.RoundToInt(baseStatus.Atk * Mathf.Pow(baseStatus.HeSoLevelUpAtk, playerLevel));
     }
-    private void autoConfigDef()
-    {
-        StatusManager.getDef(gameObject);
-    }
-    private void autoConfigAtk()
-    {
-        StatusManager.getATK(gameObject);
-    }
+    private UnityEvent LevelUpEffectEvent;
+
     // Start is called before the first frame update
     void Start()
     {
-        MaxHP = CurrentHp = baseStatus.MaxHp;
-        Def = baseStatus.DEF;
-        Atk = baseStatus.ATK;
-        autoConfigHP();
-        autoConfigDef();
-        autoConfigAtk();
+        ConfigStatus();
+        if (LevelUpEffectEvent == null)
+        {
+            LevelUpEffectEvent = new UnityEvent();
+            LevelUpEffectEvent.AddListener(LevelEffect);
+        }
+    }
+    public void LevelEffect()
+    {
+        ConfigStatus();
     }
     public void TakeDamage(float Damage)
     {
-
+        Debug.Log("TO-DO:Them hieu ung Take Damaged cho nhan vat");
+        CurrentHp -= Mathf.RoundToInt((Damage * (1 - Def / 100f)));
+        if (CurrentHp <= 0)
+        {
+            Debug.Log("TO-DO: Them function cho nhan vat die");
+            SceneManager sceneManager = FindObjectOfType<SceneManager>();
+            sceneManager.NotifyPlayerDie();
+        }
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

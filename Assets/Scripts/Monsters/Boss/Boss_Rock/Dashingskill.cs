@@ -4,25 +4,25 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements.Experimental;
 
-public class Dashingskill : MonoBehaviour, BaseSkillBoss
+public class Dashingskill :  BaseSkillBoss
 {
 
-    public float CD_Skill()
+    public override float CD_Skill()
     {
         return 20;
     }
 
-    public float FirstTimeUse()
+    public override float FirstTimeUse()
     {
         return Time.time + 2;
     }
 
-    public int LVToUse()
+    public override int LVToUse()
     {
         return 0;
     }
-    public ObjectLookUp ObjectLookUp;
-    public void RunSkill(GameObject Boss)
+    public ObjectLookUp ObjectLookUp;// ve ra 1 duong line , khi diem cuoi cua line cham vao nhan vat thi notify cho skill nay
+    public override void RunSkill(GameObject Boss)
     {
         runSkill = true;
         SkillEnd = false;
@@ -81,17 +81,17 @@ public class Dashingskill : MonoBehaviour, BaseSkillBoss
         }
     }
    
-    public bool AbleToTriggerWithOtherSkill()
+    public override bool AbleToTriggerWithOtherSkill()
     {
         return false;
     }
     bool SkillEnd = true;
-    public bool isSkillEnd()
+    public override bool isSkillEnd()
     {
         return SkillEnd;
     }
 
-    public bool AbleToTrigger()
+    public override bool AbleToTrigger()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return false;
@@ -100,7 +100,7 @@ public class Dashingskill : MonoBehaviour, BaseSkillBoss
         return false;
     }
 
-    public bool RangeSkill(Vector3 position)
+    public override bool RangeSkill(Vector3 position)
     {
         //vs lv thap (BaseRange.Range(1) <= Vector3.Distance(transform.position, position)) - khi chua co JumpSkill
         if (Vector3.Distance(transform.position, position) <= BaseRange.Range(2) && BaseRange.Range(1) < Vector3.Distance(transform.position, position)) return true;
@@ -109,9 +109,14 @@ public class Dashingskill : MonoBehaviour, BaseSkillBoss
     [Header("Chi so nang cap")]
     public int ableToDo = 1;//so lan nay se gia tang neu nhan vat len cap
     int timeRunSkill = 0;
-    public void UpdateSkillBaseOnCharacterLv()
+    public override void UpdateSkillBaseOnCharacterLv()
     {
         //ableToDo
         return;
+    }
+
+    protected override void SetAtkSkill()
+    {
+        AtkSkill = Mathf.RoundToInt(bossStatus.Atk*1.5f);
     }
 }

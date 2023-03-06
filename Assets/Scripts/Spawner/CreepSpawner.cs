@@ -2,12 +2,13 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Pool;
 
-public class CreepSpawner : MonoBehaviour
+public class CreepSpawner : BaseSpawner
 {
     // Start is called before the first frame update
     void Start()
     {
-        if (CreepDestroyEvent == null) { 
+        if (CreepDestroyEvent == null)
+        {
             CreepDestroyEvent = new UnityEvent<EnemyStatus>();
             CreepDestroyEvent.AddListener(DieEvent);
         }
@@ -16,6 +17,7 @@ public class CreepSpawner : MonoBehaviour
         factory.TotalGenerateMonster = maxPoolSize;
         pool = new ObjectPool<EnemyStatus>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, collectionChecks, maxPoolSize, maxPoolSize);
         timeToSpawn = Time.time;
+        status = Controller.TurnOff;
     }
     [SerializeField]
     private GenericFactory<CreepStatus> factory;
@@ -50,25 +52,47 @@ public class CreepSpawner : MonoBehaviour
         creep.transform.position = RandomLocation();
     }
 
-
     void OnDestroyPoolObject(EnemyStatus creep)
     {
         Destroy(creep);
     }
-    private Vector3 RandomLocation()
-    {
-        Debug.Log("TO-DO:Random vi tri quai xuat hien");
-        return Vector3.zero;
-    }
+    
     public float delayTime = 0.5f;
     private float timeToSpawn;
     // Update is called once per frame
     void Update()
     {
-        if(Time.time> timeToSpawn&&pool.CountActive<maxPoolSize)
+        if (status == Controller.TurnOn)
         {
-            pool.Get();
-            timeToSpawn = Time.time + delayTime;
+            try
+            {
+                player = GameObject.FindGameObjectWithTag("Player").transform;
+            }
+            catch
+            {
+                Debug.LogError("Player Not Found");
+                return;
+            }
+            if (Time.time > timeToSpawn && pool.CountActive < maxPoolSize)
+            {
+                EnemyStatus es = pool.Get();
+                es.transform.position = RandomLocation();
+                timeToSpawn = Time.time + delayTime;
+            }
+        }
+        else
+        {
+            CreepStatus[] creeps = FindObjectsOfType<CreepStatus>();
+            foreach (var creep in creeps)
+                try
+                {
+                    creep.DestroyMySelf();
+                }
+                catch
+                {
+                    Debug.Log("Creep is already destroyed");
+                }
         }
     }
+
 }

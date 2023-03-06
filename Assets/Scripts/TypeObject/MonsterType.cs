@@ -16,5 +16,6 @@ public class MonsterType : ScriptableObject
     public float HeSoNangCapAtk;
     public float HeSoNangCapDef;
     public float HeSoNangCapSpeed;
+    public float AttackRange;
     public int[] state_ids;
 }

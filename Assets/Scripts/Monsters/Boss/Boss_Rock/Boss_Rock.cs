@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -75,7 +74,7 @@ public class Boss_Rock : MonoBehaviour
     BaseSkillBoss aloneSkill;//skill chi dung xong cac skill khac moi duoc dung :)))
     BaseSkillBoss[] skills;
 
-    //CHUA ADD DIEU KIEN LV TO USE SKILL
+    // OPTIONAL : CHUA ADD DIEU KIEN LV TO USE SKILL
 
     void SignUpSkill()
     {
@@ -105,6 +104,23 @@ public class Boss_Rock : MonoBehaviour
         isLeft = !isLeft;
     }
 
+    private float nextCollisionDamageTime;
+    [SerializeField]
+    private float DelayCollisionDamageTime;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player")&&Time.time>nextCollisionDamageTime)
+        {
+            CharacterStatus cs = collision.GetComponent<CharacterStatus>();
+            if (aloneSkill == null)
+                cs.TakeDamage(GetComponent<BossStatus>().Atk);
+            else
+                cs.TakeDamage(aloneSkill.AtkSkill);
+            nextCollisionDamageTime = Time.time + DelayCollisionDamageTime;
+
+        }
+
+    }
 
     //mo ta boss : o nhung cap do thap boss se chi ban ra it dan va di chuyen cham, dash it, len cap do cao boss se dash nhieu, ban dan rong hon nhieu hon ep nguoi choi phai di xa no ra
     // khi do boss se co the su dung dc jumpSkill gay chan dong 1 vung, len cap cao hon vung chan dong se rong ra va ThrowHand( ki nang ban tay truy duoi va dap)

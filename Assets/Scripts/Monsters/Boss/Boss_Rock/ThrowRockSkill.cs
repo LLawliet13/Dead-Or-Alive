@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrowRockSkill : MonoBehaviour, BaseSkillBoss
+public class ThrowRockSkill : BaseSkillBoss
 {
     //skill bi dong nen khong co kha nang kich hoat, cach ham chi dien cho co, chu yeu la viet run_skill
     // vs skill bi dong thi AbleToTrigger luon phai tra ve false, con lai cac ham khac tra ve gi cung dc
-    public bool AbleToTrigger()
+    public override bool AbleToTrigger()
     {
         //GameObject player = GameObject.FindGameObjectWithTag("Player");
         //if (player == null) return false;
@@ -15,22 +15,22 @@ public class ThrowRockSkill : MonoBehaviour, BaseSkillBoss
         return false;
     }
 
-    public bool AbleToTriggerWithOtherSkill()
+    public override bool AbleToTriggerWithOtherSkill()
     {
         return false;
     }
 
-    public float CD_Skill()
+    public override float CD_Skill()
     {
         return 1;
     }
 
-    public float FirstTimeUse()
+    public override float FirstTimeUse()
     {
         return Time.time + 1;
     }
 
-    public bool isSkillEnd()
+    public override bool isSkillEnd()
     {
         if (AbleToTrigger()) return false;
         else
@@ -41,18 +41,18 @@ public class ThrowRockSkill : MonoBehaviour, BaseSkillBoss
 
     }
 
-    public int LVToUse()
+    public override int LVToUse()
     {
         return 0;
     }
 
-    public bool RangeSkill(Vector3 position)
+    public override bool RangeSkill(Vector3 position)
     {
-        if (Vector3.Distance(transform.position, position) > BaseRange.Range(3)&& Vector3.Distance(transform.position, position) < BaseRange.Range(4)) return true;
+        if (Vector3.Distance(transform.position, position) > BaseRange.Range(3) && Vector3.Distance(transform.position, position) < BaseRange.Range(4)) return true;
         return false;
     }
 
-    public void RunSkill(GameObject Boss)
+    public override void RunSkill(GameObject Boss)
     {
         runSkill = true;
         nextTimeThrow = Time.time;
@@ -87,10 +87,12 @@ public class ThrowRockSkill : MonoBehaviour, BaseSkillBoss
                 {
                     for (int i = 0; i < numberOfRock; i++)
                     {
-                        Quaternion targetAngle = Quaternion.Euler(0, 0, Random.Range(angle.eulerAngles.z - angleRange +  90, angle.eulerAngles.z + angleRange + 90));
+                        Quaternion targetAngle = Quaternion.Euler(0, 0, Random.Range(angle.eulerAngles.z - angleRange + 90, angle.eulerAngles.z + angleRange + 90));
                         GameObject a = Instantiate(rock, transform.position, Quaternion.identity);
-                        a.GetComponent<Rock>().setVector(targetAngle * new Vector3(1, 0, 0));
-                        a.GetComponent<Rock>().setSpeed(Random.Range(3f, 7.5f));
+                        Rock r = a.GetComponent<Rock>();
+                        r.setVector(targetAngle * new Vector3(1, 0, 0));
+                        r.setSpeed(Random.Range(3f, 7.5f));
+                        r.SetATK(Mathf.RoundToInt(bossStatus.Atk * 0.5f));
                         nextTimeThrow = Time.time + delay_throw;
                     }
                 }
@@ -100,10 +102,15 @@ public class ThrowRockSkill : MonoBehaviour, BaseSkillBoss
 
     }
 
-    public void UpdateSkillBaseOnCharacterLv()
+    public override void UpdateSkillBaseOnCharacterLv()
     {
         //angleRange
         //numberOfRock
         return;
+    }
+
+    protected override void SetAtkSkill()
+    {
+        AtkSkill = bossStatus.Atk;
     }
 }

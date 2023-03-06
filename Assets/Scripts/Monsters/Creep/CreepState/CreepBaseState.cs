@@ -11,7 +11,7 @@ public abstract class CreepBaseState : MonoBehaviour
     public bool AbleToTriggerWithOther;
     //xu ly truong hop nhieu state co kha nang trigger trong cung 1 thoi diem, se chon theo do uu tien
     public int priority;
-    
+
     protected EnemyStatus enemyStatus;
     //ckeck dieu kien xem state nay kich hoat duoc khong
     public abstract bool EnterState();
@@ -22,11 +22,26 @@ public abstract class CreepBaseState : MonoBehaviour
     public UnityEvent DoExitState;
     public abstract void ExitState();
 
-    public Transform player;
-    private void Start()
+    protected Transform player;
+    protected bool FindPlayer()
     {
-        enemyStatus = GetComponent<EnemyStatus>();
+        try
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+        catch
+        {
+            Debug.LogError("State khong the tim thay player");
+            return false;
+
+        }
+        return true;
+    }
+    private void Awake()
+    {
+        enemyStatus = GetComponent<CreepStatus>();
         if (enemyStatus == null)
             throw new System.Exception("No Enemy Status Attached");
     }
+   
 }

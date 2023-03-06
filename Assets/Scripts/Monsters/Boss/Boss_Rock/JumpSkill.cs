@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class JumpSkill : MonoBehaviour, BaseSkillBoss
+public  class JumpSkill : BaseSkillBoss
 {
 
     // Start is called before the first frame update
@@ -20,6 +20,8 @@ public class JumpSkill : MonoBehaviour, BaseSkillBoss
     bool jump = false;
     bool createEarthQuake = false;
     bool detectTarget = false;
+    [Header("Vung rung chan gay sat thuong moi bn s 1 lan")]
+    public float DelayCollisionDamageTime;
     GameObject targetO;
     void Update()
     {
@@ -40,6 +42,8 @@ public class JumpSkill : MonoBehaviour, BaseSkillBoss
                 transform.localScale /= 2.5f;
                 GameObject a = Instantiate(EarthQuake, target, Quaternion.identity);
                 a.GetComponent<EarthQuakeRockBoss>().setScaleTarget(EarthQuakeRadiusRatio);
+                a.GetComponent<EarthQuakeRockBoss>().atk = Mathf.RoundToInt(bossStatus.Atk * 2.5f);
+                a.GetComponent<EarthQuakeRockBoss>().DelayCollisionDamageTime = DelayCollisionDamageTime;
                 UnityEvent destroyEvent = new UnityEvent();
                 destroyEvent.AddListener(DestroyEarthQuake);
                 a.GetComponent<EarthQuakeRockBoss>().DestroyEvent = destroyEvent;
@@ -48,7 +52,6 @@ public class JumpSkill : MonoBehaviour, BaseSkillBoss
                 return;
             }
             if (jump)
-                //transform.position += MovementSetting.CalculateSlopeMoveVector(target, SupportJumpHead) * speed * Time.deltaTime;
                 transform.position = Vector3.MoveTowards(transform.position, target, speed *2f* Time.deltaTime);
 
         }
@@ -63,42 +66,40 @@ public class JumpSkill : MonoBehaviour, BaseSkillBoss
     public GameObject TargetObject;
     void DetectTarget()
     {
-        //SupportJumpHead.transform.rotation = Quaternion.Euler(0,0,Quaternion.LookRotation(Vector3.forward, player.transform.position).eulerAngles.z+180);
        
         float radius = EarthQuake.GetComponent<CircleCollider2D>().radius * EarthQuakeRadiusRatio*0.1f;
-        //Debug.Log(radius);
         target = Quaternion.Euler(0, 0, Random.Range(0, 360)) * new Vector3(radius, 0, 0) + player.transform.position;//giong voi Ox
         transform.position = Quaternion.Euler(0, 0, Random.Range(0, 360)) * new Vector3(30, 0, 0) + target;
         transform.localScale *= 2.5f;
 
 
     }
-    public float CD_Skill()
+    public override float CD_Skill()
     {
         return 5;
     }
 
-    public int LVToUse()
+    public override int LVToUse()
     {
         return 0;
     }
 
-    public float FirstTimeUse()
+    public override float FirstTimeUse()
     {
         return Time.time;
     }
     bool skillEnd = true;
-    public bool isSkillEnd()
+    public override bool isSkillEnd()
     {
         return skillEnd;
     }
 
-    public bool AbleToTriggerWithOtherSkill()
+    public override bool AbleToTriggerWithOtherSkill()
     {
         return false;
     }
 
-    public bool AbleToTrigger()
+    public override bool AbleToTrigger()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return false;
@@ -107,14 +108,14 @@ public class JumpSkill : MonoBehaviour, BaseSkillBoss
         return false;
     }
 
-    public bool RangeSkill(Vector3 position)
+    public override bool RangeSkill(Vector3 position)
     {
         //vs lv cao (Vector3.Distance(transform.position, position) <= BaseRange.Range(3) && BaseRange.Range(2) < Vector3.Distance(transform.position, position)
         if (BaseRange.Range(2) < Vector3.Distance(transform.position, position)) return true;
         return false;
     }
     bool runSkill = false;
-    public void RunSkill(GameObject Boss)
+    public override void RunSkill(GameObject Boss)
     {
         detectTarget = true;
         runSkill = true;
@@ -123,8 +124,13 @@ public class JumpSkill : MonoBehaviour, BaseSkillBoss
         targetO = null;
     }
 
-    public void UpdateSkillBaseOnCharacterLv()
+    public override void UpdateSkillBaseOnCharacterLv()
     {
         return;
+    }
+
+    protected override void SetAtkSkill()
+    {
+        AtkSkill = Mathf.RoundToInt(bossStatus.Atk * 1.2f);
     }
 }

@@ -5,29 +5,42 @@ using UnityEngine;
 public class AttackState : CreepBaseState
 {
     //tam danh cua quai
-    private int range;
+    private float attackRange;
+    // Start is called before the first frame update
+    private void Start()
+    {
+        attackRange = enemyStatus.BaseStats.AttackRange;
+    }
     public override bool EnterState()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) <= range)
+        if (!FindPlayer()) return false;
+        if (Vector3.Distance(player.transform.position, transform.position) <= attackRange)
             return true;
         return false;
-
     }
-    float exitTime;
+    float attackTime;
+    [SerializeField]
     float delayTime;
     public override void ExitState()
     {
-        if (Time.time > exitTime)
-            DoExitState.Invoke();
+        DoExitState.Invoke();
     }
-    public void Update()
-    {
-        Debug.Log("TO-DO:Quet Khoang Cach va Tan cong");
-        ExitState();
-    }
+    [SerializeField]
+    private LayerMask layerMask;// player layer
+
     public override void UpdateState()
     {
-        exitTime = Time.time + delayTime;
+        if (layerMask == 0)
+            throw new System.Exception("Layer not setting for detect player");
+        if (Time.time > attackTime)
+        {
+            Debug.Log("TO-DO:Quet Khoang Cach va Tan cong");
+            Collider2D[] inRange = Physics2D.OverlapCircleAll(transform.position, attackRange, layerMask);
+            if (inRange.Length > 0)
+                player.GetComponent<CharacterStatus>().TakeDamage(enemyStatus.Atk);
+            attackTime = Time.time + delayTime;
+        }
+        ExitState();
     }
-    
+
 }

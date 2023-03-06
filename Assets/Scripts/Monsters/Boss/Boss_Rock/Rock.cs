@@ -15,6 +15,7 @@ public class Rock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.rotation = Quaternion.LookRotation(Vector3.forward,moveVector);
         Destroy(gameObject, timeDestroy);
     }
     [Header("Chi so nang cap")]
@@ -28,10 +29,16 @@ public class Rock : MonoBehaviour
     {
         transform.position += moveVector.normalized * (speed+ speedAddition) * Time.deltaTime;
     }
+    private int atk;
+    public void SetATK(int atk)
+    {
+        this.atk = atk;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            collision.GetComponent<CharacterStatus>().TakeDamage(atk);
             Destroy(gameObject);
         }
     }

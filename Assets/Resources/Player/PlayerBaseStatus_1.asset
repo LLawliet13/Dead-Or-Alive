@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ecba4f119a7ceb439d160d7202bb12e, type: 3}
-  m_Name: PlayerStatus
+  m_Name: PlayerBaseStatus_1
   m_EditorClassIdentifier: 
-  MaxHp: 0
-  ATK: 0
-  DEF: 0
+  MaxHp: 100
+  ATK: 10
+  DEF: 3
