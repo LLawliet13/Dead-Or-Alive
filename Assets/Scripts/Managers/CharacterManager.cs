@@ -12,7 +12,7 @@ public class CharacterManager : MonoBehaviour
     //tam thoi do chua them tinh nang luu trang thai nguoi choi,
     //nen can test skill nao cu tao class va them ten class vo day
 
-    string[] skill_usings;
+    string[] skill_usings = {"name1","name2","name3"};
     // Start is called before the first frame update
     void Start()
     {

@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     // Start is called before the first frame update
     List<Button> buttons;
-    void Start()
+    void Awake()
     {
         skills = new LinkedList<UnityEvent<GameObject>>();
     }
@@ -35,7 +35,7 @@ public class UIManager : MonoBehaviour
     LinkedList<UnityEvent<GameObject>> skills;
     public void AddSkillListener(string imageSkill,params UnityAction<GameObject>[] action)
     {
-        if (skills.Count > 5) throw new System.Exception("So luong skill duoc su dung vuot qua gioi han");
+        //if (skills.Count > 5) throw new System.Exception("So luong skill duoc su dung vuot qua gioi han");
         UnityEvent<GameObject> unityEvent = new UnityEvent<GameObject>();
         foreach (UnityAction<GameObject> unityAction in action)
             unityEvent.AddListener(unityAction);
