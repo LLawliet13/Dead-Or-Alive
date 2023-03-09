@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,71 @@ public class SceneManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
-    UnityEvent AllowCreepSpawn, TriggerBossSpawn;// turn on - off viec spawn boss
-    //TO-DO check dieu kien level sinh boss 
+    private int PlayerLevel;
+    public void SetPlayerLevel(int playerLevel)
+    {
+        PlayerLevel = playerLevel;
+    }
+    public int GetPlayerLevel()
+    {
+        Debug.Log("TO-DO: tinh toan va hien thi player level");
+        return 1;
+    }
+    private UnityEvent LevelUpEffectEvent;
+    public void NotifyPlayerDie()
+    {
+        IsPlayerDie = true;
+    }
+
+    public void PlayerLevelUp()
+    {
+        LevelUpEffectEvent.Invoke();
+    }
+    internal void AddLevelUpCharacterEffect(UnityEvent levelUpEffectEvent)
+    {
+        LevelUpEffectEvent = levelUpEffectEvent;
+    }
+    private float SimulateTime;
+    private bool IsPlayerDie;
+    private void Awake()
+    {
+        PlayerLevel = 0;
+        IsPlayerDie = false;
+        SimulateTime = Time.time;
+        creepSpawner = Instantiate(creepSpawner);
+        bossSpawner = Instantiate(bossSpawner);
+    }
+    [SerializeField]
+    private CreepSpawner creepSpawner;
+    [SerializeField]
+    private BossSpawner bossSpawner;
+
+    private int LevelTriggerBoss = 0;
+    private void Update()
+    {
+        Debug.Log("TO-DO: Them ham tinh kinh nghiem va cho nguoi choi len cap");
+        Debug.Log("Hien tai gia lap nguoi choi len level moi 2s");
+        if (Time.time >= SimulateTime && PlayerLevel < 5)
+        {
+            PlayerLevel += 1;
+            SimulateTime = Time.time + 2f;
+        }
+        //spawn boss moi khi nhan vat tang 5 level
+        if (PlayerLevel % 5 == 0)
+        {
+            creepSpawner.SettingController(BaseSpawner.Controller.TurnOff);
+            if (LevelTriggerBoss != PlayerLevel)
+            {
+                bossSpawner.SettingController(BaseSpawner.Controller.TurnOn);
+                LevelTriggerBoss = PlayerLevel;
+            }
+        }
+        else
+        {
+            creepSpawner.SettingController(BaseSpawner.Controller.TurnOn);
+            bossSpawner.SettingController(BaseSpawner.Controller.TurnOff);
+        }
+        if (IsPlayerDie)
+            Debug.Log("TO-DO: Them hanh dong cho viec nguoi choi die");
+    }
 }

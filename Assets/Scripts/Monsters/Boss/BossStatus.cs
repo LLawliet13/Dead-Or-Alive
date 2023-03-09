@@ -25,9 +25,5 @@ public class BossStatus : EnemyStatus
         MaxHp = CurrentHp = (int)(BaseStats.Hp * Mathf.Pow(BaseStats.HeSoNangCapHp, currentPlayerLevel));
         Speed = (int)(BaseStats.Speed * Mathf.Pow(BaseStats.HeSoNangCapSpeed, currentPlayerLevel));
     }
-    private void OnEnable()
-    {
-        caculateStatus();
-        Debug.Log("TO-DO:tinh toan lai chi BossStatus");
-    }
+   
 }

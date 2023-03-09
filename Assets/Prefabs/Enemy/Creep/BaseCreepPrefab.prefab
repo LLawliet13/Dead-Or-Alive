@@ -12,6 +12,12 @@ GameObject:
   - component: {fileID: 4681006297116298822}
   - component: {fileID: 2299522428123203645}
   - component: {fileID: 7416433586353417885}
+  - component: {fileID: 7331810477446727327}
+  - component: {fileID: -9004874271419024829}
+  - component: {fileID: 3345932474001411725}
+  - component: {fileID: -3665120913777455674}
+  - component: {fileID: 7531619373978726828}
+  - component: {fileID: -3605974605203867556}
   m_Layer: 0
   m_Name: BaseCreepPrefab
   m_TagString: Enemy
@@ -128,3 +134,111 @@ MonoBehaviour:
   onDestroy:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7331810477446727327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2337989524030543730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b247ce154b8151348b725183d0af48b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-9004874271419024829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2337989524030543730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f2d8b60aef409b4cb645875578f88ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state_id: 1
+  AbleToTriggerWithOther: 0
+  priority: 0
+  DoExitState:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &3345932474001411725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2337989524030543730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee429d46b343e6488c43e544df2d700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state_id: 2
+  AbleToTriggerWithOther: 1
+  priority: 0
+  DoExitState:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &-3665120913777455674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2337989524030543730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c8da7947ce1ed41942de36469a1248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state_id: 3
+  AbleToTriggerWithOther: 0
+  priority: 1
+  DoExitState:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7531619373978726828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2337989524030543730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3499586ceff9f5b43972601f8f96ca69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state_id: 4
+  AbleToTriggerWithOther: 0
+  priority: 1
+  DoExitState:
+    m_PersistentCalls:
+      m_Calls: []
+  delayTime: 0.8
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
+--- !u!114 &-3605974605203867556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2337989524030543730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51466ddc8ae8e534b92ec0e4514fc38d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state_id: 5
+  AbleToTriggerWithOther: 0
+  priority: 1
+  DoExitState:
+    m_PersistentCalls:
+      m_Calls: []
+  bullet: {fileID: 8989639201262964534, guid: 70ff01087cf6d7544b3656e666f44a54, type: 3}
+  delayTime: 3

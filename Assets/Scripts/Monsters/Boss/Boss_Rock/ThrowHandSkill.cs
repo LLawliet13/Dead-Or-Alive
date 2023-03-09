@@ -2,49 +2,54 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrowHandSkill : MonoBehaviour,BaseSkillBoss
+public class ThrowHandSkill : BaseSkillBoss
 {
-    public bool AbleToTrigger()
+    public override bool AbleToTrigger()
     {
         throw new System.NotImplementedException();
     }
 
-    public bool AbleToTriggerWithOtherSkill()
+    public override bool AbleToTriggerWithOtherSkill()
     {
         throw new System.NotImplementedException();
     }
 
-    public float CD_Skill()
+    public override float CD_Skill()
     {
         throw new System.NotImplementedException();
     }
 
-    public float FirstTimeUse()
+    public override float FirstTimeUse()
     {
         throw new System.NotImplementedException();
     }
 
-    public bool isSkillEnd()
+    public override bool isSkillEnd()
     {
         throw new System.NotImplementedException();
     }
 
-    public int LVToUse()
+    public override int LVToUse()
     {
         throw new System.NotImplementedException();
     }
 
-    public bool RangeSkill(Vector3 position)
+    public override bool RangeSkill(Vector3 position)
     {
         throw new System.NotImplementedException();
     }
 
-    public void RunSkill(GameObject Boss)
+    public override void RunSkill(GameObject Boss)
     {
         throw new System.NotImplementedException();
     }
 
-    public void UpdateSkillBaseOnCharacterLv()
+    public override void UpdateSkillBaseOnCharacterLv()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected override void SetAtkSkill()
     {
         throw new System.NotImplementedException();
     }

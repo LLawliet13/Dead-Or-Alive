@@ -20,14 +20,17 @@ public abstract class EnemyStatus : MonoBehaviour
     //tinh level nhan vat de tang chi so cho quai dc goi khi quai enable
     protected void detectPlayerLevel()
     {
-        Debug.Log("TO-DO:Thiet Lap Level Nhan vat, mac dinh = 1");
-        currentPlayerLevel = 1;
+        SceneManager sceneManager = FindObjectOfType<SceneManager>();
+        if (sceneManager == null)
+            throw new System.Exception("Missing Scene Manager in this Scene");
+        currentPlayerLevel = sceneManager.GetPlayerLevel();
     }
     public abstract void caculateStatus();
     public void caculateDamageTaken(int damage)
     {
-        CurrentHp -= (int)(damage * (1 - Def / 100f));
+        CurrentHp -= Mathf.RoundToInt((damage * (1 - Def / 100f)));
     }
+    //ham de tra creep ve pool
     public UnityEvent<EnemyStatus> onDestroy;
 
     public void DestroyMySelf()

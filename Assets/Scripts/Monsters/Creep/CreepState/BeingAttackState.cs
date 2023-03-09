@@ -19,13 +19,14 @@ public class BeingAttackState : CreepBaseState
     float delayTime;
     public override void ExitState()
     {
-        if (Time.time > exitTime)
-            DoExitState.Invoke();
+        DoExitState.Invoke();
     }
     private void Update()
     {
-        Debug.Log("TO-DO:Hieu ung mat hp");
-        ExitState();
+        if (Time.time < exitTime)
+            Debug.Log("TO-DO:Hieu ung mat hp");
+        else
+            ExitState();
     }
     public override void UpdateState()
     {

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,16 +15,38 @@ public class StateManager : MonoBehaviour
     void Start()
     {
         IsPriorityStateFree = true;
-        //nhan dien cac state cua quai
-        CreepBaseState[] allStates = gameObject.GetComponents<CreepBaseState>();
-        AbleToTriggerWithOtherStates = allStates.Where(c=>c.AbleToTriggerWithOther).ToArray();
-        //sap xep theo do uu tien
-        PriorityStates = allStates.Where(c => !c.AbleToTriggerWithOther).OrderBy<CreepBaseState,int>(c=>c.priority).ToArray();
-
-        if (ExistState == null) { 
+        SignUpState();
+        if (ExistState == null)
+        {
             ExistState = new UnityEvent();
             ExistState.AddListener(doExitState);
         }
+
+    }
+    private EnemyStatus enemyStatus;
+    private void Awake()
+    {
+        enemyStatus = GetComponent<CreepStatus>();
+        if (enemyStatus == null)
+            throw new System.Exception("No Enemy Status Attached");
+    }
+    private void SignUpState()
+    {
+        int[] stateIndexs = enemyStatus.BaseStats.state_ids;
+        //nhan dien cac state cua quai
+        CreepBaseState[] allStates = gameObject.GetComponents<CreepBaseState>().Where(s =>
+        {
+            bool match = false;
+            foreach (var state in stateIndexs)
+                if (state == s.state_id)
+                    return true;
+            return match;
+        }
+        ).ToArray();
+
+        AbleToTriggerWithOtherStates = allStates.Where(c => c.AbleToTriggerWithOther).ToArray();
+        //sap xep theo do uu tien
+        PriorityStates = allStates.Where(c => !c.AbleToTriggerWithOther).OrderBy<CreepBaseState, int>(c => c.priority).ToArray();
     }
 
     // Update is called once per frame
@@ -33,7 +54,7 @@ public class StateManager : MonoBehaviour
     {
         CheckAvailableState();
     }
-    
+
     private void doExitState()
     {
         IsPriorityStateFree = true;
@@ -42,13 +63,13 @@ public class StateManager : MonoBehaviour
     {
         //thuc thi cac state luon co the trigger
         foreach (CreepBaseState state in AbleToTriggerWithOtherStates)
-            if(state.EnterState())
+            if (state.EnterState())
             {
                 state.UpdateState();
             }
 
-        if(IsPriorityStateFree)
-        foreach(CreepBaseState state in PriorityStates)
+        if (IsPriorityStateFree)
+            foreach (CreepBaseState state in PriorityStates)
             {
                 if (state.EnterState())
                 {

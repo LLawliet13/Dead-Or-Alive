@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements.Experimental;
 
-public class FollowSkill : MonoBehaviour,BaseSkillBoss
+public class FollowSkill : BaseSkillBoss
 {
-    public bool AbleToTrigger()
+    public override bool AbleToTrigger()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return false;
@@ -14,22 +14,22 @@ public class FollowSkill : MonoBehaviour,BaseSkillBoss
         return false;
     }
 
-    public bool AbleToTriggerWithOtherSkill()
+    public override bool AbleToTriggerWithOtherSkill()
     {
         return false;
     }
 
-    public float CD_Skill()
+    public override float CD_Skill()
     {
         return 1;
     }
 
-    public float FirstTimeUse()
+    public override float FirstTimeUse()
     {
         return Time.time + 1;
     }
 
-    public bool isSkillEnd()
+    public override bool isSkillEnd()
     {
         if (AbleToTrigger()) return false;
         else
@@ -40,18 +40,18 @@ public class FollowSkill : MonoBehaviour,BaseSkillBoss
         
     }
 
-    public int LVToUse()
+    public override int LVToUse()
     {
         return 0;
     }
 
-    public bool RangeSkill(Vector3 position)
+    public override bool RangeSkill(Vector3 position)
     {
         if (Vector3.Distance(transform.position, position) <= BaseRange.Range(1)) return true;
         return false;
     }
 
-    public void RunSkill(GameObject Boss)
+    public override void RunSkill(GameObject Boss)
     {
         runSkill = true;
     }
@@ -78,8 +78,13 @@ public class FollowSkill : MonoBehaviour,BaseSkillBoss
         
     }
 
-    public void UpdateSkillBaseOnCharacterLv()
+    public override void UpdateSkillBaseOnCharacterLv()
     {
         return;
+    }
+
+    protected override void SetAtkSkill()
+    {
+        AtkSkill = bossStatus.Atk;
     }
 }

@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fceb3d022b483a341b86389815ec1c5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolSize: 0
+  RangeFromPlayer: 20
   factory: {fileID: 1676060528821640306, guid: d84707d106c2a7048a50314be7d71e7e, type: 3}
   collectionChecks: 0
   maxPoolSize: 50
+  delayTime: 0.5

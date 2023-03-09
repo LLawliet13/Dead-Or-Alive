@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a071fec874026439fe96d59ce73a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DelayCollisionDamageTime: 1.5
 --- !u!114 &2058451528283208337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ObjectLookUp: {fileID: 591429936982523162}
   bossSpeed: 30
-  ableToDo: 1
+  ableToDo: 2
 --- !u!114 &2058451528283208339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,8 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f1f31317e1b814ea42d5e92680b54d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleRange: 30
-  numberOfRock: 8
+  angleRange: 45
+  numberOfRock: 10
   rock: {fileID: 1281417923582486019, guid: b5df718eb050e204ebdbab659bbdb94e, type: 3}
 --- !u!114 &9129919303677565992
 MonoBehaviour:
@@ -226,6 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  DelayCollisionDamageTime: 2
   EarthQuake: {fileID: 63594592717111073, guid: 413c89d85f5d26f45be0933bbd331d3e, type: 3}
   EarthQuakeRadiusRatio: 30
   TargetObject: {fileID: 7051222727305429517, guid: 57561e23e42f70a48adfa35a5900d7c5, type: 3}
