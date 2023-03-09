@@ -1,3 +1,4 @@
+using Assets.Scripts.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -5,7 +6,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class StateManager : MonoBehaviour
+public class CreepStateManager : BaseStateManager
 {
 
     private CreepBaseState[] priorityStates;
@@ -42,15 +43,26 @@ public class StateManager : MonoBehaviour
             exitParallelState.AddListener(doExitParallelState);
         }
     }
-    
+
     // Update is called once per frame
     void Update()
     {
-        CheckAvailableState();
-        updatePriorityStates.Invoke();
-        updateParallelStates.Invoke();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) RemoveAllState();
+        else
+        {
+            CheckAvailableState();
+            updatePriorityStates.Invoke();
+            updateParallelStates.Invoke();
+        }
     }
-    private void SignUpState()
+    protected override void RemoveAllState()
+    {
+        updatePriorityStates.RemoveAllListeners();
+        updateParallelStates.RemoveAllListeners();
+        daDangki = 0;
+    }
+    protected override void SignUpState()
     {
         int[] stateIndexs = enemyStatus.BaseStats.state_ids;
         //nhan dien cac state cua quai
@@ -75,9 +87,12 @@ public class StateManager : MonoBehaviour
     }
     private void doExitPriorityState(UnityAction functionName)
     {
+        daDangki--;
         updatePriorityStates.RemoveListener(functionName);
     }
-    private void CheckAvailableState()
+    int daDangki = 0;
+
+    protected override void CheckAvailableState()
     {
         //thuc thi cac state luon co the trigger
         foreach (CreepBaseState state in parallelStates)
@@ -89,12 +104,13 @@ public class StateManager : MonoBehaviour
                 state.DoExitState = exitParallelState;
             }
         //khi khong co state nao dang chay thi tim kiem state kha dung
-        if (updatePriorityStates.GetPersistentEventCount() == 0)
+        if (daDangki == 0)
             foreach (CreepBaseState state in priorityStates)
             {
                 if (state.EnterState())
                 {
-                    state.UpdateState();
+                    daDangki++;
+                    updatePriorityStates.AddListener(state.UpdateState);
                     state.DoExitState = exitPriorityState;
                     break;
                 }

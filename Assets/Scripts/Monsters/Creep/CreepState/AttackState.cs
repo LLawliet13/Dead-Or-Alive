@@ -10,6 +10,7 @@ public class AttackState : CreepBaseState
     private void Start()
     {
         attackRange = enemyStatus.BaseStats.AttackRange;
+        attackTime = Time.time;
     }
     /// <summary>
     /// Chinh sua cac thong so cua state va check neu state co the trien khai

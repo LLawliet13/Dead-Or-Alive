@@ -6,29 +6,19 @@ public class ThrowHandSkill : BaseSkillBoss
 {
     public override bool AbleToTrigger()
     {
-        throw new System.NotImplementedException();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) return false;
+        return true;
     }
 
-    public override bool AbleToTriggerWithOtherSkill()
-    {
-        throw new System.NotImplementedException();
-    }
+    
 
     public override float CD_Skill()
     {
         throw new System.NotImplementedException();
     }
 
-    public override float FirstTimeUse()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override bool isSkillEnd()
-    {
-        throw new System.NotImplementedException();
-    }
-
+   
     public override int LVToUse()
     {
         throw new System.NotImplementedException();
@@ -39,12 +29,14 @@ public class ThrowHandSkill : BaseSkillBoss
         throw new System.NotImplementedException();
     }
 
-    public override void RunSkill(GameObject Boss)
+ 
+
+    public override void UpdateSkillBaseOnCharacterLv()
     {
         throw new System.NotImplementedException();
     }
 
-    public override void UpdateSkillBaseOnCharacterLv()
+    public override void UpdateState()
     {
         throw new System.NotImplementedException();
     }

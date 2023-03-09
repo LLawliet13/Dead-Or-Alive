@@ -34,13 +34,16 @@ public class RangedAttack : CreepBaseState
 
     public override void UpdateState()
     {
-        Debug.Log("TO-DO: Ban ra dan tu state ranged attack");
-        GameObject a = Instantiate(bullet, transform.position, Quaternion.identity);
-        Rock r = a.GetComponent<Rock>();
-        r.setVector((player.position - transform.position).normalized);
-        r.setSpeed(Random.Range(3f, 7.5f));
-        r.SetATK(enemyStatus.Atk);
-        fireTime = Time.time + delayTime;
-        ExitState();
+        if (Time.time > fireTime)
+        {
+            Debug.Log("TO-DO: Ban ra dan tu state ranged attack");
+            GameObject a = Instantiate(bullet, transform.position, Quaternion.identity);
+            Rock r = a.GetComponent<Rock>();
+            r.setVector((player.position - transform.position).normalized);
+            r.setSpeed(Random.Range(3f, 7.5f));
+            r.SetATK(enemyStatus.Atk);
+            fireTime = Time.time + delayTime;
+            ExitState();
+        }
     }
 }

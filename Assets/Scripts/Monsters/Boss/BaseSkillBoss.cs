@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+
 
 /// <summary>
 /// skill bi dong  khong co kha nang kich hoat, cach ham chi dien cho co, chu yeu la viet run_skill vs skill bi dong thi AbleToTrigger luon phai tra ve false, con lai cac ham khac tra ve gi cung dc
 /// </summary>
- 
+
 public abstract class BaseSkillBoss : MonoBehaviour
 {
     /// <summary>
@@ -20,26 +23,31 @@ public abstract class BaseSkillBoss : MonoBehaviour
     public abstract int LVToUse();
 
     /// <summary>
-    /// thoi gian khi khoi tao bat dau dung ki nang return Time.time+Xs;
-    /// </summary>
-    /// <returns></returns>
-     
-    public abstract float FirstTimeUse();
-
-    /// <summary>
-    /// cac thong bao cho boss biet luc nao nen dung skill tiep theo
-    /// </summary>
-    /// <returns></returns>
-    public abstract bool isSkillEnd();
-    /// <summary>
-    /// 1 so skill khong ho tro khi skill khac dang chay
+    /// moc thoi gian cho phep dung ki nang(ke tu luc boss duoc tao ra) return Time.time+Xs;
     /// </summary>
     /// <returns></returns>
 
-    public abstract bool AbleToTriggerWithOtherSkill();
+    protected float firstTimeUse;
+    public float FirstTimeUse()
+    {
+        return firstTimeUse;
+    }
+
+    ///// <summary>
+    ///// cac thong bao cho boss biet luc nao nen dung skill tiep theo
+    ///// </summary>
+    ///// <returns></returns>
+    //public abstract bool isSkillEnd();
+
+    ///// <summary>
+    ///// 1 so skill khong ho tro khi skill khac dang chay
+    ///// </summary>
+    ///// <returns></returns>
+
+    //public abstract bool AbleToTriggerWithOtherSkill();
 
     /// <summary>
-    /// vi du nhu boss phai o 1 trang thai nhat dinh moi dc trigger( khong lien quan toi thoi gian hoi chieu)
+    /// vi du nhu boss phai o 1 trang thai nhat dinh moi dc trigger( khong lien quan toi thoi gian hoi chieu) va phai trien khai cac kieu kien enter state
     /// </summary>
     /// <returns></returns>
 
@@ -50,18 +58,60 @@ public abstract class BaseSkillBoss : MonoBehaviour
     /// <param name="position"></param>
     /// <returns></returns>
     public abstract bool RangeSkill(Vector3 position);
-    public abstract void RunSkill(GameObject Boss);
     /// <summary>
     /// nang cap cac skill khi nhan vat len cap
     /// </summary>
     public abstract void UpdateSkillBaseOnCharacterLv();
 
     public int AtkSkill { get; protected set; }
+
+    /// <summary>
+    /// set gia tri sat thuong cua state cho boss status(optional)
+    /// </summary>
     protected abstract void SetAtkSkill();
-   
+
     protected EnemyStatus bossStatus;
     private void Awake()
     {
         bossStatus = GetComponent<BossStatus>();
+    }
+    protected float availableSkillTime;
+    public bool isSkillCoolDown()
+    {
+        return Time.time < availableSkillTime;
+    }
+
+    //dinh danh state khi chon state cho creep type
+    public int state_id;
+    //Luon trigger khi dieu kien enter dien ra
+    public bool AbleToTriggerWithOther;
+    //xu ly truong hop nhieu state co kha nang trigger trong cung 1 thoi diem, se chon theo do uu tien
+    public int priority;
+
+    protected EnemyStatus enemyStatus;
+    /// <summary>
+    /// ckeck dieu kien xem state nay kich hoat duoc khong
+    /// </summary>
+    /// <returns></returns>
+    public bool EnterState()
+    {
+        //Khong dc vi tri 2 ham( vi ham able trigger trien khai cac dieu kien de enter state)
+        if ((Time.time > FirstTimeUse()) && !isSkillCoolDown() && AbleToTrigger())
+        {
+            availableSkillTime = Time.time + CD_Skill();
+            SetAtkSkill();
+            return true;
+        };
+        return false;
+    }
+
+    //thuc thi hanh dong cua state
+    public abstract void UpdateState();
+
+    //thong bao exitState
+    public UnityEvent<UnityAction> DoExitState;
+    public void ExitState()
+    {
+        DoExitState.Invoke(UpdateState);
     }
 }
