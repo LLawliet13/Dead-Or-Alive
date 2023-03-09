@@ -94,7 +94,7 @@ public class InfinitySpear : MonoBehaviour, BaseSkill
                 GameObject infSpear = Instantiate(spear, character.transform.position, Quaternion.Euler(0, 0, curAngle));
                 Rigidbody2D rb = infSpear.GetComponent<Rigidbody2D>();
                 rb.AddForce(direc.normalized * force, ForceMode2D.Impulse);
-                Debug.Log(diff);
+                //Debug.Log(diff);
             }
         }
     }

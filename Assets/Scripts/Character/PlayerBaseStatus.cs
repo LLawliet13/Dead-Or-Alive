@@ -9,8 +9,8 @@ public class PlayerBaseStatus : ScriptableObject
     public int MaxHp;
     public int Atk;
     public int Def;
-    public int HeSoLevelUpMaxHp;
-    public int HeSoLevelUpAtk;
-    public int HeSoLevelUpDef;
+    public float HeSoLevelUpMaxHp;
+    public float HeSoLevelUpAtk;
+    public float HeSoLevelUpDef;
 
 }
