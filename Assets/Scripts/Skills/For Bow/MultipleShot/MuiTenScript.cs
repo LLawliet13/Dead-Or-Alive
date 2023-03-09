@@ -13,12 +13,13 @@ public class MuiTenScript : MonoBehaviour
     GameObject nearestEnemy;
     [SerializeField]
     [Header("speed di chuyen ve huong muc tieu")]
-    float speed;
+    public float speed;
+    public float speedAngle;
     // Update is called once per frame
     void Update()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if (enemies.Length > 0)
+        if (enemies.Length > 0 && nearestEnemy == null)
         {
             float nearestDistance = Vector3.Distance(transform.position, enemies[0].transform.position);
             nearestEnemy = enemies[0];
@@ -34,7 +35,7 @@ public class MuiTenScript : MonoBehaviour
             if (transform.position.x != nearestEnemy.transform.position.x && transform.position.y != nearestEnemy.transform.position.y)
             {
 
-                transform.position += MovementSetting.CalculateSlopeMoveVector(nearestEnemy.transform.position, gameObject) * speed * Time.deltaTime;
+                transform.position += MovementSetting.CalculateSlopeMoveVector(nearestEnemy.transform.position, gameObject, speedAngle) * speed * Time.deltaTime;
             }
 
         }

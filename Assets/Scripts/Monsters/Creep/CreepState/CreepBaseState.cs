@@ -19,7 +19,7 @@ public abstract class CreepBaseState : MonoBehaviour
     //thuc thi hanh dong cua state
     public abstract void UpdateState();
     //thong bao exitState
-    public UnityEvent DoExitState;
+    public UnityEvent<UnityAction> DoExitState;
     public abstract void ExitState();
 
     protected Transform player;

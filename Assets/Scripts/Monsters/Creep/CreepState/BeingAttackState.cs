@@ -12,24 +12,24 @@ public class BeingAttackState : CreepBaseState
     public override bool EnterState()
     {
         if (enemyStatus.CurrentHp < previousHp)
+        {
+            exitTime = Time.time + delayTime;
             return true;
+        }
         return false;
     }
     float exitTime;
     float delayTime;
     public override void ExitState()
     {
-        DoExitState.Invoke();
+        DoExitState.Invoke(UpdateState);
     }
-    private void Update()
+
+    public override void UpdateState()
     {
         if (Time.time < exitTime)
             Debug.Log("TO-DO:Hieu ung mat hp");
         else
             ExitState();
-    }
-    public override void UpdateState()
-    {
-        exitTime = Time.time + delayTime;
     }
 }

@@ -92,6 +92,7 @@ public class Boss_Rock : MonoBehaviour
             ue.AddListener(skills[i].RunSkill);
             this.skillsEvent.Add(ue);
         }
+        //xu huong dung skill co cd cao truoc, cd thap
         skills.OrderByDescending<BaseSkillBoss, float>(s => s.CD_Skill());
     }
     bool isLeft = true;

@@ -4,25 +4,21 @@ using UnityEngine;
 
 public class ThrowRockSkill : BaseSkillBoss
 {
-    //skill bi dong nen khong co kha nang kich hoat, cach ham chi dien cho co, chu yeu la viet run_skill
+    //skill bi dong nen khong co kha nang kich hoat, cach ham khac chi viet cho co, chu yeu la viet run_skill
     // vs skill bi dong thi AbleToTrigger luon phai tra ve false, con lai cac ham khac tra ve gi cung dc
     public override bool AbleToTrigger()
     {
-        //GameObject player = GameObject.FindGameObjectWithTag("Player");
-        //if (player == null) return false;
-        //if (RangeSkill(player.transform.position))
-        //    return true;
-        return false;
+        return true;
     }
 
     public override bool AbleToTriggerWithOtherSkill()
     {
-        return false;
+        return true;
     }
 
     public override float CD_Skill()
     {
-        return 1;
+        return 5;
     }
 
     public override float FirstTimeUse()

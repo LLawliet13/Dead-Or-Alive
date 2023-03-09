@@ -20,13 +20,17 @@ public class Character_Movement : MonoBehaviour
             playerSprite = GameObject.FindGameObjectWithTag("playerSprite");
             weaponParent = GameObject.FindGameObjectWithTag("weaponParent");
         }
+        heSoInputX = 1;
+        heSoInputY = 1;
     }
 
+    public int heSoInputX;
+    public int heSoInputY;
     // Update is called once per frame
     void Update()
     {
-        inputX = _mngrJoystick.inputHorizontal();
-        inputY = _mngrJoystick.inputVertical();
+        inputX = heSoInputX * _mngrJoystick.inputHorizontal();
+        inputY = heSoInputY * _mngrJoystick.inputVertical();
         //char move
         if(inputX != 0 && inputY != 0)
         {

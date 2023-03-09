@@ -21,7 +21,7 @@ public class FollowSkill : BaseSkillBoss
 
     public override float CD_Skill()
     {
-        return 1;
+        return 0;
     }
 
     public override float FirstTimeUse()

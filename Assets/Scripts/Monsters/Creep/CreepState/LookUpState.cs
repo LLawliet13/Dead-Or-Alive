@@ -16,8 +16,7 @@ public class LookUpState : CreepBaseState
     
     public override void ExitState()
     {
-
-        //CAN TRIGGER ANY TIME => NO-ACTION
+        DoExitState.Invoke(UpdateState);
     }
 
     public override void UpdateState()

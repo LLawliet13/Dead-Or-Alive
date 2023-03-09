@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,28 +8,47 @@ using UnityEngine.Events;
 public class StateManager : MonoBehaviour
 {
 
-    CreepBaseState[] PriorityStates;
-    CreepBaseState[] AbleToTriggerWithOtherStates;
-    private bool IsPriorityStateFree;
-    private UnityEvent ExistState;
-    // Start is called before the first frame update
-    void Start()
-    {
-        IsPriorityStateFree = true;
-        SignUpState();
-        if (ExistState == null)
-        {
-            ExistState = new UnityEvent();
-            ExistState.AddListener(doExitState);
-        }
-
-    }
+    private CreepBaseState[] priorityStates;
+    private CreepBaseState[] parallelStates;
+    private UnityEvent<UnityAction> exitParallelState;
+    private UnityEvent<UnityAction> exitPriorityState;
+    private UnityEvent updatePriorityStates;
+    private UnityEvent updateParallelStates;
     private EnemyStatus enemyStatus;
     private void Awake()
     {
         enemyStatus = GetComponent<CreepStatus>();
         if (enemyStatus == null)
             throw new System.Exception("No Enemy Status Attached");
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+        SignUpState();
+
+        if (updateParallelStates == null)
+            updateParallelStates = new UnityEvent();
+        if (updatePriorityStates == null)
+            updatePriorityStates = new UnityEvent();
+
+        if (exitPriorityState == null)
+        {
+            exitPriorityState = new UnityEvent<UnityAction>();
+            exitPriorityState.AddListener(doExitPriorityState);
+        }
+        if (exitParallelState == null)
+        {
+            exitParallelState = new UnityEvent<UnityAction>();
+            exitParallelState.AddListener(doExitParallelState);
+        }
+    }
+    
+    // Update is called once per frame
+    void Update()
+    {
+        CheckAvailableState();
+        updatePriorityStates.Invoke();
+        updateParallelStates.Invoke();
     }
     private void SignUpState()
     {
@@ -44,38 +64,38 @@ public class StateManager : MonoBehaviour
         }
         ).ToArray();
 
-        AbleToTriggerWithOtherStates = allStates.Where(c => c.AbleToTriggerWithOther).ToArray();
+        parallelStates = allStates.Where(c => c.AbleToTriggerWithOther).ToArray();
         //sap xep theo do uu tien
-        PriorityStates = allStates.Where(c => !c.AbleToTriggerWithOther).OrderBy<CreepBaseState, int>(c => c.priority).ToArray();
+        priorityStates = allStates.Where(c => !c.AbleToTriggerWithOther).OrderBy<CreepBaseState, int>(c => c.priority).ToArray();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void doExitParallelState(UnityAction functionName)
     {
-        CheckAvailableState();
+        updateParallelStates.RemoveListener(functionName);
     }
-
-    private void doExitState()
+    private void doExitPriorityState(UnityAction functionName)
     {
-        IsPriorityStateFree = true;
+        updatePriorityStates.RemoveListener(functionName);
     }
     private void CheckAvailableState()
     {
         //thuc thi cac state luon co the trigger
-        foreach (CreepBaseState state in AbleToTriggerWithOtherStates)
+        foreach (CreepBaseState state in parallelStates)
             if (state.EnterState())
             {
-                state.UpdateState();
+                //phong truong hop state nay da duoc sign up truoc do va chua ket thuc
+                updateParallelStates.RemoveListener(state.UpdateState);
+                updateParallelStates.AddListener(state.UpdateState);
+                state.DoExitState = exitParallelState;
             }
-
-        if (IsPriorityStateFree)
-            foreach (CreepBaseState state in PriorityStates)
+        //khi khong co state nao dang chay thi tim kiem state kha dung
+        if (updatePriorityStates.GetPersistentEventCount() == 0)
+            foreach (CreepBaseState state in priorityStates)
             {
                 if (state.EnterState())
                 {
                     state.UpdateState();
-                    state.DoExitState = ExistState;
-                    IsPriorityStateFree = false;
+                    state.DoExitState = exitPriorityState;
                     break;
                 }
             }

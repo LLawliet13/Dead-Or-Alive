@@ -12,9 +12,9 @@ public interface MovementSetting
         return moveVector;
     }
     //thay doi quay dao di chuyen cua object tu tu
-    public static Vector3 CalculateSlopeMoveVector(Vector3 end,GameObject MovingObject)
+    public static Vector3 CalculateSlopeMoveVector(Vector3 end,GameObject MovingObject,float speedRotation)
     {
-        float speedRotation = 6;
+        //float speedRotation = 6;
 
         Vector3 diff = end - MovingObject.transform.position;
         float curAngle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg ;
