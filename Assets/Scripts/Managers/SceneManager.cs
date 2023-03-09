@@ -34,8 +34,7 @@ public class SceneManager : MonoBehaviour
     }
     public int GetPlayerLevel()
     {
-        Debug.Log("TO-DO: tinh toan va hien thi player level");
-        return 1;
+        return PlayerLevel;
     }
     private UnityEvent LevelUpEffectEvent;
     public void NotifyPlayerDie()
@@ -75,6 +74,7 @@ public class SceneManager : MonoBehaviour
         {
             PlayerLevel += 1;
             SimulateTime = Time.time + 2f;
+            PlayerLevelUp();
         }
         //spawn boss moi khi nhan vat tang 5 level
         if (PlayerLevel % 5 == 0)

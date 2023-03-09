@@ -17,7 +17,6 @@ public class CharacterStatus : MonoBehaviour
     private void ConfigStatus()
     {
         SceneManager sceneManager = FindObjectOfType<SceneManager>();
-        sceneManager.AddLevelUpCharacterEffect(LevelUpEffectEvent);
         if (sceneManager == null)
             throw new System.Exception("Missing Scene Manager in this Scene");
         playerLevel = sceneManager.GetPlayerLevel();
@@ -28,13 +27,17 @@ public class CharacterStatus : MonoBehaviour
     private UnityEvent LevelUpEffectEvent;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         ConfigStatus();
         if (LevelUpEffectEvent == null)
         {
             LevelUpEffectEvent = new UnityEvent();
             LevelUpEffectEvent.AddListener(LevelEffect);
+            SceneManager sceneManager = FindObjectOfType<SceneManager>();
+            if (sceneManager == null)
+                throw new System.Exception("Missing Scene Manager in this Scene");
+            sceneManager.AddLevelUpCharacterEffect(LevelUpEffectEvent);
         }
     }
     public void LevelEffect()
