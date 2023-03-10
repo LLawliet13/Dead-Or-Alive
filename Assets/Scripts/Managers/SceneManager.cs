@@ -6,27 +6,6 @@ using UnityEngine.Events;
 
 public class SceneManager : MonoBehaviour
 {
-    public void Playgame()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Scene_Dung_Boss_Rock 1");
-    }
-    public void Quitgame()
-    {
-        Application.Quit();
-    }
-
-    public void Restart()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("");
-    }
-    public void Option()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Option");
-    }
-    public void BacktoMenu()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
-    }
     private int PlayerLevel;
     public void SetPlayerLevel(int playerLevel)
     {
@@ -34,8 +13,7 @@ public class SceneManager : MonoBehaviour
     }
     public int GetPlayerLevel()
     {
-        Debug.Log("TO-DO: tinh toan va hien thi player level");
-        return 1;
+        return PlayerLevel;
     }
     private UnityEvent LevelUpEffectEvent;
     public void NotifyPlayerDie()
@@ -55,7 +33,7 @@ public class SceneManager : MonoBehaviour
     private bool IsPlayerDie;
     private void Awake()
     {
-        PlayerLevel = 0;
+        PlayerLevel = -1;
         IsPlayerDie = false;
         SimulateTime = Time.time;
         creepSpawner = Instantiate(creepSpawner);
@@ -69,12 +47,14 @@ public class SceneManager : MonoBehaviour
     private int LevelTriggerBoss = 0;
     private void Update()
     {
+        //Debug.Log(PlayerLevel);
         Debug.Log("TO-DO: Them ham tinh kinh nghiem va cho nguoi choi len cap");
         Debug.Log("Hien tai gia lap nguoi choi len level moi 2s");
         if (Time.time >= SimulateTime && PlayerLevel < 5)
         {
             PlayerLevel += 1;
             SimulateTime = Time.time + 2f;
+            PlayerLevelUp();
         }
         //spawn boss moi khi nhan vat tang 5 level
         if (PlayerLevel % 5 == 0)
@@ -92,6 +72,8 @@ public class SceneManager : MonoBehaviour
             bossSpawner.SettingController(BaseSpawner.Controller.TurnOff);
         }
         if (IsPlayerDie)
+        {
             Debug.Log("TO-DO: Them hanh dong cho viec nguoi choi die");
+        }
     }
 }

@@ -17,10 +17,6 @@ public class SelectSkill : MonoBehaviour
         GameObject buttonTemplate = transform.GetChild(0).gameObject;
         buttonTemplate.GetComponent<Image>().color = Color.yellow;
         GameObject buttonClone;
-        /*string path = Application.dataPath;
-        string jsonFilePathListSkill = $"{path}/Scenes/Scripts/Skills/SelectSkill/SkillList.json";
-        string json = File.ReadAllText(jsonFilePathListSkill);
-        skillList = JsonConvert.DeserializeObject<List<Skill>>(json);*/
 
         GameObject gameMaster = GameObject.FindGameObjectWithTag("GameMaster");
         BaseSkill[] skills = (BaseSkill[])gameMaster.GetComponents<BaseSkill>();
@@ -31,7 +27,7 @@ public class SelectSkill : MonoBehaviour
         }
 
         string path = Application.dataPath;
-        string jsonFilePathChosenSkill = $"{path}/Scenes/Scripts/Skills/SelectSkill/SkillChosen.json";
+        string jsonFilePathChosenSkill = $"{path}/Scripts/Skills/SelectSkill/SkillChosen.json";
         string json = File.ReadAllText(jsonFilePathChosenSkill);
         savedSkills = JsonConvert.DeserializeObject<List<string>>(json);
 
@@ -64,7 +60,7 @@ public class SelectSkill : MonoBehaviour
                 savedSkills.Add(allChild[i + 2].GetComponent<TextMeshProUGUI>().text);
                 string path = Application.dataPath;
                 var Json = JsonConvert.SerializeObject(savedSkills, Formatting.Indented);
-                File.WriteAllText($"{path}/Scenes/Scripts/Skills/SelectSkill/SkillChosen.json", Json);
+                File.WriteAllText($"{path}/Scripts/Skills/SelectSkill/SkillChosen.json", Json);
             }
         }
     }
