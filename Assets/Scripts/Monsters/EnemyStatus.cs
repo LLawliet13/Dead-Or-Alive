@@ -40,7 +40,7 @@ public abstract class EnemyStatus : MonoBehaviour
     {
         transform.rotation = initialRotation;
     }
-    //ham de tra creep ve pool
+    //ham de tra creep ve pool or destroy hoan toan
     public UnityEvent<EnemyStatus> onDestroy;
 
     public void DestroyMySelf()

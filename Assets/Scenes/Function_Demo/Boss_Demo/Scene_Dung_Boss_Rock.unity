@@ -377,7 +377,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.75
+  m_fontSize: 23.2
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1715,6 +1715,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84828ac26f68b7543a7b70e99e91c128, type: 3}
+--- !u!1 &2601000011896445744 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2601000010908209805, guid: 84828ac26f68b7543a7b70e99e91c128, type: 3}
+  m_PrefabInstance: {fileID: 2601000011896445743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2601000011896445745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2601000011896445744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da68e02cbdbb20d438caf10c4632265b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3124988881966351332
 PrefabInstance:
   m_ObjectHideFlags: 0

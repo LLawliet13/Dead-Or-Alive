@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Character_Skill : MonoBehaviour
+public class Character_SkillController : MonoBehaviour
 {
     // Co the them 2 list skill rieng la skill chu dong va skill bi dong rieng
     // , tam thoi o day chi add skill chu dong

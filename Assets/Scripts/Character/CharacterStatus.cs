@@ -49,22 +49,19 @@ public class CharacterStatus : MonoBehaviour
             observer.OnPlayerLevelChanged(playerLevel);
         }
     }
-    private UnityEvent LevelUpEffectEvent;
-
+    /// <summary>
+    /// viec load skill se uu tien doc tu game truoc khi bien nay duoc scenemanager set bang true
+    /// </summary>
+    public bool loadFromLastGame = false;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        ConfigStatus();
-        if (LevelUpEffectEvent == null)
-        {
-            LevelUpEffectEvent = new UnityEvent();
-            LevelUpEffectEvent.AddListener(LevelEffect);
-            SceneManager sceneManager = FindObjectOfType<SceneManager>();
-            if (sceneManager == null)
-                throw new System.Exception("Missing Scene Manager in this Scene");
-            sceneManager.AddLevelUpCharacterEffect(LevelUpEffectEvent);
-        }
+        if (!loadFromLastGame)
+            ConfigStatus();
     }
+    /// <summary>
+    /// ham duoc goi de chinh lai sao lieu nguoi choi khi thang cap
+    /// </summary>
     public void LevelEffect()
     {
         ConfigStatus();
@@ -74,49 +71,59 @@ public class CharacterStatus : MonoBehaviour
         Debug.Log("TO-DO:Them hieu ung Take Damaged cho nhan vat");
         CurrentHp -= Mathf.RoundToInt((Damage * (1 - Def / 100f)));
         //Debug.Log(CurrentHp);
+
+        CheckIfPlayerDie();
+        SetCurrentHp(CurrentHp);
+    }
+    public void SetCurrentHp(int currentHp)
+    {
+        this.CurrentHp = currentHp;
+        foreach (IPlayerObserver observer in observers)
+        {
+            observer.OnPlayerDamaged(CurrentHp);
+        }
+    }
+    public void CheckIfPlayerDie()
+    {
         if (CurrentHp <= 0)
         {
             Debug.Log("TO-DO: Them function cho nhan vat die");
             SceneManager sceneManager = FindObjectOfType<SceneManager>();
             sceneManager.NotifyPlayerDie();
-
-            //
             foreach (IPlayerObserver observer in observers)
             {
                 observer.OnPlayerKilled();
             }
         }
-        else
-        {
-            foreach (IPlayerObserver observer in observers)
-            {
-                observer.OnPlayerDamaged(CurrentHp);
-            }
-        }
-    }
-/*    public void GainExperience(int experience)
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            this.experience += experience;
-            foreach (IPlayerObserver observer in observers)
-            {
-                observer.OnPlayerExperienceGained(experience);
-            }
-        }
 
     }
-    public void IncreaseScore(int score)
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        CheckIfPlayerDie();
+    }
+    /*    public void GainExperience(int experience)
         {
-            this.score += score;
-            foreach (IPlayerObserver observer in observers)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                observer.OnPlayerScoreChanged(score);
+                this.experience += experience;
+                foreach (IPlayerObserver observer in observers)
+                {
+                    observer.OnPlayerExperienceGained(experience);
+                }
             }
-        }
 
-    }*/
+        }
+        public void IncreaseScore(int score)
+        {
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                this.score += score;
+                foreach (IPlayerObserver observer in observers)
+                {
+                    observer.OnPlayerScoreChanged(score);
+                }
+            }
+
+        }*/
 
 }
