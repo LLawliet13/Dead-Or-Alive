@@ -16,7 +16,11 @@ public class BossStatus : EnemyStatus
     // Update is called once per frame
     void Update()
     {
-        
+        if (CurrentHp <= 0)
+        {
+            Destroy(gameObject);
+            DestroyMySelf();//chi de cho co vi o day khong co pool quan ly boss
+        }
     }
     public override void caculateStatus()
     {

@@ -5,21 +5,23 @@ using UnityEngine;
 public class BeingAttackState : CreepBaseState
 {
     private int previousHp;
+    float delayTime;
+    float exitTime;
     private void Start()
     {
         previousHp = enemyStatus.CurrentHp;
+        delayTime = 0.2f;
     }
     public override bool EnterState()
     {
         if (enemyStatus.CurrentHp < previousHp)
         {
+            previousHp = enemyStatus.CurrentHp;
             exitTime = Time.time + delayTime;
             return true;
         }
         return false;
     }
-    float exitTime;
-    float delayTime;
     public override void ExitState()
     {
         DoExitState.Invoke(UpdateState);

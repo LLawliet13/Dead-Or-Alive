@@ -9,7 +9,10 @@ public abstract class GenericFactory<T> : MonoBehaviour where T : EnemyStatus
     protected MonsterType[] monsterTypes;
     //loai monster - so luong 
     protected Dictionary<MonsterType, int> GenerateMonster;
-    // so luong quai se tao ra
+    /// <summary>
+    /// so luong quai se tao ra, spawner se quyet dinh dieu nay
+    /// </summary>
+    [Header("Khong can thiet lap")]
     public int TotalGenerateMonster;
     //khoi chay factory
     public abstract void Enable();

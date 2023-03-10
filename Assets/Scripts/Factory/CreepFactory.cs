@@ -9,7 +9,6 @@ public class CreepFactory : GenericFactory<CreepStatus>
     private CreepFactoryController controller;
     protected int[] OccurrenceRateTypeList;
 
-
     public void ResetFactory()
     {
         if (OccurrenceRateTypeList == null || OccurrenceRateTypeList.Length == 0)
@@ -20,6 +19,7 @@ public class CreepFactory : GenericFactory<CreepStatus>
         {
             // lam tron so luong quai
             float value = Mathf.Round(OccurrenceRateTypeList[i] / 100f * TotalGenerateMonster);
+            if (value == 0) continue;
             //thiet lap so luong quai moi loai theo ti le da chia
             GenerateMonster.Add(monsterTypes[i], (int)value);
         }

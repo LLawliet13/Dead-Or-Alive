@@ -25,6 +25,7 @@ public class CreepStateManager : BaseStateManager
     // Start is called before the first frame update
     void Start()
     {
+        value = Controller.TurnOn;
         SignUpState();
 
         if (updateParallelStates == null)

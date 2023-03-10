@@ -12,5 +12,12 @@ namespace Assets.Scripts.Managers
         protected abstract void SignUpState();
         protected abstract void RemoveAllState();
         protected abstract void CheckAvailableState();
+        public enum Controller
+        {
+            TurnOff,
+            TurnOn
+        }
+        public Controller value;
+        
     }
 }

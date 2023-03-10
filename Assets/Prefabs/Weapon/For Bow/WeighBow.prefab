@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7382913933270923611}
   - component: {fileID: -8551979427385902638}
   - component: {fileID: -2419675129469945261}
+  - component: {fileID: 3920421595744980700}
   m_Layer: 0
   m_Name: WeighBow
   m_TagString: Untagged
@@ -90,7 +91,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 807610756, guid: 6efde9feecf398d4c81a3daa83829a79, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.98834634, b: 0.48490566, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -147,3 +148,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.42934304, y: 0.49271727}
   m_EdgeRadius: 0
+--- !u!114 &3920421595744980700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6664546073030781736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d07da6b35ca4774ea290c75d0c5d036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -27,8 +27,8 @@ public class CreepSpawner : BaseSpawner
 
     private int maxPoolSize;
 
-
     private UnityEvent<EnemyStatus> CreepDestroyEvent;
+
     EnemyStatus CreatePooledItem()
     {
         EnemyStatus go = factory.GetNewInstance();
@@ -47,9 +47,11 @@ public class CreepSpawner : BaseSpawner
     }
     void OnTakeFromPool(EnemyStatus creep)
     {
-        creep.caculateStatus();
         creep.gameObject.SetActive(true);
         creep.transform.position = RandomLocation();
+        creep.caculateStatus();
+        creep.GetComponent<CreepStateManager>().value = Assets.Scripts.Managers.BaseStateManager.Controller.TurnOn;
+
     }
 
     void OnDestroyPoolObject(EnemyStatus creep)

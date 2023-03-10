@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerBaseStatus_1
   m_EditorClassIdentifier: 
   MaxHp: 100
-  Atk: 2
+  Atk: 5
   Def: 2
   HeSoLevelUpMaxHp: 1.1
   HeSoLevelUpAtk: 1.1

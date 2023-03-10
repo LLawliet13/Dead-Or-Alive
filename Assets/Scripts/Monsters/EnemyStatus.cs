@@ -30,6 +30,16 @@ public abstract class EnemyStatus : MonoBehaviour
     {
         CurrentHp -= Mathf.RoundToInt((damage * (1 - Def / 100f)));
     }
+    private Quaternion initialRotation;
+
+    private void Awake()
+    {
+        initialRotation = transform.rotation;
+    }
+    public void ResetRotation()
+    {
+        transform.rotation = initialRotation;
+    }
     //ham de tra creep ve pool
     public UnityEvent<EnemyStatus> onDestroy;
 

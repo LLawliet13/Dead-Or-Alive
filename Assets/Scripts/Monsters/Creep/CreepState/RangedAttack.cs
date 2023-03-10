@@ -36,7 +36,6 @@ public class RangedAttack : CreepBaseState
     {
         if (Time.time > fireTime)
         {
-            Debug.Log("TO-DO: Ban ra dan tu state ranged attack");
             GameObject a = Instantiate(bullet, transform.position, Quaternion.identity);
             Rock r = a.GetComponent<Rock>();
             r.setVector((player.position - transform.position).normalized);
