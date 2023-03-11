@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static CreepUpgradeController;
+using UnityEngine.U2D;
 
 public class AttackState : CreepBaseState
 {
@@ -20,7 +23,10 @@ public class AttackState : CreepBaseState
     {
         if (!FindPlayer()) return false;
         if (Vector3.Distance(player.transform.position, transform.position) <= attackRange)
+        {
+            UpdateSkillBaseOnCharacterLv();
             return true;
+        }
         return false;
     }
     float attackTime;
@@ -46,6 +52,14 @@ public class AttackState : CreepBaseState
             attackTime = Time.time + delayTime;
         }
         ExitState();
+    }
+    public override void UpdateSkillBaseOnCharacterLv()
+    {
+        SceneManager sceneManager = GameObject.Find("GameMaster").GetComponent<SceneManager>();
+        int playerLv = sceneManager.GetPlayerLevel();
+        CreepState4 stateBasedLv = creepUpgradeController.creepState4.OrderByDescending<CreepState4, int>(bs => bs.baseLv).Where(b => b.baseLv <= playerLv).First();
+        delayTime = stateBasedLv.delayTime;
+        return;
     }
 
 }

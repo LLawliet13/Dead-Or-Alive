@@ -31,4 +31,8 @@ public class LookUpState : CreepBaseState
         transform.transform.localScale = theScale;
         isLeft = !isLeft;
     }
+
+    public override void UpdateSkillBaseOnCharacterLv()
+    {
+    }
 }

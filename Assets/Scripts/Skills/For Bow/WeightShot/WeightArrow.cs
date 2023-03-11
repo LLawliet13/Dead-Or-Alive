@@ -43,7 +43,6 @@ public class WeightArrow : MonoBehaviour
         }
         else
         {
-            Debug.Log(transform.localScale.x / baseScale.x);
             //tang kich co bow khi hold
             if(transform.localScale.x / baseScale.x <= ScaleOfArrow)
             {

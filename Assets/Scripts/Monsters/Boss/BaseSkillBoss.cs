@@ -33,18 +33,7 @@ public abstract class BaseSkillBoss : MonoBehaviour
         return firstTimeUse;
     }
 
-    ///// <summary>
-    ///// cac thong bao cho boss biet luc nao nen dung skill tiep theo
-    ///// </summary>
-    ///// <returns></returns>
-    //public abstract bool isSkillEnd();
-
-    ///// <summary>
-    ///// 1 so skill khong ho tro khi skill khac dang chay
-    ///// </summary>
-    ///// <returns></returns>
-
-    //public abstract bool AbleToTriggerWithOtherSkill();
+   
 
     /// <summary>
     /// vi du nhu boss phai o 1 trang thai nhat dinh moi dc trigger( khong lien quan toi thoi gian hoi chieu) va phai trien khai cac kieu kien enter state
@@ -80,7 +69,11 @@ public abstract class BaseSkillBoss : MonoBehaviour
     {
         return Time.time < availableSkillTime;
     }
-
+    /// <summary>
+    /// cac thong so cac state se nang cap theo level nhan vat
+    /// </summary>
+    
+    public BossUpgradeController bossUpgradeController;
     //dinh danh state khi chon state cho creep type
     public int state_id;
     //Luon trigger khi dieu kien enter dien ra
@@ -95,8 +88,10 @@ public abstract class BaseSkillBoss : MonoBehaviour
     /// <returns></returns>
     public bool EnterState()
     {
+        SceneManager sceneManager = GameObject.Find("GameMaster").GetComponent<SceneManager>();
+        int playerLv = sceneManager.GetPlayerLevel();
         //Khong dc vi tri 2 ham( vi ham able trigger trien khai cac dieu kien de enter state)
-        if ((Time.time > FirstTimeUse()) && !isSkillCoolDown() && AbleToTrigger())
+        if (((playerLv>=LVToUse())&&Time.time > FirstTimeUse()) && !isSkillCoolDown() && AbleToTrigger())
         {
             availableSkillTime = Time.time + CD_Skill();
             SetAtkSkill();

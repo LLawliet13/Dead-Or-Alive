@@ -5,7 +5,10 @@ using UnityEngine.Events;
 
 public abstract class EnemyStatus : MonoBehaviour
 {
-
+    /// <summary>
+    /// duoc load tu folder resource boi factory, khong can assign gia tri
+    /// </summary>
+    [Header("Tu dong load trong factory")]
     public MonsterType BaseStats;//apply type object
     public int MaxHp { get; protected set; }
     public int CurrentHp { get; protected set; }

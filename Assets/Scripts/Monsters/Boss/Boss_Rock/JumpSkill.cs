@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
+using static BossUpgradeController;
 
 public  class JumpSkill : BaseSkillBoss
 {
@@ -21,7 +23,7 @@ public  class JumpSkill : BaseSkillBoss
     bool jump = false;
     bool createEarthQuake = false;
     bool detectTarget = false;
-    [Header("Vung rung chan gay sat thuong moi bn s 1 lan")]
+    [Header("Vung rung chan gay sat thuong delay sau moi lan gay sat thuong, nen nho hon 1")]
     public float DelayCollisionDamageTime;
     GameObject targetO;
 
@@ -30,7 +32,7 @@ public  class JumpSkill : BaseSkillBoss
         ExitState();
     }
     public GameObject EarthQuake;
-    [Header("Chi so update ")]
+    [Header("Chi so update ban kinh vung rung chan, nen de lon hon 5")]
     public float EarthQuakeRadiusRatio = 20;
     public GameObject TargetObject;
     void DetectTarget()
@@ -64,6 +66,7 @@ public  class JumpSkill : BaseSkillBoss
         if (player == null) return false;
         if (RangeSkill(player.transform.position))
         {
+            UpdateSkillBaseOnCharacterLv();
             detectTarget = true;
             runSkill = true;
             createEarthQuake = true;
@@ -80,10 +83,15 @@ public  class JumpSkill : BaseSkillBoss
         return false;
     }
     bool runSkill = false;
-   
+
 
     public override void UpdateSkillBaseOnCharacterLv()
     {
+        SceneManager sceneManager = GameObject.Find("GameMaster").GetComponent<SceneManager>();
+        int playerLv = sceneManager.GetPlayerLevel();
+        BossState2 stateBasedLv = bossUpgradeController.bossState2.OrderByDescending<BossState2, int>(bs => bs.baseLv).Where(b => b.baseLv <= playerLv).First();
+        DelayCollisionDamageTime = stateBasedLv.delayCollisionDamge;
+        EarthQuakeRadiusRatio = stateBasedLv.EarthQuakeRatio;
         return;
     }
 

@@ -13,8 +13,8 @@ public class CreepSpawner : BaseSpawner
             CreepDestroyEvent.AddListener(DieEvent);
         }
         //factory = Instantiate(factory);
-        factory.Enable();
         factory.TotalGenerateMonster = maxPoolSize;
+        factory.Enable();
         pool = new ObjectPool<EnemyStatus>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, collectionChecks, maxPoolSize, maxPoolSize);
         timeToSpawn = Time.time;
         status = Controller.TurnOff;

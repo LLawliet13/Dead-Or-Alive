@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static CreepUpgradeController;
 
 public class FollowState : CreepBaseState
 {
@@ -39,5 +41,8 @@ public class FollowState : CreepBaseState
                 Debug.LogError("player not found");
                 ExitState();
             }
+    }
+    public override void UpdateSkillBaseOnCharacterLv()
+    {
     }
 }

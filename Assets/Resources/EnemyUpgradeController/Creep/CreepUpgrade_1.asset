@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeef0700912da6a47a1e1967a33a2951, type: 3}
+  m_Name: CreepUpgrade_1
+  m_EditorClassIdentifier: 
+  creepState1: []
+  creepState2: []
+  creepState3: []
+  creepState4:
+  - baseLv: 0
+    delayTime: 0.8
+  - baseLv: 10
+    delayTime: 0.7
+  - baseLv: 30
+    delayTime: 0.5
+  creepState5:
+  - baseLv: 0
+    delayTime: 3
+    angleRange: 5
+    numberOfBullet: 2
+  - baseLv: 10
+    delayTime: 2.8
+    angleRange: 7
+    numberOfBullet: 3
+  - baseLv: 20
+    delayTime: 2.5
+    angleRange: 7
+    numberOfBullet: 4

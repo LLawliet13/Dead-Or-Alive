@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a331b8f762956945bf58e83b8011877, type: 3}
+  m_Name: bossUpgrade_1
+  m_EditorClassIdentifier: 
+  bossState0:
+  - baseLv: 0
+    bossSpeed: 2
+  - baseLv: 10
+    bossSpeed: 3
+  - baseLv: 20
+    bossSpeed: 4
+  bossState1:
+  - baseLv: 0
+    ableToDo: 1
+  - baseLv: 5
+    ableToDo: 3
+  - baseLv: 20
+    ableToDo: 4
+  - baseLv: 50
+    ableToDo: 5
+  bossState2:
+  - baseLv: 0
+    delayCollisionDamge: 2
+    EarthQuakeRatio: 10
+  - baseLv: 5
+    delayCollisionDamge: 1
+    EarthQuakeRatio: 25
+  - baseLv: 10
+    delayCollisionDamge: 0.9
+    EarthQuakeRatio: 40
+  bossState3:
+  - baseLv: 0
+    angleRange: 25
+    numberOfRock: 5
+  - baseLv: 10
+    angleRange: 45
+    numberOfRock: 10
+  bossState4: []
+  bossState5: []

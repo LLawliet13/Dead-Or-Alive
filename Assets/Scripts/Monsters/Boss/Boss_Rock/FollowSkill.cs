@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements.Experimental;
+using static BossUpgradeController;
 
 public class FollowSkill : BaseSkillBoss
 {
@@ -10,7 +12,12 @@ public class FollowSkill : BaseSkillBoss
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return false;
         if (RangeSkill(player.transform.position))
+        {
+
+            UpdateSkillBaseOnCharacterLv();
             return true;
+
+        }
         return false;
     }
 
@@ -45,6 +52,10 @@ public class FollowSkill : BaseSkillBoss
 
     public override void UpdateSkillBaseOnCharacterLv()
     {
+        SceneManager sceneManager = GameObject.Find("GameMaster").GetComponent<SceneManager>();
+        int playerLv = sceneManager.GetPlayerLevel();
+        BossState0 stateBasedLv = bossUpgradeController.bossState0.OrderByDescending<BossState0,int>(bs => bs.baseLv).Where(b => b.baseLv<=playerLv).First();
+        bossSpeed = stateBasedLv.bossSpeed;
         return;
     }
 
@@ -54,7 +65,6 @@ public class FollowSkill : BaseSkillBoss
 
     public override void UpdateState()
     {
-        UpdateSkillBaseOnCharacterLv();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {

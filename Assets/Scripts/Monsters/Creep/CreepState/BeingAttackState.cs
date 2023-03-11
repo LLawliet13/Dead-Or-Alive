@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static CreepUpgradeController;
 
 public class BeingAttackState : CreepBaseState
 {
@@ -16,6 +18,7 @@ public class BeingAttackState : CreepBaseState
     {
         if (enemyStatus.CurrentHp < previousHp)
         {
+            UpdateSkillBaseOnCharacterLv();
             previousHp = enemyStatus.CurrentHp;
             exitTime = Time.time + delayTime;
             return true;
@@ -33,5 +36,9 @@ public class BeingAttackState : CreepBaseState
             Debug.Log("TO-DO:Hieu ung mat hp");
         else
             ExitState();
+    }
+    public override void UpdateSkillBaseOnCharacterLv()
+    {
+       
     }
 }

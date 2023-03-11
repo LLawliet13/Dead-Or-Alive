@@ -174,6 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbbb0f3f180e7904283267b70f0630a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossUpgradeController: {fileID: 11400000, guid: 7036685232e28d044aa0be71b6375ea0, type: 2}
   state_id: 0
   AbleToTriggerWithOther: 0
   priority: 0
@@ -193,6 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f90398e733644e489f1230e34f58cef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossUpgradeController: {fileID: 11400000, guid: 7036685232e28d044aa0be71b6375ea0, type: 2}
   state_id: 1
   AbleToTriggerWithOther: 0
   priority: 0
@@ -214,6 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd86b7dfdff88994ebd27e736bef65bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossUpgradeController: {fileID: 11400000, guid: 7036685232e28d044aa0be71b6375ea0, type: 2}
   state_id: 2
   AbleToTriggerWithOther: 0
   priority: 0
@@ -237,6 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f1f31317e1b814ea42d5e92680b54d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossUpgradeController: {fileID: 11400000, guid: 7036685232e28d044aa0be71b6375ea0, type: 2}
   state_id: 3
   AbleToTriggerWithOther: 1
   priority: 0
@@ -276,6 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 794be59f4997b264194589fb8e8d5ec3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossUpgradeController: {fileID: 11400000, guid: 7036685232e28d044aa0be71b6375ea0, type: 2}
   state_id: 4
   AbleToTriggerWithOther: 1
   priority: 0
@@ -294,6 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b966d2f3a78844f99678fb42017915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossUpgradeController: {fileID: 11400000, guid: 7036685232e28d044aa0be71b6375ea0, type: 2}
   state_id: 5
   AbleToTriggerWithOther: 1
   priority: 0
