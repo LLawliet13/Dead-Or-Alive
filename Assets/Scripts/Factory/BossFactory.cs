@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class BossFactory : GenericFactory<BossStatus>
+public class BossFactory : GenericEnemyFactory<BossStatus>
 {
     [SerializeField]
     private BossFactoryController controller;

@@ -45,9 +45,13 @@ public abstract class EnemyStatus : MonoBehaviour
     }
     //ham de tra creep ve pool or destroy hoan toan
     public UnityEvent<EnemyStatus> onDestroy;
+    
 
     public void DestroyMySelf()
     {
+        DropManager dropManager = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<DropManager>();
+        bool isBoss = this.GetType() == typeof(BossStatus);
+        dropManager.DropMechanism(transform.position, isBoss);
         onDestroy.Invoke(this);
     }
 }

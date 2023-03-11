@@ -45,7 +45,6 @@ public class AttackState : CreepBaseState
             throw new System.Exception("Layer not setting for detect player");
         if (Time.time > attackTime)
         {
-            Debug.Log("TO-DO:Quet Khoang Cach va Tan cong");
             Collider2D[] inRange = Physics2D.OverlapCircleAll(transform.position, attackRange, layerMask);
             if (inRange.Length > 0)
                 player.GetComponent<CharacterStatus>().TakeDamage(enemyStatus.Atk);

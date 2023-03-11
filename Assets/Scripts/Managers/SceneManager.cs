@@ -80,7 +80,7 @@ public class SceneManager : MonoBehaviour
         //Debug.Log(PlayerLevel);
         Debug.Log("TO-DO: Them ham tinh kinh nghiem va cho nguoi choi len cap");
         Debug.Log("Hien tai gia lap nguoi choi len level moi 2s");
-        if (Time.time >= SimulateTime && PlayerLevel < 5)
+        if (Time.time >= SimulateTime && PlayerLevel < 4)
         {
             PlayerLevel += 1;
             SimulateTime = Time.time + 2f;
@@ -154,5 +154,16 @@ public class SceneManager : MonoBehaviour
             SaveData();
         else
             SaveHighScore();
+    }
+
+    internal void AddExp(int value)
+    {
+        Debug.Log("TO-DO: Them kha nang tang exp tu drop item");
+    }
+
+    internal int getTotalExpToLevelUp()
+    {
+        Debug.Log("TO-DO: Them ham tra ve tong exp de len level tiep theo");
+        return 10;
     }
 }

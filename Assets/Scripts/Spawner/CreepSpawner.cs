@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Pool;
+using UnityEngine.UIElements;
 
 public class CreepSpawner : BaseSpawner
 {
@@ -20,7 +21,7 @@ public class CreepSpawner : BaseSpawner
         status = Controller.TurnOff;
     }
     [SerializeField]
-    private GenericFactory<CreepStatus> factory;
+    private GenericEnemyFactory<CreepStatus> factory;
     private ObjectPool<EnemyStatus> pool;
     public bool collectionChecks = false;
     [SerializeField]
@@ -38,6 +39,8 @@ public class CreepSpawner : BaseSpawner
     }
     private void DieEvent(EnemyStatus creep)
     {
+        //DropManager dropManager = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<DropManager>();
+        //dropManager.DropMechanism(creep.transform.position, false);
         pool.Release(creep);
     }
 

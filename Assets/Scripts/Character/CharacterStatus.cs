@@ -1,4 +1,5 @@
 using Assets.Scenes.Scripts.Managers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -101,29 +102,37 @@ public class CharacterStatus : MonoBehaviour
     {
         CheckIfPlayerDie();
     }
+
+    internal void AddHp(int value)
+    {
+        CurrentHp += value;
+        if (CurrentHp > MaxHP)
+            CurrentHp = MaxHP;
+        Debug.Log("TO-DO: Add UI Event cho hieu ung hoi hp");
+    }
     /*    public void GainExperience(int experience)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                this.experience += experience;
-                foreach (IPlayerObserver observer in observers)
-                {
-                    observer.OnPlayerExperienceGained(experience);
-                }
-            }
+   {
+       if (Input.GetKeyDown(KeyCode.E))
+       {
+           this.experience += experience;
+           foreach (IPlayerObserver observer in observers)
+           {
+               observer.OnPlayerExperienceGained(experience);
+           }
+       }
 
-        }
-        public void IncreaseScore(int score)
-        {
-            if (Input.GetKeyDown(KeyCode.S))
-            {
-                this.score += score;
-                foreach (IPlayerObserver observer in observers)
-                {
-                    observer.OnPlayerScoreChanged(score);
-                }
-            }
+   }
+   public void IncreaseScore(int score)
+   {
+       if (Input.GetKeyDown(KeyCode.S))
+       {
+           this.score += score;
+           foreach (IPlayerObserver observer in observers)
+           {
+               observer.OnPlayerScoreChanged(score);
+           }
+       }
 
-        }*/
+   }*/
 
 }

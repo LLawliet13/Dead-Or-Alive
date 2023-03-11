@@ -11,7 +11,7 @@ public class BossSpawner : BaseSpawner
         status = Controller.TurnOff;
     }
     [SerializeField]
-    private GenericFactory<BossStatus> factory;
+    private GenericEnemyFactory<BossStatus> factory;
     // Update is called once per frame
     void Update()
     {

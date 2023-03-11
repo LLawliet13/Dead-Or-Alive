@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1407431818693145601
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8046982596484202629}
+  - component: {fileID: -4751216810812864344}
+  m_Layer: 0
+  m_Name: DropItemSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8046982596484202629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407431818693145601}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.8857941, y: 1.669621, z: 65.99046}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-4751216810812864344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407431818693145601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8981ad3f2600d4e479b2f063b4cac2fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DropManager: {fileID: 0}
+  dropItemSpawnerController: {fileID: 11400000, guid: 62ab86d392424f04f9ca2c68c099a96c, type: 2}
+  expFactory: {fileID: -1386268665387957051, guid: 087da05c24386f4498465e281e641e75, type: 3}
+  healFactory: {fileID: 3163238847149853663, guid: e37261ea15e8a3e44b5419976c14aac3, type: 3}
+  ExpItemPrefab: {fileID: 7601589754722138814, guid: 212601c5e5ec0da44ae9f2fa9acfcee6, type: 3}
+  HealItemPrefab: {fileID: 2543747403437821868, guid: 09a836692a6bb03489f3753002e33c48, type: 3}
+  collectionChecks: 0
+  maxPoolSize: 100
