@@ -14,6 +14,7 @@ public abstract class BaseDropItem : MonoBehaviour
     /// </summary>
     public int value;
     public UnityEvent<BaseDropItem> DestroyEvent;
+    public Vector3 DropPlace;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

@@ -57,15 +57,15 @@ public class Blackhole : MonoBehaviour
     public bool isAffectBoss = false;
     private void OnDisable()
     {
-       
-        foreach (var c in inRange)
-            try { 
-            c.GetComponent<EnemyStatus>().ResetRotation();
-            }
-            catch
-            {
-                Debug.Log("Object da bi disabled");
-            }
+        try
+        {
+            foreach (var c in inRange)
+                c.GetComponent<EnemyStatus>().ResetRotation();
+        }
+        catch
+        {
+            Debug.Log("Object da bi disabled");
+        }
 
     }
 

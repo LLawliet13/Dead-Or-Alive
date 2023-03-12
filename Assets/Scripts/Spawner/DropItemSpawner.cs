@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Device;
 using UnityEngine.Events;
 using UnityEngine.Pool;
 
@@ -52,32 +53,39 @@ public class DropItemSpawner : MonoBehaviour
         int expItemAmount = dropItemSpawnerController.totalExpItemNumberToLevelUp;
         for (int i = 0; i < expItemAmount; i++)
         {
-            BaseDropItem item = expItemPool.Get();
-            item.transform.position = RandomLocation(boss, dropItemSpawnerController.DistanceFromEnemyForExp);
+            SpawnExpItem(boss);
         }
         for (int i = 0; i < healItemAmount; i++)
         {
-            BaseDropItem item = healItemPool.Get();
-            item.transform.position = RandomLocation(boss, dropItemSpawnerController.DistanceFromEnemyForHeal);
+            SpawnHealItem(boss);
         }
     }
     public void SpawnDropItemForCreep(Vector3 creep)
     {
-        bool generateExp = Random.Range(0, 101) < dropItemSpawnerController.ExpRateDrop;
+        bool generateExp = Random.Range(0f, 101f) < dropItemSpawnerController.ExpRateDrop;
         if (generateExp)
         {
-            BaseDropItem item = expItemPool.Get();
-            item.transform.position = RandomLocation(creep, dropItemSpawnerController.DistanceFromEnemyForExp);
+            SpawnExpItem(creep);
         }
-        bool generateHeal = Random.Range(0, 101) < dropItemSpawnerController.HealRateDrop;
+        bool generateHeal = Random.Range(0f, 101f) < dropItemSpawnerController.HealRateDrop;
         if (generateHeal)
         {
-            BaseDropItem item = healItemPool.Get();
-            item.transform.position = RandomLocation(creep, dropItemSpawnerController.DistanceFromEnemyForHeal);
+            SpawnHealItem(creep);
         }
     }
 
-
+    void SpawnHealItem(Vector3 enemy)
+    {
+        BaseDropItem item = healItemPool.Get();
+        item.transform.position = enemy;
+        item.DropPlace = RandomLocation(enemy, dropItemSpawnerController.DistanceFromEnemyForHeal);
+    }
+    void SpawnExpItem(Vector3 enemy)
+    {
+        BaseDropItem item = expItemPool.Get();
+        item.transform.position = enemy;
+        item.DropPlace = RandomLocation(enemy, dropItemSpawnerController.DistanceFromEnemyForExp);
+    }
 
     private UnityEvent<BaseDropItem> ExpDestroyEvent;
     private UnityEvent<BaseDropItem> HealDestroyEvent;

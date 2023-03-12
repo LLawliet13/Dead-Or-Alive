@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu]
 public class DropItemSpawnerController :ScriptableObject
 {
-    public int ExpRateDrop;
-    public int HealRateDrop;
+    public float ExpRateDrop;
+    public float HealRateDrop;
     public int totalExpItemNumberToLevelUp;
     public int totalHealItemNumberToHealFull;
     public int DistanceFromEnemyForHeal;

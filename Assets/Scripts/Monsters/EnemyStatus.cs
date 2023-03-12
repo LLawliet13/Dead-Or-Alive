@@ -32,6 +32,7 @@ public abstract class EnemyStatus : MonoBehaviour
     public void caculateDamageTaken(int damage)
     {
         CurrentHp -= Mathf.RoundToInt((damage * (1 - Def / 100f)));
+        beingAttackedEffect();
     }
     private Quaternion initialRotation;
 
@@ -54,4 +55,6 @@ public abstract class EnemyStatus : MonoBehaviour
         dropManager.DropMechanism(transform.position, isBoss);
         onDestroy.Invoke(this);
     }
+    protected abstract void beingAttackedEffect();
+    
 }

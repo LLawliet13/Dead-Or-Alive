@@ -101,9 +101,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.007010592, y: 0.023368534}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.12376637
 --- !u!50 &9086748920721401741
 Rigidbody2D:
   serializedVersion: 4
@@ -161,4 +161,5 @@ MonoBehaviour:
   DestroyEvent:
     m_PersistentCalls:
       m_Calls: []
+  DropPlace: {x: 0, y: 0, z: 0}
   healAmount: 0

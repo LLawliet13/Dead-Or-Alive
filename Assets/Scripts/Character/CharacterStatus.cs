@@ -34,6 +34,8 @@ public class CharacterStatus : MonoBehaviour
     [SerializeField]
     private PlayerBaseStatus baseStatus;
     public int playerLevel;
+    private SpriteRenderer sr;
+    private Color originColor;
     private void ConfigStatus()
     {
         SceneManager sceneManager = FindObjectOfType<SceneManager>();
@@ -49,6 +51,8 @@ public class CharacterStatus : MonoBehaviour
             observer.OnPlayerMaxHpChanged(MaxHP);
             observer.OnPlayerLevelChanged(playerLevel);
         }
+        sr = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
+        originColor = sr.color;
     }
     /// <summary>
     /// viec load skill se uu tien doc tu game truoc khi bien nay duoc scenemanager set bang true
@@ -69,12 +73,12 @@ public class CharacterStatus : MonoBehaviour
     }
     public void TakeDamage(float Damage)
     {
-        Debug.Log("TO-DO:Them hieu ung Take Damaged cho nhan vat");
         CurrentHp -= Mathf.RoundToInt((Damage * (1 - Def / 100f)));
         //Debug.Log(CurrentHp);
 
         CheckIfPlayerDie();
         SetCurrentHp(CurrentHp);
+        beingAttackedEffect();
     }
     public void SetCurrentHp(int currentHp)
     {
@@ -109,6 +113,30 @@ public class CharacterStatus : MonoBehaviour
         if (CurrentHp > MaxHP)
             CurrentHp = MaxHP;
         Debug.Log("TO-DO: Add UI Event cho hieu ung hoi hp");
+    }
+    protected  void beingAttackedEffect()
+    {
+        StartCoroutine(DamageEffectSequence(sr, originColor, Color.red, 0.7f, 0));
+    }
+    IEnumerator DamageEffectSequence(SpriteRenderer sr, Color originColor, Color dmgColor, float duration, float delay)
+    {
+
+        // tint the sprite with damage color
+        sr.color = dmgColor;
+
+        // you can delay the animation
+        yield return new WaitForSeconds(delay);
+
+        // lerp animation with given duration in seconds
+        for (float t = 0; t < 1.0f; t += Time.deltaTime / duration)
+        {
+            sr.color = Color.Lerp(dmgColor, originColor, t);
+
+            yield return null;
+        }
+
+        // restore origin color
+        sr.color = originColor;
     }
     /*    public void GainExperience(int experience)
    {
