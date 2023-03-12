@@ -23,6 +23,8 @@ public class CreepFactory : GenericEnemyFactory<CreepStatus>
             //thiet lap so luong quai moi loai theo ti le da chia
             GenerateMonster.Add(monsterTypes[i], (int)value);
         }
+        if (GenerateMonster.Count == 0)
+            Debug.Log("No Monster Load");
     }
     public override void Enable()
     {

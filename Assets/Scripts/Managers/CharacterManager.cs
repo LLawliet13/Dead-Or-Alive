@@ -12,11 +12,13 @@ public class CharacterManager : MonoBehaviour
     //tam thoi do chua them tinh nang luu trang thai nguoi choi,
     //nen can test skill nao cu tao class va them ten class vo day
 
+
     public string[] skill_usings = { "name1", "name2", "name3" };
     /// <summary>
     /// viec load skill se uu tien doc tu game truoc khi bien nay duoc scenemanager set bang true
     /// </summary>
     public bool loadFromLastGame = false;
+
     // Start is called before the first frame update
     void Start()
     {

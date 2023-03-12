@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Function_Demo/Boss_Demo/Scene_Dung_Boss_Rock 1.unity
     guid: c088b7b56ad2de64092df3a5b987da80
+  - enabled: 1
+    path: Assets/Scenes/Function_Demo/Boss_Demo/Scene_Dung_Boss_Rock.unity
+    guid: 2193c8739d391534d9f223a1d56a19f8
   m_configObjects: {}

@@ -61,7 +61,7 @@ public class CreepSpawner : BaseSpawner
     {
         Destroy(creep);
     }
-    
+
     public float delayTime = 0.5f;
     private float timeToSpawn;
     // Update is called once per frame
