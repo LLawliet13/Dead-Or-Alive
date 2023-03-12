@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 721ce449191abe54ba10e82a73adbef3, type: 3}
+  m_Name: CreepType2 0
+  m_EditorClassIdentifier: 
+  Atk: 15
+  Hp: 5
+  Def: 1
+  Speed: 3
+  AvatarPath: Sprites/Creep/Creep2_1
+  EnemyType: 2
+  EnemyName: QuaiDanhXa
+  HeSoNangCapHp: 1.01
+  HeSoNangCapAtk: 1.1
+  HeSoNangCapDef: 1.03
+  HeSoNangCapSpeed: 1
+  AttackRange: 10
+  state_ids: 01000000020000000300000005000000
