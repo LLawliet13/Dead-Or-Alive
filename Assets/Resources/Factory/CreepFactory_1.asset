@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 265c7e1925e917c4c9016c01c4c263fb, type: 3}
   m_Name: CreepFactory_1
   m_EditorClassIdentifier: 
-  OccurrenceRates: 5f00000005000000
+  OccurrenceRates: 140000001900000014000000190000000500000005000000
   TypesPath: MonsterType/Creep

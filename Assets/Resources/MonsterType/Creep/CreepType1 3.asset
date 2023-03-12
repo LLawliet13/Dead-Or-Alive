@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 721ce449191abe54ba10e82a73adbef3, type: 3}
-  m_Name: CreepType1
+  m_Name: CreepType1 3
   m_EditorClassIdentifier: 
   Atk: 10
   Hp: 10
   Def: 10
   Speed: 3
-  AvatarPath: Sprites/Creep/Creep_1
+  AvatarPath: Sprites/Creep/Creep1_4
   EnemyType: 1
-  EnemyName: QuaiDanhGan
+  EnemyName: QuaiDanhGan4
   HeSoNangCapHp: 1.1
   HeSoNangCapAtk: 1.1
   HeSoNangCapDef: 1.1

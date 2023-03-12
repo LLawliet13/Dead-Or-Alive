@@ -59,14 +59,14 @@ public class SceneManager : MonoBehaviour
         //Debug.Log(PlayerLevel);
         Debug.Log("TO-DO: Them ham tinh kinh nghiem va cho nguoi choi len cap");
         Debug.Log("Hien tai gia lap nguoi choi len level moi 2s");
-        if (Time.time >= SimulateTime && PlayerLevel < 4)
+        if (Time.time >= SimulateTime && PlayerLevel < 10)
         {
             PlayerLevel += 1;
             SimulateTime = Time.time + 2f;
             PlayerLevelUp();
         }
         //spawn boss moi khi nhan vat tang 5 level
-        if (PlayerLevel % 5 == 0)
+        if (PlayerLevel % 10 == 0)
         {
             creepSpawner.SettingController(BaseSpawner.Controller.TurnOff);
             if (LevelTriggerBoss != PlayerLevel)
