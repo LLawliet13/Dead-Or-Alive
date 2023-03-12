@@ -11,7 +11,8 @@ public abstract class CreepBaseState : MonoBehaviour
     public bool AbleToTriggerWithOther;
     //xu ly truong hop nhieu state co kha nang trigger trong cung 1 thoi diem, se chon theo do uu tien
     public int priority;
-
+    public CreepUpgradeController creepUpgradeController;
+    public abstract void UpdateSkillBaseOnCharacterLv();
     protected EnemyStatus enemyStatus;
     //ckeck dieu kien xem state nay kich hoat duoc khong
     public abstract bool EnterState();

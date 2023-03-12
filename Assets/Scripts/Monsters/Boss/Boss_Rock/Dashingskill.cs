@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UIElements.Experimental;
+using static BossUpgradeController;
 
 public class Dashingskill : BaseSkillBoss
 {
@@ -46,6 +48,7 @@ public class Dashingskill : BaseSkillBoss
         if (player == null) return false;
         if (RangeSkill(player.transform.position))
         {
+            UpdateSkillBaseOnCharacterLv();
             focusTarget = true;
             timeToRepeatSkill = Time.time;
             return true;
@@ -64,7 +67,10 @@ public class Dashingskill : BaseSkillBoss
     int timeRunSkill = 0;
     public override void UpdateSkillBaseOnCharacterLv()
     {
-        //ableToDo
+        SceneManager sceneManager = GameObject.Find("GameMaster").GetComponent<SceneManager>();
+        int playerLv = sceneManager.GetPlayerLevel();
+        BossState1 stateBasedLv = bossUpgradeController.bossState1.OrderByDescending<BossState1, int>(bs => bs.baseLv).Where(b => b.baseLv <= playerLv).First();
+        ableToDo = stateBasedLv.ableToDo;
         return;
     }
 
@@ -76,7 +82,6 @@ public class Dashingskill : BaseSkillBoss
 
     public override void UpdateState()
     {
-        UpdateSkillBaseOnCharacterLv();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (timeToRepeatSkill < Time.time)
         {

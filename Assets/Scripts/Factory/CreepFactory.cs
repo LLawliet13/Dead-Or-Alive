@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class CreepFactory : GenericFactory<CreepStatus>
+public class CreepFactory : GenericEnemyFactory<CreepStatus>
 {
     [SerializeField]
     private CreepFactoryController controller;

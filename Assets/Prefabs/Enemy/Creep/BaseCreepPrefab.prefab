@@ -163,6 +163,7 @@ MonoBehaviour:
   state_id: 1
   AbleToTriggerWithOther: 0
   priority: 0
+  creepUpgradeController: {fileID: 11400000, guid: fbed15fdb24569945beae5bd933670c7, type: 2}
   DoExitState:
     m_PersistentCalls:
       m_Calls: []
@@ -181,6 +182,7 @@ MonoBehaviour:
   state_id: 2
   AbleToTriggerWithOther: 1
   priority: 0
+  creepUpgradeController: {fileID: 11400000, guid: fbed15fdb24569945beae5bd933670c7, type: 2}
   DoExitState:
     m_PersistentCalls:
       m_Calls: []
@@ -199,6 +201,7 @@ MonoBehaviour:
   state_id: 3
   AbleToTriggerWithOther: 0
   priority: 1
+  creepUpgradeController: {fileID: 11400000, guid: fbed15fdb24569945beae5bd933670c7, type: 2}
   DoExitState:
     m_PersistentCalls:
       m_Calls: []
@@ -217,6 +220,7 @@ MonoBehaviour:
   state_id: 4
   AbleToTriggerWithOther: 0
   priority: 1
+  creepUpgradeController: {fileID: 11400000, guid: fbed15fdb24569945beae5bd933670c7, type: 2}
   DoExitState:
     m_PersistentCalls:
       m_Calls: []
@@ -239,6 +243,7 @@ MonoBehaviour:
   state_id: 5
   AbleToTriggerWithOther: 0
   priority: 1
+  creepUpgradeController: {fileID: 11400000, guid: fbed15fdb24569945beae5bd933670c7, type: 2}
   DoExitState:
     m_PersistentCalls:
       m_Calls: []

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static BossUpgradeController;
 
 public class ThrowRockSkill : BaseSkillBoss
 {
@@ -10,6 +12,7 @@ public class ThrowRockSkill : BaseSkillBoss
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return false;
+        UpdateSkillBaseOnCharacterLv();
         return true;
     }
 
@@ -26,8 +29,8 @@ public class ThrowRockSkill : BaseSkillBoss
 
     public override bool RangeSkill(Vector3 position)
     {
-        if (Vector3.Distance(transform.position, position) > BaseRange.Range(3) && Vector3.Distance(transform.position, position) < BaseRange.Range(4)) return true;
-        return false;
+        //all range
+        return true;
     }
 
     // Start is called before the first frame update
@@ -52,8 +55,11 @@ public class ThrowRockSkill : BaseSkillBoss
 
     public override void UpdateSkillBaseOnCharacterLv()
     {
-        //angleRange
-        //numberOfRock
+        SceneManager sceneManager = GameObject.Find("GameMaster").GetComponent<SceneManager>();
+        int playerLv = sceneManager.GetPlayerLevel();
+        BossState3 stateBasedLv = bossUpgradeController.bossState3.OrderByDescending<BossState3, int>(bs => bs.baseLv).Where(b => b.baseLv <= playerLv).First();
+        angleRange = stateBasedLv.angleRange;
+        numberOfRock = stateBasedLv.numberOfRock;
         return;
     }
 
@@ -64,7 +70,6 @@ public class ThrowRockSkill : BaseSkillBoss
 
     public override void UpdateState()
     {
-        UpdateSkillBaseOnCharacterLv();
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
@@ -78,9 +83,8 @@ public class ThrowRockSkill : BaseSkillBoss
                 r.setVector(targetAngle * new Vector3(1, 0, 0));
                 r.setSpeed(Random.Range(3f, 7.5f));
                 r.SetATK(Mathf.RoundToInt(bossStatus.Atk * 0.5f));
-                ExitState();
             }
-            
+            ExitState();
         }
     }
 }

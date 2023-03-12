@@ -12,11 +12,18 @@ public class CharacterManager : MonoBehaviour
     //tam thoi do chua them tinh nang luu trang thai nguoi choi,
     //nen can test skill nao cu tao class va them ten class vo day
 
-    string[] skill_usings = { "TornadoShot", "InfinitySpear", "SpearManipulation" };
+
+    public string[] skill_usings = { "name1", "name2", "name3" };
+    /// <summary>
+    /// viec load skill se uu tien doc tu game truoc khi bien nay duoc scenemanager set bang true
+    /// </summary>
+    public bool loadFromLastGame = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        loadData();//load thong tin tu file luu tru len day
+        if (!loadFromLastGame)
+            loadData();//load thong tin tu file luu tru len day
         addSkill();
     }
     // Update is called once per frame
@@ -41,7 +48,7 @@ public class CharacterManager : MonoBehaviour
     }
     void addSkill()
     {
-        Character_Skill cs = GameObject.FindGameObjectWithTag("Player").GetComponent<Character_Skill>();
+        Character_SkillController cs = GameObject.FindGameObjectWithTag("Player").GetComponent<Character_SkillController>();
         UIManager uIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
         BaseSkill[] skills = (BaseSkill[])gameObject.GetComponents<BaseSkill>();
         if (skills == null)

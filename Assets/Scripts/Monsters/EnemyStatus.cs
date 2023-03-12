@@ -5,7 +5,10 @@ using UnityEngine.Events;
 
 public abstract class EnemyStatus : MonoBehaviour
 {
-
+    /// <summary>
+    /// duoc load tu folder resource boi factory, khong can assign gia tri
+    /// </summary>
+    [Header("Tu dong load trong factory")]
     public MonsterType BaseStats;//apply type object
     public int MaxHp { get; protected set; }
     public int CurrentHp { get; protected set; }
@@ -29,6 +32,7 @@ public abstract class EnemyStatus : MonoBehaviour
     public void caculateDamageTaken(int damage)
     {
         CurrentHp -= Mathf.RoundToInt((damage * (1 - Def / 100f)));
+        beingAttackedEffect();
     }
     private Quaternion initialRotation;
 
@@ -40,11 +44,17 @@ public abstract class EnemyStatus : MonoBehaviour
     {
         transform.rotation = initialRotation;
     }
-    //ham de tra creep ve pool
+    //ham de tra creep ve pool or destroy hoan toan
     public UnityEvent<EnemyStatus> onDestroy;
+    
 
     public void DestroyMySelf()
     {
+        DropManager dropManager = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<DropManager>();
+        bool isBoss = this.GetType() == typeof(BossStatus);
+        dropManager.DropMechanism(transform.position, isBoss);
         onDestroy.Invoke(this);
     }
+    protected abstract void beingAttackedEffect();
+    
 }

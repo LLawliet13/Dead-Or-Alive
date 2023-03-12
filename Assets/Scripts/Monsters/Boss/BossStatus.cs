@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Device;
 
 public class BossStatus : EnemyStatus
 {
     SpriteRenderer spriteRenderer;
+    Color originColor;
     // Start is called before the first frame update
     void Start()
     {
         typeEnemy = BaseStats.EnemyType;
         spriteRenderer = transform.Find("Head").GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = Resources.Load<Sprite>(BaseStats.AvatarPath);
+        originColor = spriteRenderer.color;
     }
 
     // Update is called once per frame
@@ -47,5 +50,34 @@ public class BossStatus : EnemyStatus
 
         }
 
+    }
+    private void OnEnable()
+    {
+        if (spriteRenderer != null)
+            spriteRenderer.color = originColor;
+    }
+    protected override void beingAttackedEffect()
+    {
+        StartCoroutine(DamageEffectSequence(spriteRenderer, originColor, Color.red, 0.7f, 0));
+    }
+    IEnumerator DamageEffectSequence(SpriteRenderer sr, Color originColor, Color dmgColor, float duration, float delay)
+    {
+
+        // tint the sprite with damage color
+        sr.color = dmgColor;
+
+        // you can delay the animation
+        yield return new WaitForSeconds(delay);
+
+        // lerp animation with given duration in seconds
+        for (float t = 0; t < 1.0f; t += Time.deltaTime / duration)
+        {
+            sr.color = Color.Lerp(dmgColor, originColor, t);
+
+            yield return null;
+        }
+
+        // restore origin color
+        sr.color = originColor;
     }
 }

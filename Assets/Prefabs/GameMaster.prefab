@@ -18,9 +18,11 @@ GameObject:
   - component: {fileID: 2601000010908209797}
   - component: {fileID: 2601000010908209798}
   - component: {fileID: 2601000010908209796}
+  - component: {fileID: 7474241824674034710}
+  - component: {fileID: 2826510274502971770}
   m_Layer: 0
   m_Name: GameMaster
-  m_TagString: Untagged
+  m_TagString: GameMaster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,6 +54,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1e3bbe46db5e9b48b24a198f42263e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skill_usings:
+  - name1
+  - name2
+  - name3
+  loadFromLastGame: 0
 --- !u!114 &3798317550204299220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,3 +180,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creepSpawner: {fileID: 8132024366651811794, guid: cc8b4d2bcb0ca1d42ad87ac4f68d383a, type: 3}
   bossSpawner: {fileID: 4078303012601716349, guid: dde6b5a11b2386041b7b490fc83cdf47, type: 3}
+  SaveHighscoreEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  SaveGameEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7474241824674034710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2601000010908209805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c43bda658280684885cb5d49563f7f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItemSpawner: {fileID: -4751216810812864344, guid: b37e7a6eb5754de4897b18f8940b0118, type: 3}
+--- !u!114 &2826510274502971770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2601000010908209805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da68e02cbdbb20d438caf10c4632265b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
