@@ -51,8 +51,6 @@ public class CharacterStatus : MonoBehaviour
             observer.OnPlayerMaxHpChanged(MaxHP);
             observer.OnPlayerLevelChanged(playerLevel);
         }
-        sr = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
-        originColor = sr.color;
     }
     /// <summary>
     /// viec load skill se uu tien doc tu game truoc khi bien nay duoc scenemanager set bang true
@@ -61,6 +59,8 @@ public class CharacterStatus : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        sr = transform.Find("PlayerSprite").GetComponent<SpriteRenderer>();
+        originColor = sr.color;
         if (!loadFromLastGame)
             ConfigStatus();
     }

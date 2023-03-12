@@ -25,18 +25,21 @@ public class CreepStatus : EnemyStatus
     private void OnEnable()
     {
         // co the xay ra gimbal lock ??
-        ResetRotation();
-
+        //ResetRotation();
+        isFixRotation = false;
         if (spriteRenderer != null)
             spriteRenderer.color = originColor;
     }
+    bool isFixRotation = false;
    
     // Update is called once per frame
     void Update()
     {
-        //fix bug gimbal lock
-        if (CurrentHp == MaxHp)
+        ////fix bug gimbal lock
+        if (!isFixRotation) { 
             ResetRotation();
+            isFixRotation = true;
+        }
         if (CurrentHp <= 0)
         {
             //viet ham dang ki ui, scenemanger o day
