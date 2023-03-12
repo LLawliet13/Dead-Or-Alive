@@ -9,7 +9,6 @@ public class CreepFactory : GenericFactory<CreepStatus>
     private CreepFactoryController controller;
     protected int[] OccurrenceRateTypeList;
 
-
     public void ResetFactory()
     {
         if (OccurrenceRateTypeList == null || OccurrenceRateTypeList.Length == 0)
@@ -20,14 +19,17 @@ public class CreepFactory : GenericFactory<CreepStatus>
         {
             // lam tron so luong quai
             float value = Mathf.Round(OccurrenceRateTypeList[i] / 100f * TotalGenerateMonster);
+            if (value == 0) continue;
             //thiet lap so luong quai moi loai theo ti le da chia
             GenerateMonster.Add(monsterTypes[i], (int)value);
         }
+        if (GenerateMonster.Count == 0)
+            Debug.Log("No Monster Load");
     }
     public override void Enable()
     {
         Debug.Log("Status:Load All Creep Type");
-        monsterTypes = Resources.LoadAll<MonsterType>(controller.TypesPath).OrderBy<MonsterType,int>(mt => mt.EnemyType).ToArray();
+        monsterTypes = Resources.LoadAll<MonsterType>(controller.TypesPath).OrderBy<MonsterType, int>(mt => mt.EnemyType).ToArray();
         GenerateMonster = new Dictionary<MonsterType, int>();
         OccurrenceRateTypeList = controller.OccurrenceRates;
         ResetFactory();

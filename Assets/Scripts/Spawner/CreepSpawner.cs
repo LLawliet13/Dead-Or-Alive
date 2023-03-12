@@ -13,8 +13,8 @@ public class CreepSpawner : BaseSpawner
             CreepDestroyEvent.AddListener(DieEvent);
         }
         //factory = Instantiate(factory);
-        factory.Enable();
         factory.TotalGenerateMonster = maxPoolSize;
+        factory.Enable();
         pool = new ObjectPool<EnemyStatus>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, collectionChecks, maxPoolSize, maxPoolSize);
         timeToSpawn = Time.time;
         status = Controller.TurnOff;
@@ -27,8 +27,8 @@ public class CreepSpawner : BaseSpawner
 
     private int maxPoolSize;
 
-
     private UnityEvent<EnemyStatus> CreepDestroyEvent;
+
     EnemyStatus CreatePooledItem()
     {
         EnemyStatus go = factory.GetNewInstance();
@@ -47,16 +47,18 @@ public class CreepSpawner : BaseSpawner
     }
     void OnTakeFromPool(EnemyStatus creep)
     {
-        creep.caculateStatus();
         creep.gameObject.SetActive(true);
         creep.transform.position = RandomLocation();
+        creep.caculateStatus();
+        creep.GetComponent<CreepStateManager>().value = Assets.Scripts.Managers.BaseStateManager.Controller.TurnOn;
+
     }
 
     void OnDestroyPoolObject(EnemyStatus creep)
     {
         Destroy(creep);
     }
-    
+
     public float delayTime = 0.5f;
     private float timeToSpawn;
     // Update is called once per frame

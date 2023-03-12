@@ -11,6 +11,7 @@ public  class JumpSkill : BaseSkillBoss
     void Start()
     {
         SupportJumpHead = transform.Find("SupportJumpHead").gameObject;
+        firstTimeUse = Time.time;
     }
     Vector3 target;
     // Update is called once per frame
@@ -23,42 +24,10 @@ public  class JumpSkill : BaseSkillBoss
     [Header("Vung rung chan gay sat thuong moi bn s 1 lan")]
     public float DelayCollisionDamageTime;
     GameObject targetO;
-    void Update()
-    {
-        if (runSkill)
-        {
-            player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null && detectTarget)
-            {
-                DetectTarget();
-                targetO = Instantiate(TargetObject, target, Quaternion.identity);
-                jump = true;
-                detectTarget = false;
-                createEarthQuake = true;
-            }
-            if (Vector3.Distance(target, transform.position) < 0.2&&createEarthQuake)
-            {
-                Destroy(targetO);
-                transform.localScale /= 2.5f;
-                GameObject a = Instantiate(EarthQuake, target, Quaternion.identity);
-                a.GetComponent<EarthQuakeRockBoss>().setScaleTarget(EarthQuakeRadiusRatio);
-                a.GetComponent<EarthQuakeRockBoss>().atk = Mathf.RoundToInt(bossStatus.Atk * 2.5f);
-                a.GetComponent<EarthQuakeRockBoss>().DelayCollisionDamageTime = DelayCollisionDamageTime;
-                UnityEvent destroyEvent = new UnityEvent();
-                destroyEvent.AddListener(DestroyEarthQuake);
-                a.GetComponent<EarthQuakeRockBoss>().DestroyEvent = destroyEvent;
-                jump = false;
-                createEarthQuake = false;
-                return;
-            }
-            if (jump)
-                transform.position = Vector3.MoveTowards(transform.position, target, speed *2f* Time.deltaTime);
 
-        }
-    }
     void DestroyEarthQuake()
     {
-        skillEnd = true;
+        ExitState();
     }
     public GameObject EarthQuake;
     [Header("Chi so update ")]
@@ -84,27 +53,23 @@ public  class JumpSkill : BaseSkillBoss
         return 0;
     }
 
-    public override float FirstTimeUse()
-    {
-        return Time.time;
-    }
-    bool skillEnd = true;
-    public override bool isSkillEnd()
-    {
-        return skillEnd;
-    }
 
-    public override bool AbleToTriggerWithOtherSkill()
-    {
-        return false;
-    }
+
+
+   
 
     public override bool AbleToTrigger()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return false;
         if (RangeSkill(player.transform.position))
+        {
+            detectTarget = true;
+            runSkill = true;
+            createEarthQuake = true;
+            targetO = null;
             return true;
+        }
         return false;
     }
 
@@ -115,14 +80,7 @@ public  class JumpSkill : BaseSkillBoss
         return false;
     }
     bool runSkill = false;
-    public override void RunSkill(GameObject Boss)
-    {
-        detectTarget = true;
-        runSkill = true;
-        createEarthQuake = true;
-        skillEnd = false;
-        targetO = null;
-    }
+   
 
     public override void UpdateSkillBaseOnCharacterLv()
     {
@@ -132,5 +90,36 @@ public  class JumpSkill : BaseSkillBoss
     protected override void SetAtkSkill()
     {
         AtkSkill = Mathf.RoundToInt(bossStatus.Atk * 1.2f);
+        GetComponent<BossStatus>().AtkState = AtkSkill;
+    }
+
+    public override void UpdateState()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null && detectTarget)
+        {
+            DetectTarget();
+            targetO = Instantiate(TargetObject, target, Quaternion.identity);
+            jump = true;
+            detectTarget = false;
+            createEarthQuake = true;
+        }
+        if (Vector3.Distance(target, transform.position) < 0.2 && createEarthQuake)
+        {
+            Destroy(targetO);
+            transform.localScale /= 2.5f;
+            GameObject a = Instantiate(EarthQuake, target, Quaternion.identity);
+            a.GetComponent<EarthQuakeRockBoss>().setScaleTarget(EarthQuakeRadiusRatio);
+            a.GetComponent<EarthQuakeRockBoss>().atk = Mathf.RoundToInt(bossStatus.Atk * 2.5f);
+            a.GetComponent<EarthQuakeRockBoss>().DelayCollisionDamageTime = DelayCollisionDamageTime;
+            UnityEvent destroyEvent = new UnityEvent();
+            destroyEvent.AddListener(DestroyEarthQuake);
+            a.GetComponent<EarthQuakeRockBoss>().DestroyEvent = destroyEvent;
+            jump = false;
+            createEarthQuake = false;
+            return;
+        }
+        if (jump)
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * 2f * Time.deltaTime);
     }
 }

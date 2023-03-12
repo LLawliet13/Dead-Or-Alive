@@ -19,11 +19,25 @@ public class CreepStatus : EnemyStatus
         }
     }
 
+    
+    private void OnEnable()
+    {
+        // co the xay ra gimbal lock ??
+        ResetRotation();
+    }
     // Update is called once per frame
     void Update()
     {
-        
+        //fix bug gimbal lock
+        if (CurrentHp == MaxHp)
+            ResetRotation();
+        if (CurrentHp <= 0)
+        {
+            //viet ham dang ki ui, scenemanger o day
+            DestroyMySelf();
+        }
     }
+
     public override void caculateStatus()
     {
         detectPlayerLevel();
@@ -32,5 +46,5 @@ public class CreepStatus : EnemyStatus
         Speed = (int)(BaseStats.Speed * Mathf.Pow(BaseStats.HeSoNangCapSpeed, currentPlayerLevel));
     }
 
-    
+
 }

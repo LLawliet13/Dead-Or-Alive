@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 7416433586353417885, guid: 77d42d5720d8427419e571217d1a2be0, type: 3}
-  TotalGenerateEnemy: 0
+  TotalGenerateMonster: 0
   controller: {fileID: 11400000, guid: 03215671b5cc39448b8fd9eb7571b90f, type: 2}

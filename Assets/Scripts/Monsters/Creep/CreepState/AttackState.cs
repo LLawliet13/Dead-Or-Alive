@@ -10,7 +10,12 @@ public class AttackState : CreepBaseState
     private void Start()
     {
         attackRange = enemyStatus.BaseStats.AttackRange;
+        attackTime = Time.time;
     }
+    /// <summary>
+    /// Chinh sua cac thong so cua state va check neu state co the trien khai
+    /// </summary>
+    /// <returns></returns>
     public override bool EnterState()
     {
         if (!FindPlayer()) return false;
@@ -23,7 +28,7 @@ public class AttackState : CreepBaseState
     float delayTime;
     public override void ExitState()
     {
-        DoExitState.Invoke();
+        DoExitState.Invoke(UpdateState);
     }
     [SerializeField]
     private LayerMask layerMask;// player layer

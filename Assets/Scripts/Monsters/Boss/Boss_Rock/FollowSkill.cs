@@ -14,30 +14,11 @@ public class FollowSkill : BaseSkillBoss
         return false;
     }
 
-    public override bool AbleToTriggerWithOtherSkill()
-    {
-        return false;
-    }
+
 
     public override float CD_Skill()
     {
-        return 1;
-    }
-
-    public override float FirstTimeUse()
-    {
-        return Time.time + 1;
-    }
-
-    public override bool isSkillEnd()
-    {
-        if (AbleToTrigger()) return false;
-        else
-        {
-            runSkill = false;
-            return true;
-        }
-        
+        return 0;
     }
 
     public override int LVToUse()
@@ -51,32 +32,16 @@ public class FollowSkill : BaseSkillBoss
         return false;
     }
 
-    public override void RunSkill(GameObject Boss)
-    {
-        runSkill = true;
-    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        firstTimeUse = Time.time + 1;
     }
-    bool runSkill = false;
     [Header("Chi so nang cap")]
     [SerializeField]
     float bossSpeed = 2;
-    // Update is called once per frame
-    void Update()
-    {
-        UpdateSkillBaseOnCharacterLv();
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (runSkill && player != null)
-        {
 
-            transform.position = Vector3.MoveTowards(transform.position, player.transform.position, bossSpeed * Time.deltaTime);
-        }
-        
-    }
 
     public override void UpdateSkillBaseOnCharacterLv()
     {
@@ -85,6 +50,17 @@ public class FollowSkill : BaseSkillBoss
 
     protected override void SetAtkSkill()
     {
-        AtkSkill = bossStatus.Atk;
+    }
+
+    public override void UpdateState()
+    {
+        UpdateSkillBaseOnCharacterLv();
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            if (!AbleToTrigger()) ExitState();
+            else
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, bossSpeed * Time.deltaTime);
+        }
     }
 }

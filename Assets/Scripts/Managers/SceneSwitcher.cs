@@ -6,7 +6,7 @@ public class SceneSwitcher : MonoBehaviour
 {
     public void Playgame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Scene_Dung_Boss_Rock 1");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Scene_Dung_Boss_Rock");
     }
     public void Quitgame()
     {

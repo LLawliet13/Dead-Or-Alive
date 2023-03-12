@@ -17,7 +17,7 @@ public class RangedAttack : CreepBaseState
     {
         if (!FindPlayer()) return false;
 
-        if (Vector3.Distance(player.transform.position, transform.position) <= attackRange)
+        if (Vector3.Distance(player.transform.position, transform.position) <= attackRange && Time.time > fireTime)
         {
             return true;
         }
@@ -26,18 +26,16 @@ public class RangedAttack : CreepBaseState
 
     public override void ExitState()
     {
-        trigger = false;
-        DoExitState.Invoke();
+        DoExitState.Invoke(UpdateState);
     }
     [SerializeField]
     private float delayTime;
     private float fireTime;
 
-    private void Update()
+    public override void UpdateState()
     {
-        if (trigger && Time.time > fireTime)
+        if (Time.time > fireTime)
         {
-            Debug.Log("TO-DO: Ban ra dan tu state ranged attack");
             GameObject a = Instantiate(bullet, transform.position, Quaternion.identity);
             Rock r = a.GetComponent<Rock>();
             r.setVector((player.position - transform.position).normalized);
@@ -46,10 +44,5 @@ public class RangedAttack : CreepBaseState
             fireTime = Time.time + delayTime;
             ExitState();
         }
-    }
-    bool trigger = false;
-    public override void UpdateState()
-    {
-        trigger = true;
     }
 }
