@@ -8,6 +8,9 @@ using UnityEngine.Events;
 
 public class SceneManager : MonoBehaviour
 {
+    private int CurrentExp;
+    private int TotalExpToNextLevel;
+    private int Point;
     public void Playgame()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("Scene_Dung_Boss_Rock 1");
@@ -45,7 +48,9 @@ public class SceneManager : MonoBehaviour
 
     public void PlayerLevelUp()
     {
+        PlayerLevel += 1;
         GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatus>().LevelEffect();
+        getTotalExpToLevelUp();
     }
 
     private float SimulateTime;
@@ -58,6 +63,7 @@ public class SceneManager : MonoBehaviour
         creepSpawner = Instantiate(creepSpawner);
         bossSpawner = Instantiate(bossSpawner);
         CheckIfLoadGame();
+        getTotalExpToLevelUp();
     }
     bool loadDataFromLastGame;
     [SerializeField]
@@ -159,11 +165,32 @@ public class SceneManager : MonoBehaviour
     internal void AddExp(int value)
     {
         Debug.Log("TO-DO: Them kha nang tang exp tu drop item");
+        CurrentExp += value;
     }
 
     internal int getTotalExpToLevelUp()
     {
         Debug.Log("TO-DO: Them ham tra ve tong exp de len level tiep theo");
-        return 10;
+        int solveForRequiredExp = 0;
+        for (int levelCylce = 1; levelCylce <= PlayerLevel; levelCylce++)
+        {
+            solveForRequiredExp += (int)Mathf.Floor(levelCylce + 300 * Mathf.Pow(2, levelCylce / 7));
+        }
+        Debug.Log(solveForRequiredExp);
+        TotalExpToNextLevel = solveForRequiredExp / 4;
+        return TotalExpToNextLevel;
+    }
+    public void increaseExpForEnemy(EnemyStatus enemyStatus)
+    {
+        Debug.Log("Tp-do: tinh exp cho quai tuy loai");
+        bool isBoss = enemyStatus.GetType() == typeof(BossStatus);
+        if (enemyStatus.BaseStats.EnemyType == 1)
+        {
+
+        }
+        else if(enemyStatus.BaseStats.EnemyType == 2)
+        {
+
+        }
     }
 }

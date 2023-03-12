@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BossSpawner : BaseSpawner
 {
@@ -22,8 +23,12 @@ public class BossSpawner : BaseSpawner
     public void TriggerSpawn()
     {
         Debug.Log("TO-DO: Viet dieu kien check level nhan vat de goi boss");
-        
-        factory.GetNewInstance().caculateStatus();
+        SceneManager sceneManager = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<SceneManager>();
+        BossStatus bossStatus = factory.GetNewInstance();
+        bossStatus.caculateStatus();
+        UnityEvent<EnemyStatus> unityEvent = new UnityEvent<EnemyStatus>();
+        unityEvent.AddListener(sceneManager.increaseExpForEnemy);
+        bossStatus.onDestroy = unityEvent;
         status = Controller.TurnOff;
     }
 }
