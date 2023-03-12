@@ -4,28 +4,21 @@ using UnityEngine;
 using UnityEngine.Events;
 public class SceneSwitcher : MonoBehaviour
 {
+
     public void Playgame()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Scene_Dung_Boss_Rock");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
     public void Quitgame()
     {
         Application.Quit();
     }
-    public void HighScore()
-    {
-
-    }
     public void Restart()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("");
-    }
-    public void Option()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Option");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
     public void BacktoMenu()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 }

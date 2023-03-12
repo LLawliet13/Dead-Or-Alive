@@ -433,8 +433,8 @@ MonoBehaviour:
     from the list of available skills.
 
 
-    When entering the game, the player
-    needs to kill a certain number of monsters, pick up items and level up. The monster''s
+    When entering the game, the player needs
+    to kill a certain number of monsters, pick up items and level up. The monster''s
     power will also increase.
 
 '
@@ -1538,8 +1538,8 @@ MonoBehaviour:
     fighting it. Boss has skill systems that you cannot know.
 
 
-    Survive for
-    as long as possible, fight to bring survival to humans'
+    Survive for as
+    long as possible, fight to bring survival to humans'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4197,6 +4197,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3622944125649167426, guid: b9bda351353863444b83d2b3cfdb5a86, type: 3}
+      propertyPath: editorSelectedPage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622944125649167426, guid: b9bda351353863444b83d2b3cfdb5a86, type: 3}
+      propertyPath: MaximumNumberOfButtonsToShow
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 3622944125649167428, guid: b9bda351353863444b83d2b3cfdb5a86, type: 3}
       propertyPath: m_Color.a
       value: 0.8509804
@@ -4260,6 +4268,10 @@ PrefabInstance:
     - target: {fileID: 3622944125910555636, guid: b9bda351353863444b83d2b3cfdb5a86, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622944125910555636, guid: b9bda351353863444b83d2b3cfdb5a86, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 3622944126023599058, guid: b9bda351353863444b83d2b3cfdb5a86, type: 3}
       propertyPath: m_AnchorMax.y
