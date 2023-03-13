@@ -16,8 +16,6 @@ public class CharacterStatus : MonoBehaviour
     /// Subject
     /// </summary>
     private List<IPlayerObserver> observers = new List<IPlayerObserver>();
-    private int experience;
-    private int score;
 
     public void AddObserver(IPlayerObserver observer)
     {

@@ -7,6 +7,7 @@ public interface IPlayerObserver
     void OnPlayerDamaged(float currentHealth);
     void OnPlayerKilled();
     void OnPlayerExperienceGained(int experience);
+    void OnPlayerTotalExperienceChanged(int totalExp);
     void OnPlayerScoreChanged(int score);
     void OnPlayerMaxHpChanged(int hp);
     void OnPlayerLevelChanged(int level);
