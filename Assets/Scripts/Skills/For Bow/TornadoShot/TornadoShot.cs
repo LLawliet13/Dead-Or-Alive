@@ -11,7 +11,7 @@ public class TornadoShot : MonoBehaviour, BaseSkill
 
     public float GetCD()
     {
-        return 3;
+        return duration+5;
     }
 
     public string GetName()
@@ -21,7 +21,7 @@ public class TornadoShot : MonoBehaviour, BaseSkill
 
     public bool IsActive()
     {
-        return true;
+        return false;
     }
     bool moveCharacter;
     GameObject character;

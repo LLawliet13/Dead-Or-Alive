@@ -19,6 +19,7 @@ public class SceneManager : MonoBehaviour
     }
     public void NotifyPlayerDie()
     {
+        Debug.Log("TO-DO: Them function cho nhan vat die");
         IsPlayerDie = true;
     }
 
@@ -28,9 +29,10 @@ public class SceneManager : MonoBehaviour
     }
 
     private float SimulateTime;
-    private bool IsPlayerDie;
+    private bool IsPlayerDie = false;
     private void Awake()
     {
+        Time.timeScale = 1f;
         PlayerLevel = -1;
         IsPlayerDie = false;
         SimulateTime = Time.time;
@@ -108,7 +110,7 @@ public class SceneManager : MonoBehaviour
                 characterStatus.SetCurrentHp(data.currentHp);
                 character_Skill.loadFromLastGame = true;
                 character_Skill.skill_usings = data.skillList;
-
+                if (data.currentHp <= 0) IsPlayerDie = true;
             }
         //}
     }
@@ -129,7 +131,7 @@ public class SceneManager : MonoBehaviour
 
     private void OnDisable()
     {
-        if (!IsPlayerDie)
+        if (IsPlayerDie)
             SaveData();
         else
             SaveHighScore();
@@ -145,4 +147,5 @@ public class SceneManager : MonoBehaviour
         Debug.Log("TO-DO: Them ham tra ve tong exp de len level tiep theo");
         return 10;
     }
+
 }
