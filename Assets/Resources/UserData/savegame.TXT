@@ -1,6 +1,6 @@
 {
-  "level": 10,
-  "currentHp": 52,
+  "level": 1,
+  "currentHp": 110,
   "position": {
     "x": 0.0,
     "y": 0.0,
