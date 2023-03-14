@@ -11,6 +11,14 @@ public interface MovementSetting
         Vector3 moveVector = (end - start).normalized;
         return moveVector;
     }
+    public static Vector3 CalculateStraightMoveVector(GameObject MovingObject, Vector3 end)
+    {
+        Vector3 moveVector = (end - MovingObject.transform.position).normalized;
+        float curAngle = Mathf.Atan2(moveVector.y, moveVector.x) * Mathf.Rad2Deg;
+        Quaternion q = Quaternion.AngleAxis(curAngle, Vector3.forward);
+        MovingObject.transform.rotation = q;
+        return moveVector;
+    }
     //thay doi quay dao di chuyen cua object tu tu
     public static Vector3 CalculateSlopeMoveVector(Vector3 end,GameObject MovingObject,float speedRotation)
     {

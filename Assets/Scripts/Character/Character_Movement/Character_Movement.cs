@@ -23,9 +23,8 @@ public class Character_Movement : MonoBehaviour
         heSoInputX = 1;
         heSoInputY = 1;
     }
-
-    public int heSoInputX;
-    public int heSoInputY;
+    [HideInInspector]
+    public int heSoInputX, heSoInputY;
     // Update is called once per frame
     void Update()
     {

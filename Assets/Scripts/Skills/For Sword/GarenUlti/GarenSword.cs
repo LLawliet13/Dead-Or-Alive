@@ -8,7 +8,7 @@ public class GarenSword : MonoBehaviour
 {
     bool run = false;
     Vector3 targetPosition;
-    private SpriteRenderer sprite; //Declare a SpriteRenderer variable to holds our SpriteRenderer component
+    private SpriteRenderer sprite; 
     internal void Trigger(Vector3 targetPosition)
     {
 
@@ -20,14 +20,11 @@ public class GarenSword : MonoBehaviour
     public GameObject earthQuake;
     void Start()
     {
-        sprite = GetComponent<SpriteRenderer>(); //Set the reference to our SpriteRenderer component
+        sprite = GetComponent<SpriteRenderer>(); 
     }
 
-
-    //sprite.bounds.extents.x; //Distance to the right side, from your center point
-    //-sprite.bounds.extents.x //Distance to the left side
-    //sprite.bounds.extents.y //Distance to the top
-    //- sprite.bounds.extents.y //Distance to the bottom
+    [HideInInspector]
+    public int atk;
 
 
     // Update is called once per frame
@@ -43,8 +40,9 @@ public class GarenSword : MonoBehaviour
             else
             {
                 run = false;
-                GameObject a = Instantiate(earthQuake, new Vector3(transform.position.x, transform.position.y - sprite.bounds.extents.y), Quaternion.identity);
-                a.GetComponent<EarthQuake>().sword = gameObject;
+                EarthQuake a = Instantiate(earthQuake, new Vector3(transform.position.x, transform.position.y - sprite.bounds.extents.y), Quaternion.identity).GetComponent<EarthQuake>();
+                a.sword = gameObject;
+                a.atk = atk;
             }
         }
     }

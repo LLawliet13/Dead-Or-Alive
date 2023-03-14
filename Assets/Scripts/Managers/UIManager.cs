@@ -10,7 +10,8 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField]
     // Start is called before the first frame update
-    List<Button> buttons;
+    [HideInInspector]
+    public List<Button> buttons;
     void Awake()
     {
         skills = new LinkedList<BaseSkill>();

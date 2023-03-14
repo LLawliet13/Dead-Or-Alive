@@ -22,10 +22,15 @@ public class TornadoArrow : MonoBehaviour
     {
         transform.position += moveVector* speed * Time.deltaTime;
     }
-   
+    [HideInInspector]
+    public int atk;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
+        {
+            GetComponent<BasePlayerWeaponStatus>().AttackEnemy(atk, collision.GetComponent<EnemyStatus>());
             Destroy(gameObject);
+
+        }
     }
 }

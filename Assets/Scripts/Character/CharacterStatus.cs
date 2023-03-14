@@ -33,6 +33,7 @@ public class CharacterStatus : MonoBehaviour
     /// </summary>
     [SerializeField]
     private PlayerBaseStatus baseStatus;
+    [HideInInspector]
     public int playerLevel;
     private SpriteRenderer sr;
     private Color originColor;
@@ -55,6 +56,7 @@ public class CharacterStatus : MonoBehaviour
     /// <summary>
     /// viec load skill se uu tien doc tu game truoc khi bien nay duoc scenemanager set bang true
     /// </summary>
+    [HideInInspector]
     public bool loadFromLastGame = false;
     // Start is called before the first frame update
     void Start()

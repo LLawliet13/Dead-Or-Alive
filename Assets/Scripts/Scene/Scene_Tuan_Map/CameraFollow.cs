@@ -6,7 +6,13 @@ public class CameraFollow : MonoBehaviour
 {
     public float FollowSpeed = 2f;
     public Transform target;
-
+    private void Start()
+    {
+        if(target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+    }
     // Update is called once per frame
     void Update()
     {

@@ -17,7 +17,7 @@ namespace Assets.Scripts.Managers
             TurnOff,
             TurnOn
         }
-        public Controller value;
+        public Controller status;
         
     }
 }

@@ -148,7 +148,23 @@ namespace Assets.Scenes.Scripts.Managers
             List<HighScore> highScores = JsonConvert.DeserializeObject<List<HighScore>>(data);
             return highScores;
         }
-
+        /// <summary>
+        /// tra ve so diem cao nhat dat duoc trong cac record ton tai, neu chua co record thi tra ve 0
+        /// </summary>
+        /// <returns></returns>
+        public int GetHighestHighScore()
+        {
+            int max;
+            try
+            {
+                max = LoadHightScore().OrderByDescending<HighScore, int>(h => h.score).First().score;
+            }
+            catch
+            {
+                return 0;
+            }
+            return max;
+        }
     }
     public class HighScore
     {

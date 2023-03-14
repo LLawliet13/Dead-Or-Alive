@@ -53,7 +53,7 @@ public class CreepSpawner : BaseSpawner
         creep.gameObject.SetActive(true);
         creep.transform.position = RandomLocation();
         creep.caculateStatus();
-        creep.GetComponent<CreepStateManager>().value = Assets.Scripts.Managers.BaseStateManager.Controller.TurnOn;
+        creep.GetComponent<CreepStateManager>().status = Assets.Scripts.Managers.BaseStateManager.Controller.TurnOn;
 
     }
 

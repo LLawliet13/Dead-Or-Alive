@@ -14,7 +14,7 @@ public class MultipleShot : MonoBehaviour, BaseSkill
 
     public float GetCD()
     {
-        return 2;
+        return 3.5f;
     }
 
     public string GetName()
@@ -35,23 +35,20 @@ public class MultipleShot : MonoBehaviour, BaseSkill
     float totalAngle = 360;
     public void RunSkill(GameObject character)
     {
+        Vector3 spawnPosition = character.transform.Find("WeaponParent").Find("Weapon").transform.position;
         Vector3 diff = MovementSetting.CalculateMoveVector(character.transform.position, character.transform.Find("WeaponParent").Find("Weapon").transform.position);
         float curAngle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         Quaternion baseAngle = Quaternion.Euler(0, 0, curAngle);
         float diffAngle = totalAngle / baseArrowAmount;
         for (int i = 0; i < baseArrowAmount/2; i++)
         {
-            GameObject a = Instantiate(MuiTen, new Vector3(character.transform.position.x, character.transform.position.y , character.transform.position.z)
-                , Quaternion.identity);
+            GameObject a = Instantiate(MuiTen, spawnPosition, Quaternion.identity);
             a.transform.rotation = Quaternion.Euler(0, 0, baseAngle.eulerAngles.z + (i + 1) * diffAngle);
-            //a.GetComponent<Rigidbody2D>().AddForce((a.transform.rotation * new Vector3(-10, 0, 0)).normalized*5 , ForceMode2D.Impulse);
-            GameObject b = Instantiate(MuiTen, new Vector3(character.transform.position.x, character.transform.position.y , character.transform.position.z)
-                , Quaternion.identity);
+            a.GetComponent<MuiTenScript>().atk = Mathf.RoundToInt(character.GetComponent<CharacterStatus>().Atk * 1.5f);
+            GameObject b = Instantiate(MuiTen, spawnPosition, Quaternion.identity);
             b.transform.rotation = Quaternion.Euler(0, 0, baseAngle.eulerAngles.z - (i + 1) * diffAngle);
-            //b.GetComponent<Rigidbody2D>().AddForce((b.transform.rotation * new Vector3(-10, 0, 0)).normalized * 5, ForceMode2D.Impulse);
+            b.GetComponent<MuiTenScript>().atk = Mathf.RoundToInt(character.GetComponent<CharacterStatus>().Atk * 1.5f);
         }
-        
-
     }
 
     public void SupportUISkill(GameObject character)
