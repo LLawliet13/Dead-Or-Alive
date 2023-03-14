@@ -21,6 +21,7 @@ public class WeightArrow : MonoBehaviour
         startTime = Time.time;
         baseScale = transform.localScale;
     }
+    public int atk;
     public void Fire(GameObject character)
     {
         this.character = character;
@@ -28,44 +29,54 @@ public class WeightArrow : MonoBehaviour
     }
     float startTime;
     float ScaleOfArrow;
+    float maxMultipleDamage;
     float timeToCharge;
-    public void SetScaleOfArrow(float size)
+    public void SetScaleOfArrow(float size, float maxMultipleDamage)
     {
         ScaleOfArrow = size;
+        this.maxMultipleDamage = maxMultipleDamage;
     }
+    float ratioCharge;
     // Update is called once per frame
     void Update()
     {
-        if(fire == true)
+        if (fire == true)
         {
-            moveVector = MovementSetting.CalculateMoveVector(character.transform.position, character.transform.Find("WeaponParent").Find("Weapon").transform.position);
-            transform.position += moveVector * moveSpeed * Time.deltaTime;
+            transform.position += transform.rotation* new Vector3(1,0,0) * moveSpeed * Time.deltaTime;
         }
         else
         {
             //tang kich co bow khi hold
-            if(transform.localScale.x / baseScale.x <= ScaleOfArrow)
+            if (ratioCharge < 1)
             {
-                float ratio = (Time.time - startTime)/ timeToCharge;
-                if (ratio > 1) ratio = 1;
-                timeExist = timeExist+0.2f;
-                transform.localScale = new Vector3(ScaleOfArrow * ratio,
-                    ScaleOfArrow * ratio, 0);
+                timeExist = timeExist + 0.2f;
+                ratioCharge = (Time.time - startTime) / timeToCharge;
+                if (ratioCharge > 1) ratioCharge = 1;// gioi han do to cua chum anh sang
+                timeExist = timeExist + 0.2f;
+                transform.localScale = new Vector3(ScaleOfArrow * ratioCharge,
+                    ScaleOfArrow * ratioCharge, 0);
             }
         }
     }
-   
+
     // Update is called once per frame
 
-  
+    bool isTriggerDestroy = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (fire == true)
             if (collision.CompareTag("Enemy"))
+            {
                 //mui ten bi pha huy sau 1 khoang thoi gian sau khi cham vao 1 dot quai dau tien
-                Destroy(gameObject, timeExist);
+                if (!isTriggerDestroy)
+                {
+                    Destroy(gameObject, timeExist);
+                    isTriggerDestroy = true;
+                }
+                GetComponent<BasePlayerWeaponStatus>().AttackEnemy(Mathf.RoundToInt(atk * maxMultipleDamage * ratioCharge), collision.GetComponent<EnemyStatus>());
+            }
     }
-    internal void SetChargeTime(float timeCharge)
+    public void SetChargeTime(float timeCharge)
     {
         timeToCharge = timeCharge;
     }

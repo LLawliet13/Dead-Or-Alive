@@ -18,7 +18,7 @@ public class BlackholeShot : MonoBehaviour, BaseSkill
 
     public float GetCD()
     {
-        return 1.5f;
+        return 3.5f;
     }
 
     public string GetName()

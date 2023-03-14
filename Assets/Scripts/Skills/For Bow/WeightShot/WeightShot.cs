@@ -27,8 +27,11 @@ public class WeightShot : MonoBehaviour, BaseSkill
     Boolean hold = false;
     GameObject HoldArrow;
     [SerializeField]
-    [Header("Do lon cua mui ten ban ra,>0")]
+    [Header("Do lon toi da cua mui ten ban ra,>1")]
     float ScaleOfArrow;
+    [SerializeField]
+    [Header("sat thuong toi da cua mui ten ban ra,>1")]
+    float ScaleAtkOfArrow;
     [SerializeField]
     [Header("thoi gian du tinh charge xong,>0")]
     float timeCharge;
@@ -47,10 +50,12 @@ public class WeightShot : MonoBehaviour, BaseSkill
             float curAngle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
             HoldArrow = Instantiate(WeightArrow, character.transform.position, Quaternion.Euler(0, 0, curAngle));
             HoldArrow.transform.parent = character.transform.Find("WeaponParent").Find("Weapon");
-            HoldArrow.GetComponent<WeightArrow>().SetScaleOfArrow(ScaleOfArrow);
+            HoldArrow.GetComponent<WeightArrow>().SetScaleOfArrow(ScaleOfArrow, ScaleAtkOfArrow);
             HoldArrow.GetComponent<WeightArrow>().SetChargeTime(timeCharge);
             HoldArrow.GetComponent<SpriteRenderer>().enabled = false;
             character.transform.Find("WeaponParent").Find("Weapon").GetComponent<Animator>().Play("WeightBow_Charge");
+            HoldArrow.GetComponent<WeightArrow>().atk = character.GetComponent<CharacterStatus>().Atk;
+
         }
         else
         {
@@ -59,7 +64,8 @@ public class WeightShot : MonoBehaviour, BaseSkill
             HoldArrow.GetComponent<SpriteRenderer>().enabled = true;
             character.transform.Find("WeaponParent").Find("Weapon").GetComponent<Animator>().Play("Normal");
             HoldArrow.GetComponent<WeightArrow>().Fire(character);
-            
+            HoldArrow.transform.parent = null;
+
         }
 
     }

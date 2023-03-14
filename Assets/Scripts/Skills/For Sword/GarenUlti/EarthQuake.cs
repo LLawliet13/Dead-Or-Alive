@@ -16,10 +16,19 @@ public class EarthQuake : MonoBehaviour
         Destroy(sword, duration);
 
     }
+    [HideInInspector]
     public GameObject sword;
-    // Update is called once per frame
-    void Update()
+    public int atk;
+  
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (collision.CompareTag("Enemy"))
+        {
+                GetComponent<BasePlayerWeaponStatus>().AttackEnemy(atk, collision.GetComponent<EnemyStatus>());
+        }
+
+
     }
+    
 }
+

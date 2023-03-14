@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  atk: 0
 --- !u!212 &4517617333920589256
 SpriteRenderer:
   m_ObjectHideFlags: 0

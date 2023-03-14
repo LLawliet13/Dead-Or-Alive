@@ -101,8 +101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeightArrow: {fileID: 6664546073030781736, guid: dc1fc6602e891e648a4393f7ee49e766, type: 3}
-  ScaleOfArrow: 20
-  timeCharge: 2
+  ScaleOfArrow: 10
+  ScaleAtkOfArrow: 2
+  timeCharge: 1.5
   ChargeBar: {fileID: 0}
   ChargeText: {fileID: 0}
   Bar: {fileID: 0}

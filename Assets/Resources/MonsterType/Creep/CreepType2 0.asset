@@ -20,7 +20,7 @@ MonoBehaviour:
   EnemyType: 2
   EnemyName: QuaiDanhXa
   HeSoNangCapHp: 1.01
-  HeSoNangCapAtk: 1.1
+  HeSoNangCapAtk: 1.03
   HeSoNangCapDef: 1.03
   HeSoNangCapSpeed: 1
   AttackRange: 10

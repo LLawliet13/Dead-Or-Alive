@@ -8,10 +8,12 @@ public class CreepSpawner : BaseSpawner
     // Start is called before the first frame update
     void Start()
     {
+        sceneManager = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<SceneManager>();
         if (CreepDestroyEvent == null)
         {
             CreepDestroyEvent = new UnityEvent<EnemyStatus>();
             CreepDestroyEvent.AddListener(DieEvent);
+            CreepDestroyEvent.AddListener(sceneManager.increaseExpForEnemy);
         }
         //factory = Instantiate(factory);
         factory.TotalGenerateMonster = maxPoolSize;
@@ -24,6 +26,7 @@ public class CreepSpawner : BaseSpawner
     private GenericEnemyFactory<CreepStatus> factory;
     private ObjectPool<EnemyStatus> pool;
     public bool collectionChecks = false;
+    private SceneManager sceneManager;
     [SerializeField]
 
     private int maxPoolSize;
@@ -53,7 +56,7 @@ public class CreepSpawner : BaseSpawner
         creep.gameObject.SetActive(true);
         creep.transform.position = RandomLocation();
         creep.caculateStatus();
-        creep.GetComponent<CreepStateManager>().value = Assets.Scripts.Managers.BaseStateManager.Controller.TurnOn;
+        creep.GetComponent<CreepStateManager>().status = Assets.Scripts.Managers.BaseStateManager.Controller.TurnOn;
 
     }
 

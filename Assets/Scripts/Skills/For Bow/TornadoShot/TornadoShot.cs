@@ -75,8 +75,9 @@ public class TornadoShot : MonoBehaviour, BaseSkill
                 MoveCharacter(character);
                 if (Time.time > nextSpawnTime )
                 {
-                    GameObject arrowSpawn = Instantiate(arrow, character.transform.position, Quaternion.Euler(0,0, targetEdge));
-                    arrowSpawn.GetComponent<TornadoArrow>().SetVector(CaculateVectorB(new Vector3(1,0,0), targetEdge));
+                    TornadoArrow arrowSpawn = Instantiate(arrow, character.transform.position, Quaternion.Euler(0,0, targetEdge)).GetComponent<TornadoArrow>();
+                    arrowSpawn.SetVector(CaculateVectorB(new Vector3(1,0,0), targetEdge));
+                    arrowSpawn.GetComponent<TornadoArrow>().atk = Mathf.RoundToInt(1.5f * character.GetComponent<CharacterStatus>().Atk);
                     nextSpawnTime = Time.time + delayTimeShot;
                     delayTimeShot = 2 * Time.deltaTime;
                 }

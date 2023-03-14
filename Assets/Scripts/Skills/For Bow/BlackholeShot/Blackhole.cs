@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Device;
 
+/// <summary>
+/// Skill nay rat de gay lag voi so luong quai trung chieu tu 50 con tro len vi so luong phep tinh chuyen dong nhieu
+/// </summary>
 public class Blackhole : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -26,13 +29,12 @@ public class Blackhole : MonoBehaviour
     public LayerMask enemy;
     Collider2D[] inRange;
     private float speedAngle = 6;
-    private float speedAngleChange = 10;
 
     void Update()
     {
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x,
            transform.rotation.eulerAngles.y,
-           transform.rotation.eulerAngles.z + 20 * Time.deltaTime);
+           transform.rotation.eulerAngles.z + 50 * Time.deltaTime);
         inRange = Physics2D.OverlapCircleAll(transform.position, cc.radius / 2, enemy);
 
 
@@ -43,8 +45,10 @@ public class Blackhole : MonoBehaviour
                 if (isAffectBoss)
                     c.transform.position += MovementSetting.CalculateSlopeMoveVector(transform.position, c.gameObject, speedAngle) * speed * Time.deltaTime;
             }
-            else
+            else {
                 c.transform.position += MovementSetting.CalculateSlopeMoveVector(transform.position, c.gameObject, speedAngle) * speed * Time.deltaTime;
+                c.GetComponent<BaseStateManager>().status = BaseStateManager.Controller.TurnOff;// tat cac kha nang cua quai
+            }
             if (Time.time > timeToDamage)
             {
                 GetComponent<BasePlayerWeaponStatus>().AttackEnemy(atk, c.GetComponent<EnemyStatus>());
@@ -52,7 +56,7 @@ public class Blackhole : MonoBehaviour
 
         }
         if (inRange.Length > 0)
-            timeToDamage += delayTime;
+            timeToDamage = Time.time +  delayTime;
     }
     public bool isAffectBoss = false;
     private void OnDisable()
@@ -60,7 +64,10 @@ public class Blackhole : MonoBehaviour
         try
         {
             foreach (var c in inRange)
+            {
                 c.GetComponent<EnemyStatus>().ResetRotation();
+                c.GetComponent<BaseStateManager>().status = BaseStateManager.Controller.TurnOn;
+            }
         }
         catch
         {

@@ -25,7 +25,7 @@ public class CreepStateManager : BaseStateManager
     // Start is called before the first frame update
     void Start()
     {
-        value = Controller.TurnOn;
+        status = Controller.TurnOn;
         SignUpState();
 
         if (updateParallelStates == null)
@@ -48,14 +48,21 @@ public class CreepStateManager : BaseStateManager
     // Update is called once per frame
     void Update()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null) RemoveAllState();
-        else
-        {
-            CheckAvailableState();
-            updatePriorityStates.Invoke();
-            updateParallelStates.Invoke();
+        //if (status == Controller.TurnOn)
+        //{
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player == null) RemoveAllState();
+            else
+            {
+                CheckAvailableState();
+                updatePriorityStates.Invoke();
+                updateParallelStates.Invoke();
+            //}
         }
+    }
+    private void OnEnable()
+    {
+        status = Controller.TurnOn;
     }
     protected override void RemoveAllState()
     {

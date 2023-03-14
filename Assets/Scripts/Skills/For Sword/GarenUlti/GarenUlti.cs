@@ -6,7 +6,7 @@ public class GarenUlti : MonoBehaviour, BaseSkill
 {
     public string description()
     {
-        return "triê?u hô?i 1 thanh kiê?m to tô? bô?, gia?ng xuô?ng ?â?t gây sa?t th??ng 1 vu?ng";
+        return "Trieu hoi 1 thanh kiem khong lo roi xuong gay sat thuong 1 vung chi dinh";
     }
 
     public int getButtonIndex()
@@ -18,7 +18,7 @@ public class GarenUlti : MonoBehaviour, BaseSkill
 
     public float GetCD()
     {
-        return 1;
+        return 2;
     }
 
     public string GetName()
@@ -38,15 +38,15 @@ public class GarenUlti : MonoBehaviour, BaseSkill
     public GameObject garenSword;
     public void RunSkill(GameObject character)
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
+
+        if (character != null)
         {
 
-            GameObject weapon = player.transform.Find("WeaponParent").Find("Weapon").gameObject;
-            Vector3 targetPosition = 2 * weapon.transform.position - player.transform.position + new Vector3(0, garenSword.GetComponent<SpriteRenderer>().bounds.extents.y, 0);
-            GameObject a = Instantiate(garenSword, new Vector3(targetPosition.x, targetPosition.y + 10, targetPosition.z), Quaternion.identity);
-
-            a.GetComponent<GarenSword>().Trigger(targetPosition);
+            GameObject weapon = character.transform.Find("WeaponParent").Find("Weapon").gameObject;
+            Vector3 targetPosition = 2 * weapon.transform.position - character.transform.position + new Vector3(0, garenSword.GetComponent<SpriteRenderer>().bounds.extents.y, 0);
+            GarenSword a = Instantiate(garenSword, new Vector3(targetPosition.x, targetPosition.y + 10, targetPosition.z), Quaternion.identity).GetComponent<GarenSword>();
+            a.Trigger(targetPosition);
+            a.atk = character.GetComponent<CharacterStatus>().Atk * 3;
         }
     }
 
