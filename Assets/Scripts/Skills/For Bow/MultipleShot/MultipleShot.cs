@@ -25,10 +25,7 @@ public class MultipleShot : MonoBehaviour, BaseSkill
     public bool IsActive()
     {
 
-        if (true)//co the check 1 so dieu kien gi do o day nhu lv gioi han cac kieu, boss dac thu
-        {
-            return true;
-        }
+        return false;
     }
     [SerializeField]
     [Header("Phai la so chan,>0")]

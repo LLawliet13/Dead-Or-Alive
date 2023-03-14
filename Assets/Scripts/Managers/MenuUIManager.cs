@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class MenuUIManager : MonoBehaviour
     }
     public void MusicVolume()
     {
+        _musicSlider.onValueChanged.AddListener(val => AudioManager.instance.MusicVolume(val));
         AudioManager.instance.MusicVolume(_musicSlider.value);
     }
     public void Resume()
@@ -35,6 +37,7 @@ public class MenuUIManager : MonoBehaviour
     }
     public void MainMenu()
     {
+        Time.timeScale = 1f;
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
     public void Quit()
@@ -47,6 +50,10 @@ public class MenuUIManager : MonoBehaviour
         Debug.Log("HighScore");
         pauseMenuUI.SetActive(true);
 
+    }
+    public void Setting()
+    {
+        pauseMenuUI.SetActive(true);
     }
     public void Tutorial()
     {

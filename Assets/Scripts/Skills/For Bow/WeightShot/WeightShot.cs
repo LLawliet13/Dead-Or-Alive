@@ -12,17 +12,17 @@ public class WeightShot : MonoBehaviour, BaseSkill
     GameObject WeightArrow;
     public float GetCD()
     {
-        return 0;
+        return 3;
     }
 
     public string GetName()
     {
         return "WeightShot";
     }
-
+    private bool isActive = false;
     public bool IsActive()
     {
-        return true;
+        return isActive;
     }
     Boolean hold = false;
     GameObject HoldArrow;
@@ -32,7 +32,7 @@ public class WeightShot : MonoBehaviour, BaseSkill
     [SerializeField]
     [Header("thoi gian du tinh charge xong,>0")]
     float timeCharge;
- 
+    
     public void RunSkill(GameObject character)
     {
         //viet len tren day vi trong ham nay co xet dieu kien cua hold,
@@ -41,6 +41,7 @@ public class WeightShot : MonoBehaviour, BaseSkill
 
         if (!hold)
         {
+            isActive = true;
             hold = true;
             Vector3 diff = MovementSetting.CalculateMoveVector(character.transform.position, character.transform.Find("WeaponParent").Find("Weapon").position);
             float curAngle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
@@ -53,10 +54,12 @@ public class WeightShot : MonoBehaviour, BaseSkill
         }
         else
         {
+            isActive = false;
             hold = false;
             HoldArrow.GetComponent<SpriteRenderer>().enabled = true;
             character.transform.Find("WeaponParent").Find("Weapon").GetComponent<Animator>().Play("Normal");
             HoldArrow.GetComponent<WeightArrow>().Fire(character);
+            
         }
 
     }

@@ -92,7 +92,6 @@ public class CharacterStatus : MonoBehaviour
     {
         if (CurrentHp <= 0)
         {
-            Debug.Log("TO-DO: Them function cho nhan vat die");
             SceneManager sceneManager = FindObjectOfType<SceneManager>();
             sceneManager.NotifyPlayerDie();
             foreach (IPlayerObserver observer in observers)

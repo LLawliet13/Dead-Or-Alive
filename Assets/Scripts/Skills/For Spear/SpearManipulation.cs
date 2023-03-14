@@ -45,7 +45,7 @@ public class SpearManipulation : MonoBehaviour, BaseSkill
 
     public bool IsActive()
     {
-        return true;
+        return false;
     }
 
     public void RunSkill(GameObject character)

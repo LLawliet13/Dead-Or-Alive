@@ -1,6 +1,6 @@
 {
-  "level": 1,
-  "currentHp": 110,
+  "level": 10,
+  "currentHp": 199,
   "position": {
     "x": 0.0,
     "y": 0.0,
@@ -10,8 +10,8 @@
   },
   "skillList": [
     "TornadoShot",
-    "InfinitySpear",
-    "SpearManipulation"
+    "BlackholeShot",
+    "WeightShot"
   ],
   "CurrentPoint": 0
 }

@@ -33,7 +33,7 @@ public class BlackholeShot : MonoBehaviour, BaseSkill
 
     public bool IsActive()
     {
-        throw new System.NotImplementedException();
+        return false;
     }
     public float atk;
     public void RunSkill(GameObject character)

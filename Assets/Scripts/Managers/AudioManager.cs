@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
         public AudioClip clip;
     }
     public static AudioManager instance;
-    public Sound[] musicSound;
+    //public Sound[] musicSound;
     public AudioSource musicSources;
 
     private void Awake()
@@ -28,25 +28,26 @@ public class AudioManager : MonoBehaviour
             DontDestroyOnLoad(transform.gameObject);
         }
     }
-    private void Start()
-    {
-        PlayMusic("Theme");
-    }
-    public void PlayMusic(string name)
-    {
-        Sound s = Array.Find(musicSound, x => x.name == name);
-        if (s == null)
-        {
 
-            Debug.Log("Sound Not Found");
-        }
-        else
+    //private void Start()
+    //{
+    //    PlayMusic("Theme");
+    //}
+    //public void PlayMusic(string name)
+    //{
+    //    Sound s = Array.Find(musicSound, x => x.name == name);
+    //    if (s == null)
+    //    {
 
-        {
-            musicSources.clip = s.clip;
-            musicSources.Play();
-        }
-    }
+    //        Debug.Log("Sound Not Found");
+    //    }
+    //    else
+
+    //    {
+    //        musicSources.clip = s.clip;
+    //        musicSources.Play();
+    //    }
+    //}
     public void ToggleMusic()
     {
         musicSources.mute = !musicSources.mute;

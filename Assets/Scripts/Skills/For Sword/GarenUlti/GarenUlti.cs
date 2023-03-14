@@ -33,7 +33,7 @@ public class GarenUlti : MonoBehaviour, BaseSkill
 
     public bool IsActive()
     {
-        return true;
+        return false;
     }
     public GameObject garenSword;
     public void RunSkill(GameObject character)
