@@ -10,7 +10,7 @@ public class SceneManager : MonoBehaviour
 {
     private int CurrentExp;
     private int TotalExpToNextLevel;
-    private int Point;
+    public int Point { get; private set; }
     private int PlayerLevel;
 
     private List<IPlayerObserver> observers = new List<IPlayerObserver>();
@@ -78,6 +78,8 @@ public class SceneManager : MonoBehaviour
     /// khi tat game co kha nang nhan vat bi disable dan toi khong lay duoc hp cua nhan vat
     /// </summary>
     private int currentPlayerHp;
+    public UnityEvent GameOverEvent;
+    public bool isNotifyDie = false;
     private void Update()
     {
         //CharacterStatus characterStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatus>();
@@ -100,9 +102,11 @@ public class SceneManager : MonoBehaviour
             creepSpawner.SettingController(BaseSpawner.Controller.TurnOn);
             bossSpawner.SettingController(BaseSpawner.Controller.TurnOff);
         }
-        if (IsPlayerDie)
+        if (IsPlayerDie && !isNotifyDie)
         {
+            isNotifyDie = true;
             Debug.Log("TO-DO: Them hanh dong cho viec nguoi choi die");
+            GameOverEvent.Invoke();
         }
     }
     /// <summary>

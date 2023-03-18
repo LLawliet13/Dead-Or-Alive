@@ -19,7 +19,10 @@ public class Character_SkillController : MonoBehaviour
     //ref:https://stackoverflow.com/questions/489317/how-to-pass-an-arbitrary-number-of-parameters-in-c-sharp
     public void AddSkillListener(params UnityAction<GameObject>[] action)
     {
-        if (skills.Count > 3) throw new System.Exception("So luong skill duoc su dung vuot qua gioi han");
+        if (skills.Count >= 3)
+        {
+            skills.Clear();
+        }
         UnityEvent<GameObject> unityEvent = new UnityEvent<GameObject>();
         foreach (UnityAction<GameObject> unityAction in action)
             unityEvent.AddListener(unityAction);
