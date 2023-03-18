@@ -11,6 +11,7 @@ public class SelectSkill : MonoBehaviour
 {
     private List<string> savedSkills;
     private List<Skill> skillList = new List<Skill>();
+    private int countChosenSkills;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,23 +39,35 @@ public class SelectSkill : MonoBehaviour
             buttonClone.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = skillList[i].name;
             buttonClone.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = skillList[i].description;
 
-            buttonClone.GetComponent<Button>().AddEventListener(i, ItemClicked);
+            buttonClone.GetComponent<Button>().AddEventListener(buttonClone, ItemClicked);
         }
         Destroy(buttonTemplate);
     }
-
-    void ItemClicked(int index)
+    void ItemClicked(GameObject button)
     {
+        if(countChosenSkills <= 2 || button.GetComponent<Image>().color == Color.red)
+        {
+            if (button.GetComponent<Image>().color == Color.yellow)
+            {
+                button.GetComponent<Image>().color = Color.red;
+                countChosenSkills++;
+            }
+            else
+            {
+                button.GetComponent<Image>().color = Color.yellow;
+                countChosenSkills--;
+            }
+        }
     }
 
     public void SaveSkill()
     {
         savedSkills.Clear();
         Transform[] allChild = transform.GetComponentsInChildren<Transform>();
-        Debug.Log(allChild.Length);
+        //Debug.Log(allChild.Length);
         for(int i = 1; i <= allChild.Length; i+=4)
         {
-            Debug.Log(allChild[i] + "////" + i);
+            //Debug.Log(allChild[i] + "////" + i);
             if (allChild[i].GetComponent<Image>().color == Color.red)
             {
                 savedSkills.Add(allChild[i + 2].GetComponent<TextMeshProUGUI>().text);

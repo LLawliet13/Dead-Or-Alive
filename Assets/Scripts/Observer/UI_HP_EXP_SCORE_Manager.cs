@@ -12,7 +12,7 @@ public class UI_HP_EXP_SCORE_Manager : MonoBehaviour, IPlayerObserver
     public TextMeshProUGUI scoreText;
     public Image frontHealthBar;
     public Image backHealthBar;
-    public Image fronExpBar;
+    public Image frontExpBar;
     public Image backExpBar;
 
     private int maxHp;
@@ -20,6 +20,7 @@ public class UI_HP_EXP_SCORE_Manager : MonoBehaviour, IPlayerObserver
     private int currentExp;
     private int maxExp;
     private int level;
+    private int oldLevel;
     private float lerpTimerHp;
     private float lerpTimerExp;
     private float delayTimer;
@@ -28,8 +29,10 @@ public class UI_HP_EXP_SCORE_Manager : MonoBehaviour, IPlayerObserver
     // Start is called before the first frame update
     void Awake()
     {
+        Debug.Log("UIHPEXP");
         FindObjectOfType<CharacterStatus>().AddObserver(this);
         FindObjectOfType<SceneManager>().AddObserver(this);
+        oldLevel = level;
     }
 
     // Update is called once per frame
@@ -106,8 +109,15 @@ public class UI_HP_EXP_SCORE_Manager : MonoBehaviour, IPlayerObserver
 
     public void UpdateExpUI()
     {
-        float expFraction = currentExp / maxExp;
-        float fillF = fronExpBar.fillAmount;
+        if(oldLevel < level)
+        {
+            frontExpBar.fillAmount = 0f;
+            backExpBar.fillAmount = 0f;
+            oldLevel++;
+        }
+        float expFraction = (float)currentExp / maxExp;
+        float fillF = frontExpBar.fillAmount;
+        Debug.Log(expFraction + "//////" + currentExp + "/////" + maxExp +"/////" + fillF);
         if(fillF < expFraction)
         {
             delayTimer += Time.deltaTime;
@@ -116,7 +126,7 @@ public class UI_HP_EXP_SCORE_Manager : MonoBehaviour, IPlayerObserver
             {
                 lerpTimerExp += Time.deltaTime;
                 float percentComplete = lerpTimerExp / 4;
-                fronExpBar.fillAmount = Mathf.Lerp(fillF, backExpBar.fillAmount, percentComplete);
+                frontExpBar.fillAmount = Mathf.Lerp(fillF, backExpBar.fillAmount, percentComplete);
             }
         }
         expText.text = currentExp.ToString() + "/" + maxExp.ToString();

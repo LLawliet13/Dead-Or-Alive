@@ -487,6 +487,8 @@ MonoBehaviour:
   scoreText: {fileID: 0}
   frontHealthBar: {fileID: 6056632633415146088}
   backHealthBar: {fileID: 6056632631785783672}
+  frontExpBar: {fileID: 6056632633311594885}
+  backExpBar: {fileID: 6056632632163690370}
 --- !u!1 &6056632632824629203
 GameObject:
   m_ObjectHideFlags: 0

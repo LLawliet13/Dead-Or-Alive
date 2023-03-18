@@ -1,11 +1,6 @@
 {
-<<<<<<< HEAD
-  "level": 10,
-  "currentHp": -380,
-=======
   "level": 1,
-  "currentHp": 62,
->>>>>>> tuan_copy
+  "currentHp": 0,
   "position": {
     "x": 0.0,
     "y": 0.0,
@@ -14,14 +9,9 @@
     "sqrMagnitude": 0.0
   },
   "skillList": [
-<<<<<<< HEAD
-    "TornadoShot",
-    "BlackholeShot",
-=======
-    "BlackholeShot",
-    "MultipleShot",
->>>>>>> tuan_copy
-    "WeightShot"
+    "WeightShot",
+    "GarenUlti",
+    "SpearManipulation"
   ],
   "CurrentPoint": 0
 }
