@@ -1,5 +1,5 @@
 {
-  "level": 4,
+  "level": 3,
   "currentHp": 0,
   "position": {
     "x": 0.0,
@@ -9,9 +9,9 @@
     "sqrMagnitude": 0.0
   },
   "skillList": [
-    "MultipleShot",
-    "WeightShot",
-    "TornadoShot"
+    "TornadoShot",
+    "SpearManipulation",
+    "InfinitySpear"
   ],
   "CurrentPoint": 0
 }

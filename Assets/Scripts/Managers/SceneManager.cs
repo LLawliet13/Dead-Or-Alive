@@ -191,7 +191,7 @@ public class SceneManager : MonoBehaviour
         }
         return TotalExpToNextLevel;
     }
-    public void increaseExpForEnemy(EnemyStatus enemyStatus)
+    public void increaseExpPointForEnemy(EnemyStatus enemyStatus)
     {
         int numberOfEnemy = 0;
         int expForEachEnemy;
@@ -200,20 +200,27 @@ public class SceneManager : MonoBehaviour
         if (isBoss)
         {
             expForEachEnemy = TotalExpToNextLevel;
+            Point += 100;
         }
         else
         {
             if (enemyStatus.BaseStats.EnemyType == 1)
             {
                 numberOfEnemy = PlayerLevel + 30 * PlayerLevel / (PlayerLevel + 1);
+                Point += 1;
             }
             else if(enemyStatus.BaseStats.EnemyType == 2)
             {
                 numberOfEnemy = PlayerLevel + 32 * PlayerLevel / (PlayerLevel + 1);
+                Point += 2;
             }
             expForEachEnemy = TotalExpToNextLevel / numberOfEnemy;
         }
         AddExp(expForEachEnemy);
+        foreach(IPlayerObserver observer in observers)
+        {
+            observer.OnPlayerScoreChanged(Point);
+        }
     }
 
 }

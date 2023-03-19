@@ -72,7 +72,7 @@ public class UI_HP_EXP_SCORE_Manager : MonoBehaviour, IPlayerObserver
 
     public void OnPlayerScoreChanged(int score)
     {
-        scoreText.text = score.ToString();
+        scoreText.text = "Point: " + score;
     }
     
 

@@ -27,7 +27,7 @@ public class BossSpawner : BaseSpawner
         BossStatus bossStatus = factory.GetNewInstance();
         bossStatus.caculateStatus();
         UnityEvent<EnemyStatus> unityEvent = new UnityEvent<EnemyStatus>();
-        unityEvent.AddListener(sceneManager.increaseExpForEnemy);
+        unityEvent.AddListener(sceneManager.increaseExpPointForEnemy);
         bossStatus.onDestroy = unityEvent;
         status = Controller.TurnOff;
     }
