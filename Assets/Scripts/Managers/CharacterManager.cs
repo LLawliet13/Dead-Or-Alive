@@ -39,6 +39,11 @@ public class CharacterManager : MonoBehaviour
     {
 
     }
+    public void ReSignUpSkillls()
+    {
+        loadData();
+        addSkill();
+    }
     void loadData()
     {
         string path = Application.dataPath;
@@ -46,7 +51,7 @@ public class CharacterManager : MonoBehaviour
         string json = File.ReadAllText(jsonFilePathListSkill);
         skill_usings = JsonConvert.DeserializeObject<string[]>(json);
     }
-    void addSkill()
+    public void addSkill()
     {
         Character_SkillController cs = GameObject.FindGameObjectWithTag("Player").GetComponent<Character_SkillController>();
         UIManager uIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();

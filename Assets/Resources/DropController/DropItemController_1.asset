@@ -16,5 +16,5 @@ MonoBehaviour:
   HealRateDrop: 15
   totalExpItemNumberToLevelUp: 20
   totalHealItemNumberToHealFull: 15
-  DistanceFromEnemyForHeal: 3
-  DistanceFromEnemyForExp: 4
+  DistanceFromEnemyForHeal: 1
+  DistanceFromEnemyForExp: 2

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class SpearManipulation : MonoBehaviour, BaseSkill
 {
@@ -18,6 +19,7 @@ public class SpearManipulation : MonoBehaviour, BaseSkill
     [Header("Spawn point")]
     GameObject spearHole;
     GameObject spawnPoint;
+    GameObject character;
     public string description()
     {
         return "nanana";
@@ -50,6 +52,7 @@ public class SpearManipulation : MonoBehaviour, BaseSkill
 
     public void RunSkill(GameObject character)
     {
+        this.character = character;
         float xChar = character.transform.position.x;
         float yChar = character.transform.position.y + 1.2f;
         spawnPoint = Instantiate<GameObject>(spearHole, new Vector3(xChar, yChar), Quaternion.identity);
@@ -60,13 +63,11 @@ public class SpearManipulation : MonoBehaviour, BaseSkill
         spawnTimer.Run();
 
         timeToStopSpawn = Time.time + duration;
-
-        PlayerPrefs.SetString("RunSkillSpearManipulation", "Run");
+        trigger = true;
     }
 
     public void SupportUISkill(GameObject character)
     {
-        throw new System.NotImplementedException();
     }
 
     // Start is called before the first frame update
@@ -74,12 +75,12 @@ public class SpearManipulation : MonoBehaviour, BaseSkill
     {
 
     }
-
+    bool trigger = false;
     // Update is called once per frame
     void Update()
     {
         GameObject spear = null;
-        if (PlayerPrefs.HasKey("RunSkillSpearManipulation"))
+        if (trigger)
         {
             if (Time.time <= timeToStopSpawn)
             {
@@ -88,17 +89,19 @@ public class SpearManipulation : MonoBehaviour, BaseSkill
                 if (spawnTimer.Finished)
                 {
                     spear = Instantiate<GameObject>(flySpear, new Vector3(xSpawn, ySpawn), Quaternion.identity);
+                    spear.GetComponent<SpearMovement>().atk = Mathf.RoundToInt(character.GetComponent<CharacterStatus>().Atk * 1.5f);
+                    spear.GetComponent<SpearMovement>().TimeToGoBack = Time.time + duration;
+
                     spawnTimer.Run();
                 }
             }
             else
             {
-                PlayerPrefs.SetString("Turnback", "TurnBack");
                 GameObject[] spearList = GameObject.FindGameObjectsWithTag("FlySpear");
                 if (spearList.Length == 0)
                 {
                     Destroy(spawnPoint);
-                    PlayerPrefs.DeleteKey("RunSkillSpearManipulation");
+                    trigger = !trigger;
                 }
             }
         }

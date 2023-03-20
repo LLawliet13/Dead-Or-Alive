@@ -13,7 +13,7 @@ public class CreepSpawner : BaseSpawner
         {
             CreepDestroyEvent = new UnityEvent<EnemyStatus>();
             CreepDestroyEvent.AddListener(DieEvent);
-            CreepDestroyEvent.AddListener(sceneManager.increaseExpForEnemy);
+            CreepDestroyEvent.AddListener(sceneManager.increaseExpPointForEnemy);
         }
         //factory = Instantiate(factory);
         factory.TotalGenerateMonster = maxPoolSize;
