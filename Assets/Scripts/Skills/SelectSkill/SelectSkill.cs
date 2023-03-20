@@ -33,6 +33,10 @@ public class SelectSkill : MonoBehaviour
         string jsonFilePathChosenSkill = $"{path}/Scripts/Skills/SelectSkill/SkillChosen.json";
         string json = File.ReadAllText(jsonFilePathChosenSkill);
         savedSkills = JsonConvert.DeserializeObject<List<string>>(json);
+        if(savedSkills.Count == 3)
+        {
+            countChosenSkills = savedSkills.Count;
+        }
 
         for (int i = 0; i < skillList.Count; i++)
         {
@@ -40,6 +44,13 @@ public class SelectSkill : MonoBehaviour
             buttonClone.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(skillList[i].image);
             buttonClone.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = skillList[i].name;
             buttonClone.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = skillList[i].description;
+            foreach(string skillName in savedSkills)
+            {
+                if (skillList[i].name.Equals(skillName))
+                {
+                    buttonClone.GetComponent<Image>().color = Color.red;
+                }
+            }
 
             buttonClone.GetComponent<Button>().AddEventListener(buttonClone, ItemClicked);
         }

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ecba4f119a7ceb439d160d7202bb12e, type: 3}
   m_Name: PlayerBaseStatus_1
   m_EditorClassIdentifier: 
-  MaxHp: 100
-  Atk: 100
-  Def: 2
+  MaxHp: 1000
+  Atk: 10
+  Def: 10
   HeSoLevelUpMaxHp: 1.1
   HeSoLevelUpAtk: 1.1
   HeSoLevelUpDef: 1.1

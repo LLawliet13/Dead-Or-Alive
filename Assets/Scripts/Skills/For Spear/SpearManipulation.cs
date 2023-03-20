@@ -63,13 +63,11 @@ public class SpearManipulation : MonoBehaviour, BaseSkill
         spawnTimer.Run();
 
         timeToStopSpawn = Time.time + duration;
-
-        PlayerPrefs.SetString("RunSkillSpearManipulation", "Run");
+        trigger = true;
     }
 
     public void SupportUISkill(GameObject character)
     {
-        throw new System.NotImplementedException();
     }
 
     // Start is called before the first frame update
@@ -77,12 +75,12 @@ public class SpearManipulation : MonoBehaviour, BaseSkill
     {
 
     }
-
+    bool trigger = false;
     // Update is called once per frame
     void Update()
     {
         GameObject spear = null;
-        if (PlayerPrefs.HasKey("RunSkillSpearManipulation"))
+        if (trigger)
         {
             if (Time.time <= timeToStopSpawn)
             {
@@ -92,17 +90,18 @@ public class SpearManipulation : MonoBehaviour, BaseSkill
                 {
                     spear = Instantiate<GameObject>(flySpear, new Vector3(xSpawn, ySpawn), Quaternion.identity);
                     spear.GetComponent<SpearMovement>().atk = Mathf.RoundToInt(character.GetComponent<CharacterStatus>().Atk * 1.5f);
+                    spear.GetComponent<SpearMovement>().TimeToGoBack = Time.time + duration;
+
                     spawnTimer.Run();
                 }
             }
             else
             {
-                PlayerPrefs.SetString("Turnback", "TurnBack");
                 GameObject[] spearList = GameObject.FindGameObjectsWithTag("FlySpear");
                 if (spearList.Length == 0)
                 {
                     Destroy(spawnPoint);
-                    PlayerPrefs.DeleteKey("RunSkillSpearManipulation");
+                    trigger = !trigger;
                 }
             }
         }

@@ -9,9 +9,9 @@
     "sqrMagnitude": 0.0
   },
   "skillList": [
-    "TornadoShot",
-    "SpearManipulation",
-    "InfinitySpear"
+    "MultipleShot",
+    "GarenUlti",
+    "SpearManipulation"
   ],
   "CurrentPoint": 0
 }
