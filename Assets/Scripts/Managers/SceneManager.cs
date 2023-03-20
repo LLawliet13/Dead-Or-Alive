@@ -2,6 +2,7 @@ using Assets.Scenes.Scripts.Managers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,7 +13,7 @@ public class SceneManager : MonoBehaviour
     private int TotalExpToNextLevel;
     private int Point;
     private int PlayerLevel;
-
+    private GameObject Player;
     private List<IPlayerObserver> observers = new List<IPlayerObserver>();
     public void AddObserver(IPlayerObserver observer)
     {
@@ -49,6 +50,7 @@ public class SceneManager : MonoBehaviour
     private bool IsPlayerDie = false;
     private void Awake()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         Time.timeScale = 1f;
         PlayerLevel = -1;
         IsPlayerDie = false;
@@ -66,16 +68,16 @@ public class SceneManager : MonoBehaviour
     private BossSpawner bossSpawner;
     private void Start()
     {
-
     }
     private int LevelTriggerBoss = 0;
     /// <summary>
     /// khi tat game co kha nang nhan vat bi disable dan toi khong lay duoc hp cua nhan vat
     /// </summary>
     private int currentPlayerHp;
+    ItemDropSaveGame[] allItems;
     private void Update()
     {
-        CharacterStatus characterStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatus>();
+        CharacterStatus characterStatus = Player.GetComponent<CharacterStatus>();
         currentPlayerHp = characterStatus.CurrentHp;
         //Debug.Log(PlayerLevel);
         Debug.Log("TO-DO: Them ham tinh kinh nghiem va cho nguoi choi len cap");
@@ -106,15 +108,22 @@ public class SceneManager : MonoBehaviour
         {
             Debug.Log("TO-DO: Them hanh dong cho viec nguoi choi die");
         }
+
+        ItemDropSaveGame[] expItems = GameObject.FindObjectsOfType<ExpItem>().Select(e => new ItemDropSaveGame { itemName = e.Name, value = e.value, position = e.transform.position - Player.transform.position }).ToArray();
+        ItemDropSaveGame[] healItems = GameObject.FindObjectsOfType<HealItem>().Select(e => new ItemDropSaveGame { itemName = e.Name, value = e.value, position = e.transform.position - Player.transform.position }).ToArray();
+        allItems = expItems.Concat(healItems).ToArray();
     }
+    [SerializeField]
+    private GameObject ExpItem, HealItem;
+
     /// <summary>
     /// check xem nguoi choi chon load game hay choi moi o main menu sau do thuc hien hanh dong tuong ung
     /// recommend man 1 luu xuong PlayerPrefs 1 bien ten isLoadGame
     /// </summary>
-    /*private void CheckIfLoadGame()
+    private void CheckIfLoadGame()
     {
         SaveGameManager saveGameManager = GetComponent<SaveGameManager>();
-        CharacterStatus characterStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatus>();
+        CharacterStatus characterStatus = Player.GetComponent<CharacterStatus>();
         CharacterManager character_Skill = GetComponent<CharacterManager>();
         if (saveGameManager != null)
             //if (PlayerPrefs.HasKey("LoadGame"))
@@ -130,14 +139,33 @@ public class SceneManager : MonoBehaviour
                 characterStatus.SetCurrentHp(data.currentHp);
                 character_Skill.loadFromLastGame = true;
                 character_Skill.skill_usings = data.skillList;
+                ItemDropSaveGame[] allItems = data.items;
+                if (allItems != null)
+                    foreach (var i in allItems)
+                    {
+                        if (i.itemName == "ExpItem")
+                        {
+                            var item = Instantiate(ExpItem, i.position, Quaternion.identity);
+                            item.GetComponent<ExpItem>().value = i.value;
+                            item.GetComponent<ExpItem>().DropPlace = i.position;
+                            item.GetComponent<ExpItem>().DestroyEvent = null;
+                        }
+                        else
+                        {
+                            var item = Instantiate(HealItem, i.position, Quaternion.identity);
+                            item.GetComponent<HealItem>().value = i.value;
+                            item.GetComponent<HealItem>().DropPlace = i.position;
+                            item.GetComponent<HealItem>().DestroyEvent = null;
+                        }
+                    }
                 if (data.currentHp <= 0) IsPlayerDie = true;
             }
         //}
-    }*/
+    }
     private void SaveData()
     {
         CharacterManager character_Skill = GetComponent<CharacterManager>();
-        SaveGameEvent.Invoke(PlayerLevel, currentPlayerHp, character_Skill.skill_usings);
+        SaveGameEvent.Invoke(PlayerLevel, currentPlayerHp, character_Skill.skill_usings, allItems);
 
     }
     private void SaveHighScore()
@@ -147,11 +175,11 @@ public class SceneManager : MonoBehaviour
     }
 
     public UnityEvent<DateTime, int> SaveHighscoreEvent;
-    public UnityEvent<int, int, string[]> SaveGameEvent;
+    public UnityEvent<int, int, string[], ItemDropSaveGame[]> SaveGameEvent;
 
     private void OnDisable()
     {
-        if (IsPlayerDie)
+        if (!IsPlayerDie)
             SaveData();
         else
             SaveHighScore();
@@ -198,7 +226,7 @@ public class SceneManager : MonoBehaviour
             {
                 numberOfEnemy = PlayerLevel + 30 * PlayerLevel / (PlayerLevel + 1);
             }
-            else if(enemyStatus.BaseStats.EnemyType == 2)
+            else if (enemyStatus.BaseStats.EnemyType == 2)
             {
                 numberOfEnemy = PlayerLevel + 32 * PlayerLevel / (PlayerLevel + 1);
             }

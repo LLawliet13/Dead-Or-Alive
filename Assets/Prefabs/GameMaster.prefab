@@ -181,6 +181,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   creepSpawner: {fileID: 8132024366651811794, guid: cc8b4d2bcb0ca1d42ad87ac4f68d383a, type: 3}
   bossSpawner: {fileID: 4078303012601716349, guid: dde6b5a11b2386041b7b490fc83cdf47, type: 3}
+  ExpItem: {fileID: 3070765881570340162, guid: 212601c5e5ec0da44ae9f2fa9acfcee6, type: 3}
+  HealItem: {fileID: 9086748920721401743, guid: 09a836692a6bb03489f3753002e33c48, type: 3}
   SaveHighscoreEvent:
     m_PersistentCalls:
       m_Calls: []

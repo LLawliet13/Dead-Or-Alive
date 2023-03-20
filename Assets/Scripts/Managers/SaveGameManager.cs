@@ -8,6 +8,7 @@ using System.Text;
 using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.Events;
+using static UnityEditor.Progress;
 
 namespace Assets.Scenes.Scripts.Managers
 {
@@ -32,7 +33,7 @@ namespace Assets.Scenes.Scripts.Managers
                 SceneManager sceneManager = GameObject.Find("GameMaster").GetComponent<SceneManager>();
                 if (sceneManager != null)
                 {
-                    UnityEvent<int, int, string[]> saveGameEvent = new UnityEvent<int, int, string[]>();
+                    UnityEvent<int, int, string[], ItemDropSaveGame[]> saveGameEvent = new UnityEvent<int, int, string[], ItemDropSaveGame[]>();
                     saveGameEvent.AddListener(SaveGameToFile);
                     sceneManager.SaveGameEvent = saveGameEvent;
 
@@ -77,13 +78,14 @@ namespace Assets.Scenes.Scripts.Managers
         {
         }
 
-        public void SaveGameToFile(int player_level, int currentHp, params string[] skillnames)
+        public void SaveGameToFile(int player_level, int currentHp, string[] skillnames,ItemDropSaveGame[] items)
         {
             CharacterSaveGame characterData = new CharacterSaveGame
             {
                 level = player_level,
                 currentHp = currentHp,
-                skillList = skillnames
+                skillList = skillnames,
+                items = items
             };
 
             string data = JsonConvert.SerializeObject(characterData, Formatting.Indented, new JsonSerializerSettings
@@ -181,5 +183,12 @@ namespace Assets.Scenes.Scripts.Managers
         public Vector3 position;
         public string[] skillList;
         public int CurrentPoint;
+        public ItemDropSaveGame[] items;
+    }
+    public class ItemDropSaveGame
+    {
+        public string itemName;
+        public int value;
+        public Vector3 position;
     }
 }

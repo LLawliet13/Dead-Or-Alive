@@ -1,0 +1,475 @@
+{
+  "level": 5,
+  "currentHp": 161,
+  "position": {
+    "x": 0.0,
+    "y": 0.0,
+    "z": 0.0,
+    "magnitude": 0.0,
+    "sqrMagnitude": 0.0
+  },
+  "skillList": [
+    "GarenUlti",
+    "BlackholeShot",
+    "MultipleShot"
+  ],
+  "CurrentPoint": 0,
+  "items": [
+    {
+      "itemName": "ExpItem",
+      "value": 18,
+      "position": {
+        "x": -6.820204,
+        "y": 10.1070957,
+        "z": 0.0,
+        "normalized": {
+          "x": -0.5593553,
+          "y": 0.828928,
+          "z": 0.0,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.0
+        },
+        "magnitude": 12.1929722,
+        "sqrMagnitude": 148.668564
+      }
+    },
+    {
+      "itemName": "ExpItem",
+      "value": 15,
+      "position": {
+        "x": 17.1692886,
+        "y": 6.338162,
+        "z": 0.0,
+        "normalized": {
+          "x": 0.938118935,
+          "y": 0.346313119,
+          "z": 0.0,
+          "normalized": {
+            "x": 0.938119,
+            "y": 0.346313149,
+            "z": 0.0,
+            "magnitude": 1.0,
+            "sqrMagnitude": 1.0
+          },
+          "magnitude": 0.99999994,
+          "sqrMagnitude": 0.99999994
+        },
+        "magnitude": 18.3018246,
+        "sqrMagnitude": 334.956757
+      }
+    },
+    {
+      "itemName": "ExpItem",
+      "value": 7,
+      "position": {
+        "x": 19.0358162,
+        "y": 22.0903111,
+        "z": 0.0,
+        "normalized": {
+          "x": 0.652790964,
+          "y": 0.7575381,
+          "z": 0.0,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.0
+        },
+        "magnitude": 29.1606617,
+        "sqrMagnitude": 850.3441
+      }
+    },
+    {
+      "itemName": "ExpItem",
+      "value": 3,
+      "position": {
+        "x": 11.4970608,
+        "y": 18.8235378,
+        "z": 0.0,
+        "normalized": {
+          "x": 0.5212449,
+          "y": 0.8534071,
+          "z": 0.0,
+          "normalized": {
+            "x": 0.521244943,
+            "y": 0.853407145,
+            "z": 0.0,
+            "magnitude": 1.0,
+            "sqrMagnitude": 1.0
+          },
+          "magnitude": 0.99999994,
+          "sqrMagnitude": 0.9999999
+        },
+        "magnitude": 22.0569267,
+        "sqrMagnitude": 486.508
+      }
+    },
+    {
+      "itemName": "ExpItem",
+      "value": 3,
+      "position": {
+        "x": 26.706604,
+        "y": 7.22281265,
+        "z": 0.0,
+        "normalized": {
+          "x": 0.9653196,
+          "y": 0.261071116,
+          "z": 0.0,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.0
+        },
+        "magnitude": 27.6660748,
+        "sqrMagnitude": 765.411743
+      }
+    },
+    {
+      "itemName": "ExpItem",
+      "value": 3,
+      "position": {
+        "x": 15.60206,
+        "y": 21.69779,
+        "z": 0.0,
+        "normalized": {
+          "x": 0.5838032,
+          "y": 0.8118952,
+          "z": 0.0,
+          "magnitude": 1.0,
+          "sqrMagnitude": 0.99999994
+        },
+        "magnitude": 26.724865,
+        "sqrMagnitude": 714.2184
+      }
+    },
+    {
+      "itemName": "ExpItem",
+      "value": 11,
+      "position": {
+        "x": -16.93983,
+        "y": 7.55835247,
+        "z": 0.0,
+        "normalized": {
+          "x": -0.9132196,
+          "y": 0.4074678,
+          "z": 0.0,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.0
+        },
+        "magnitude": 18.54957,
+        "sqrMagnitude": 344.086548
+      }
+    },
+    {
+      "itemName": "ExpItem",
+      "value": 11,
+      "position": {
+        "x": 8.420525,
+        "y": 15.9785347,
+        "z": 0.0,
+        "normalized": {
+          "x": 0.4662133,
+          "y": 0.8846723,
+          "z": 0.0,
+          "normalized": {
+            "x": 0.466213316,
+            "y": 0.884672344,
+            "z": 0.0,
+            "magnitude": 1.0,
+            "sqrMagnitude": 1.0
+          },
+          "magnitude": 0.99999994,
+          "sqrMagnitude": 0.9999999
+        },
+        "magnitude": 18.06153,
+        "sqrMagnitude": 326.2188
+      }
+    },
+    {
+      "itemName": "HealItem",
+      "value": 10,
+      "position": {
+        "x": 13.230587,
+        "y": -2.31023169,
+        "z": 0.0,
+        "normalized": {
+          "x": 0.985095143,
+          "y": -0.172010362,
+          "z": 0.0,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.0
+        },
+        "magnitude": 13.4307709,
+        "sqrMagnitude": 180.3856
+      }
+    },
+    {
+      "itemName": "HealItem",
+      "value": 9,
+      "position": {
+        "x": 0.150119543,
+        "y": 3.25722075,
+        "z": 0.0,
+        "normalized": {
+          "x": 0.04603936,
+          "y": 0.998939633,
+          "z": 0.0,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.0
+        },
+        "magnitude": 3.26067829,
+        "sqrMagnitude": 10.6320229
+      }
+    },
+    {
+      "itemName": "HealItem",
+      "value": 9,
+      "position": {
+        "x": 14.0872021,
+        "y": -8.834093,
+        "z": 0.0,
+        "normalized": {
+          "x": 0.847197533,
+          "y": -0.5312781,
+          "z": 0.0,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.0
+        },
+        "magnitude": 16.6280022,
+        "sqrMagnitude": 276.490448
+      }
+    },
+    {
+      "itemName": "HealItem",
+      "value": 9,
+      "position": {
+        "x": -3.91731215,
+        "y": -17.4540348,
+        "z": 0.0,
+        "normalized": {
+          "x": -0.218988284,
+          "y": -0.975727439,
+          "z": 0.0,
+          "normalized": {
+            "x": -0.2189883,
+            "y": -0.9757275,
+            "z": 0.0,
+            "magnitude": 1.0,
+            "sqrMagnitude": 1.0
+          },
+          "magnitude": 0.99999994,
+          "sqrMagnitude": 0.9999999
+        },
+        "magnitude": 17.8882275,
+        "sqrMagnitude": 319.988678
+      }
+    },
+    {
+      "itemName": "HealItem",
+      "value": 9,
+      "position": {
+        "x": 15.5027065,
+        "y": 0.632858753,
+        "z": 0.0,
+        "normalized": {
+          "x": 0.9991678,
+          "y": 0.0407884978,
+          "z": 0.0,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.0
+        },
+        "magnitude": 15.5156183,
+        "sqrMagnitude": 240.734421
+      }
+    },
+    {
+      "itemName": "HealItem",
+      "value": 9,
+      "position": {
+        "x": -10.7012348,
+        "y": 7.32668257,
+        "z": 0.0,
+        "normalized": {
+          "x": -0.825135231,
+          "y": 0.5649352,
+          "z": 0.0,
+          "normalized": {
+            "x": -0.8251353,
+            "y": 0.564935267,
+            "z": 0.0,
+            "magnitude": 1.0,
+            "sqrMagnitude": 1.00000012
+          },
+          "magnitude": 0.99999994,
+          "sqrMagnitude": 0.99999994
+        },
+        "magnitude": 12.9690676,
+        "sqrMagnitude": 168.1967
+      }
+    },
+    {
+      "itemName": "HealItem",
+      "value": 9,
+      "position": {
+        "x": 0.179737091,
+        "y": 15.9621067,
+        "z": 0.0,
+        "normalized": {
+          "x": 0.0112595223,
+          "y": 0.99993664,
+          "z": 0.0,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.00000012
+        },
+        "magnitude": 15.9631186,
+        "sqrMagnitude": 254.821152
+      }
+    },
+    {
+      "itemName": "HealItem",
+      "value": 8,
+      "position": {
+        "x": -26.6173573,
+        "y": 11.8342152,
+        "z": 0.0,
+        "normalized": {
+          "x": -0.913757,
+          "y": 0.406261116,
+          "z": 0.0,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.0
+        },
+        "magnitude": 29.12958,
+        "sqrMagnitude": 848.532349
+      }
+    },
+    {
+      "itemName": "HealItem",
+      "value": 8,
+      "position": {
+        "x": -3.117449,
+        "y": -9.006693,
+        "z": 0.0,
+        "normalized": {
+          "x": -0.327086926,
+          "y": -0.9449943,
+          "z": 0.0,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.0
+        },
+        "magnitude": 9.53095,
+        "sqrMagnitude": 90.8390045
+      }
+    },
+    {
+      "itemName": "HealItem",
+      "value": 8,
+      "position": {
+        "x": -17.3711987,
+        "y": 17.7629623,
+        "z": 0.0,
+        "normalized": {
+          "x": -0.6991787,
+          "y": 0.7149469,
+          "z": 0.0,
+          "magnitude": 1.0,
+          "sqrMagnitude": 0.99999994
+        },
+        "magnitude": 24.8451481,
+        "sqrMagnitude": 617.2814
+      }
+    },
+    {
+      "itemName": "HealItem",
+      "value": 7,
+      "position": {
+        "x": -0.0916883945,
+        "y": 15.8486881,
+        "z": 0.0,
+        "normalized": {
+          "x": -0.005785139,
+          "y": 0.999983251,
+          "z": 0.0,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.0
+        },
+        "magnitude": 15.8489532,
+        "sqrMagnitude": 251.189316
+      }
+    },
+    {
+      "itemName": "HealItem",
+      "value": 7,
+      "position": {
+        "x": -1.90282464,
+        "y": 16.7787285,
+        "z": 0.0,
+        "normalized": {
+          "x": -0.112684652,
+          "y": 0.9936308,
+          "z": 0.0,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.0
+        },
+        "magnitude": 16.88628,
+        "sqrMagnitude": 285.146484
+      }
+    },
+    {
+      "itemName": "HealItem",
+      "value": 7,
+      "position": {
+        "x": 16.11669,
+        "y": 14.3828735,
+        "z": 0.0,
+        "normalized": {
+          "x": 0.7460993,
+          "y": 0.6658347,
+          "z": 0.0,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.0
+        },
+        "magnitude": 21.6012669,
+        "sqrMagnitude": 466.614746
+      }
+    },
+    {
+      "itemName": "HealItem",
+      "value": 8,
+      "position": {
+        "x": -9.496761,
+        "y": 3.571714,
+        "z": 0.0,
+        "normalized": {
+          "x": -0.93599087,
+          "y": 0.352024376,
+          "z": 0.0,
+          "magnitude": 1.0,
+          "sqrMagnitude": 1.00000012
+        },
+        "magnitude": 10.1462116,
+        "sqrMagnitude": 102.945618
+      }
+    },
+    {
+      "itemName": "HealItem",
+      "value": 8,
+      "position": {
+        "x": -8.511521,
+        "y": -10.6844749,
+        "z": 0.0,
+        "normalized": {
+          "x": -0.6230841,
+          "y": -0.782154739,
+          "z": 0.0,
+          "normalized": {
+            "x": -0.6230842,
+            "y": -0.7821548,
+            "z": 0.0,
+            "magnitude": 1.0,
+            "sqrMagnitude": 1.0
+          },
+          "magnitude": 0.99999994,
+          "sqrMagnitude": 0.9999999
+        },
+        "magnitude": 13.6603079,
+        "sqrMagnitude": 186.604
+      }
+    }
+  ]
+}

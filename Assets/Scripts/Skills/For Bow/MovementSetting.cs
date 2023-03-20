@@ -31,6 +31,14 @@ public interface MovementSetting
         MovingObject.transform.rotation = Quaternion.Slerp(MovingObject.transform.rotation, q, singleStep);
         return (MovingObject.transform.rotation*new Vector3(1,0,0)).normalized;
     }
+    public static Vector3 CalculateCircleMoveVector(Vector3 center,Vector3 point,float speedAngle,float speedRadiusChange,float radiusLimit)
+    {
+        Vector3 diff = point - center;
+        float curAngle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        float nextAngle = curAngle + speedAngle ; 
+        float nextRadius = Mathf.Lerp(diff.magnitude, radiusLimit, speedRadiusChange);
+        return new Vector3(center.x + nextRadius * Mathf.Cos(nextAngle * Mathf.Deg2Rad), center.y + nextRadius * Mathf.Sin(nextAngle * Mathf.Deg2Rad));
+    }
 
     public static Vector3 CalculateSlopeMoveVectorWithoutChangeRotation(Vector3 end,GameObject childRotation, GameObject MovingObject, float speedRotation)
     {

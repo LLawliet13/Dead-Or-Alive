@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CreepType2 1
   m_EditorClassIdentifier: 
   Atk: 15
-  Hp: 5
-  Def: 1
+  Hp: 20
+  Def: 2
   Speed: 3
   AvatarPath: Sprites/Creep/Creep2_2
   EnemyType: 2
