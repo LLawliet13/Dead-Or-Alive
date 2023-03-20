@@ -50,9 +50,10 @@ public class CreepStatus : EnemyStatus
     public override void caculateStatus()
     {
         detectPlayerLevel();
-        Atk = (int)(BaseStats.Atk * Mathf.Pow(BaseStats.HeSoNangCapAtk, currentPlayerLevel));
-        MaxHp = CurrentHp = (int)(BaseStats.Hp * Mathf.Pow(BaseStats.HeSoNangCapHp, currentPlayerLevel));
-        Speed = (int)(BaseStats.Speed * Mathf.Pow(BaseStats.HeSoNangCapSpeed, currentPlayerLevel));
+        Atk = (int)(BaseStats.Atk * Mathf.Pow(BaseStats.HeSoNangCapAtk, currentPlayerLevel - 1));
+        MaxHp = CurrentHp = (int)(BaseStats.Hp * Mathf.Pow(BaseStats.HeSoNangCapHp, currentPlayerLevel- 1));
+        Def = (int)(BaseStats.Def * Mathf.Pow(BaseStats.HeSoNangCapSpeed, currentPlayerLevel - 1));
+        Speed = BaseStats.Speed;
     }
 
     protected override void beingAttackedEffect()

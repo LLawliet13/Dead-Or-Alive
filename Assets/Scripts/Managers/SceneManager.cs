@@ -11,7 +11,7 @@ public class SceneManager : MonoBehaviour
 {
     private int CurrentExp;
     private int TotalExpToNextLevel;
-    public int Point { get; private set; }
+    public int Point { get; private set; } = 0;
     private int PlayerLevel;
     private GameObject Player;
     private List<IPlayerObserver> observers = new List<IPlayerObserver>();
@@ -170,7 +170,7 @@ public class SceneManager : MonoBehaviour
     private void SaveHighScore()
     {
         Debug.Log("TO-DO:Setting Lay so diem va luu");
-        SaveHighscoreEvent.Invoke(DateTime.Now, 10);
+        SaveHighscoreEvent.Invoke(DateTime.Now, Point);
     }
 
     public UnityEvent<DateTime, int> SaveHighscoreEvent;

@@ -11,9 +11,8 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    // Start is called before the first frame update
-    [HideInInspector]
-    public List<Button> buttons;
+    private List<Button> skillButtons;
+    private LinkedList<BaseSkill> skills;
     public Button SelectSkills;
     SceneManager sceneManager;
     public GameObject canvasSelectSkills;
@@ -51,8 +50,8 @@ public class UIManager : MonoBehaviour
         skills.ElementAt(index).RunSkill(GameObject.FindGameObjectWithTag("Player"));
         if (!skills.ElementAt(index).IsActive())
         {
-            buttons[index].interactable = false;
-            StartCoroutine(CoolDownControl(buttons[index], skills.ElementAt(index).GetCD() + Time.time, Time.time));
+            skillButtons[index].interactable = false;
+            StartCoroutine(CoolDownControl(skillButtons[index], skills.ElementAt(index).GetCD() + Time.time, Time.time));
         }
 
 
@@ -72,8 +71,7 @@ public class UIManager : MonoBehaviour
             StartCoroutine(CoolDownControl(button, endtime, startTime));
         }
     }
-    LinkedList<BaseSkill> skills;
-    public void AddSkillListener(string imageSkill, float CD, BaseSkill skill, params UnityAction<GameObject>[] action)
+    public void AddSkill(string imageSkill, float CD, BaseSkill skill, params UnityAction<GameObject>[] action)
     {
         //if (skills.Count > 5) throw new System.Exception("So luong skill duoc su dung vuot qua gioi han");
         UnityEvent<GameObject> unityEvent = new UnityEvent<GameObject>();
@@ -86,7 +84,7 @@ public class UIManager : MonoBehaviour
         skills.AddLast(skill);
         //"Sprites/Skills/For Bow/NameOfImage"
         //ref: https://docs.unity3d.com/ScriptReference/Resources.Load.html
-        buttons.ElementAt(skills.Count - 1).GetComponent<Image>().sprite = Resources.Load<Sprite>(imageSkill);
+        skillButtons.ElementAt(skills.Count - 1).GetComponent<Image>().sprite = Resources.Load<Sprite>(imageSkill);
     }
     public GameObject GameOverUI;
     public TextMeshProUGUI textMeshProUGUI;
@@ -138,7 +136,7 @@ public class UIManager : MonoBehaviour
         // skill chua dc click lan nao
         bool isAllSkillReady = false;
         //check skill chi bam 1 lan la cd
-        foreach(var b in buttons)
+        foreach(var b in skillButtons)
             if (b.interactable == false) { 
                 isAllSkillReady = true;
                 break;
