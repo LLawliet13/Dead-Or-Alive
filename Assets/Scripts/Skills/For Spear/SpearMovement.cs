@@ -1,4 +1,5 @@
 using Assets;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,8 @@ public class SpearMovement : MonoBehaviour
     protected float max_x;
     protected float min_y;
     protected float max_y;
-
+    [NonSerialized]
+    public int atk;
     [SerializeField]
     int speed = 10;
     // Start is called before the first frame update
@@ -62,10 +64,17 @@ public class SpearMovement : MonoBehaviour
             }
             else
             {
-                target_x = Random.Range(min_x, max_x);
-                target_y = Random.Range(min_y, max_y);
+                target_x = UnityEngine.Random.Range(min_x, max_x);
+                target_y = UnityEngine.Random.Range(min_y, max_y);
             }
         }
         
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            GetComponent<BasePlayerWeaponStatus>().AttackEnemy(atk, collision.GetComponent<EnemyStatus>());
+        }
     }
 }

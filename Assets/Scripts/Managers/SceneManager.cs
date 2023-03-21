@@ -40,6 +40,10 @@ public class SceneManager : MonoBehaviour
     public void PlayerLevelUp()
     {
         PlayerLevel += 1;
+        foreach (IPlayerObserver observer in observers)
+        {
+            observer.OnPlayerLevelChanged(PlayerLevel);
+        }
         GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatus>().LevelEffect();
         getTotalExpToLevelUp();
         Debug.Log("PlayerLevel: " + PlayerLevel + "      TotalExp: " + TotalExpToNextLevel);
@@ -49,15 +53,14 @@ public class SceneManager : MonoBehaviour
     private bool IsPlayerDie = false;
     private void Awake()
     {
+        Debug.Log("Scenemanger");
         Time.timeScale = 1f;
-        PlayerLevel = -1;
+        PlayerLevel = 0;
         IsPlayerDie = false;
         SimulateTime = Time.time;
         creepSpawner = Instantiate(creepSpawner);
         bossSpawner = Instantiate(bossSpawner);
         CheckIfLoadGame();
-        getTotalExpToLevelUp();
-        AddExp(0);
     }
     bool loadDataFromLastGame;
     [SerializeField]
@@ -66,7 +69,9 @@ public class SceneManager : MonoBehaviour
     private BossSpawner bossSpawner;
     private void Start()
     {
-
+        PlayerLevelUp();
+        getTotalExpToLevelUp();
+        AddExp(0);
     }
     private int LevelTriggerBoss = 0;
     /// <summary>
@@ -77,20 +82,13 @@ public class SceneManager : MonoBehaviour
     public bool isNotifyDie = false;
     private void Update()
     {
-        CharacterStatus characterStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatus>();
-        currentPlayerHp = characterStatus.CurrentHp;
+        //CharacterStatus characterStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatus>();
+        //currentPlayerHp = characterStatus.CurrentHp;
         //Debug.Log(PlayerLevel);
-        Debug.Log("TO-DO: Them ham tinh kinh nghiem va cho nguoi choi len cap");
-        Debug.Log("Hien tai gia lap nguoi choi len level moi 2s");
-        //if (Time.time >= SimulateTime && PlayerLevel < 9)
-        if (CurrentExp >= TotalExpToNextLevel)
 
-        {
-            CurrentExp = CurrentExp - TotalExpToNextLevel;
-            PlayerLevelUp();
-        }
+
         //spawn boss moi khi nhan vat tang 5 level
-        if (PlayerLevel % 10 == 0)
+        if (PlayerLevel % 5 == 0)
         {
             creepSpawner.SettingController(BaseSpawner.Controller.TurnOff);
             if (LevelTriggerBoss != PlayerLevel)
@@ -121,22 +119,23 @@ public class SceneManager : MonoBehaviour
         CharacterStatus characterStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatus>();
         CharacterManager character_Skill = GetComponent<CharacterManager>();
         if (saveGameManager != null)
-            //if (PlayerPrefs.HasKey("LoadGame"))
-            //{
-            //    if (PlayerPrefs.GetInt("LoadGame") == 1 && saveGameManager.CheckIfDataExist())
-            //    {
-            if (saveGameManager.CheckIfDataExist())//fake cu co du lieu la load
+            if (PlayerPrefs.HasKey("LoadGame"))
             {
-                CharacterSaveGame data = saveGameManager.LoadGameFromFile();
-                PlayerLevel = data.level;
-                PlayerLevelUp();
-                characterStatus.loadFromLastGame = true;
-                characterStatus.SetCurrentHp(data.currentHp);
-                character_Skill.loadFromLastGame = true;
-                character_Skill.skill_usings = data.skillList;
-                if (data.currentHp <= 0) IsPlayerDie = true;
+                if (PlayerPrefs.GetInt("LoadGame") == 1 && saveGameManager.CheckIfDataExist())
+                {
+
+                    CharacterSaveGame data = saveGameManager.LoadGameFromFile();
+                    PlayerLevel = data.level;
+                    PlayerLevelUp();
+                    characterStatus.loadFromLastGame = true;
+                    characterStatus.SetCurrentHp(data.currentHp);
+                    character_Skill.loadFromLastGame = true;
+                    character_Skill.skill_usings = data.skillList;
+                    if (data.currentHp <= 0) IsPlayerDie = true;
+                    PlayerPrefs.DeleteKey("LoadGame");
+                    PlayerPrefs.Save();
+                }
             }
-        //}
     }
     private void SaveData()
     {
@@ -165,6 +164,11 @@ public class SceneManager : MonoBehaviour
     {
         Debug.Log("TO-DO: Them kha nang tang exp tu drop item");
         CurrentExp += value;
+        if (CurrentExp >= TotalExpToNextLevel)
+        {
+            CurrentExp = CurrentExp - TotalExpToNextLevel;
+            PlayerLevelUp();
+        }
         foreach (IPlayerObserver observer in observers)
         {
             observer.OnPlayerExperienceGained(CurrentExp);
@@ -180,13 +184,15 @@ public class SceneManager : MonoBehaviour
             solveForRequiredExp += (int)Mathf.Floor(levelCylce + 300 * Mathf.Pow(2, levelCylce / 7));
         }
         TotalExpToNextLevel = solveForRequiredExp / 4;
+        Debug.Log("total level:" + TotalExpToNextLevel);
         foreach (IPlayerObserver observer in observers)
         {
             observer.OnPlayerTotalExperienceChanged(TotalExpToNextLevel);
+
         }
         return TotalExpToNextLevel;
     }
-    public void increaseExpForEnemy(EnemyStatus enemyStatus)
+    public void increaseExpPointForEnemy(EnemyStatus enemyStatus)
     {
         int numberOfEnemy = 0;
         int expForEachEnemy;
@@ -195,20 +201,27 @@ public class SceneManager : MonoBehaviour
         if (isBoss)
         {
             expForEachEnemy = TotalExpToNextLevel;
+            Point += 100;
         }
         else
         {
             if (enemyStatus.BaseStats.EnemyType == 1)
             {
                 numberOfEnemy = PlayerLevel + 30 * PlayerLevel / (PlayerLevel + 1);
+                Point += 1;
             }
             else if (enemyStatus.BaseStats.EnemyType == 2)
             {
                 numberOfEnemy = PlayerLevel + 32 * PlayerLevel / (PlayerLevel + 1);
+                Point += 2;
             }
             expForEachEnemy = TotalExpToNextLevel / numberOfEnemy;
         }
         AddExp(expForEachEnemy);
+        foreach (IPlayerObserver observer in observers)
+        {
+            observer.OnPlayerScoreChanged(Point);
+        }
     }
 
 }

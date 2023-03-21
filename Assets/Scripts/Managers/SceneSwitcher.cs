@@ -1,12 +1,24 @@
+using Assets.Scenes.Scripts.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 public class SceneSwitcher : MonoBehaviour
 {
-
+    [SerializeField]
+    private GameObject ButtonLoadGame;
+    private void Start()
+    {
+        CanLoadGame();// kiem tra xem co lich su game khong , co thi hien thi nut load game
+    }
     public void Playgame()
     {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+    }
+    public void LoadGame()
+    {
+        PlayerPrefs.SetInt("LoadGame", 1);
+        PlayerPrefs.Save();
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
     public void Quitgame()
@@ -20,5 +32,12 @@ public class SceneSwitcher : MonoBehaviour
     public void BacktoMenu()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
+    public void CanLoadGame()
+    {
+        if (GetComponent<SaveGameManager>().CheckIfDataExist())
+            ButtonLoadGame.SetActive(true);
+        else
+            ButtonLoadGame.SetActive(false);
     }
 }

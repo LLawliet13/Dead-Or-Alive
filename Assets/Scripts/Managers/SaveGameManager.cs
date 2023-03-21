@@ -134,7 +134,7 @@ namespace Assets.Scenes.Scripts.Managers
             writer.Close();
         }
         /// <summary>
-        /// tra ve bang so diem cao nhat. Co the tra ve null neu khong co data
+        /// tra ve bang diem sap xep tu cao den thap. Co the tra ve null neu khong co data
         /// </summary>
         /// <returns></returns>
         public List<HighScore> LoadHightScore()
@@ -145,7 +145,7 @@ namespace Assets.Scenes.Scripts.Managers
             if (String.IsNullOrEmpty(data))
                 return null;
             FileInfo fi = new FileInfo(hightScorePath);
-            List<HighScore> highScores = JsonConvert.DeserializeObject<List<HighScore>>(data);
+            List<HighScore> highScores = JsonConvert.DeserializeObject<List<HighScore>>(data).OrderBy<HighScore, int>(h => h.score).ToList();
             return highScores;
         }
         /// <summary>

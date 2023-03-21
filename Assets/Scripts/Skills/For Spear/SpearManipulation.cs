@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class SpearManipulation : MonoBehaviour, BaseSkill
 {
@@ -18,6 +19,7 @@ public class SpearManipulation : MonoBehaviour, BaseSkill
     [Header("Spawn point")]
     GameObject spearHole;
     GameObject spawnPoint;
+    GameObject character;
     public string description()
     {
         return "nanana";
@@ -50,6 +52,7 @@ public class SpearManipulation : MonoBehaviour, BaseSkill
 
     public void RunSkill(GameObject character)
     {
+        this.character = character;
         float xChar = character.transform.position.x;
         float yChar = character.transform.position.y + 1.2f;
         spawnPoint = Instantiate<GameObject>(spearHole, new Vector3(xChar, yChar), Quaternion.identity);
@@ -88,6 +91,7 @@ public class SpearManipulation : MonoBehaviour, BaseSkill
                 if (spawnTimer.Finished)
                 {
                     spear = Instantiate<GameObject>(flySpear, new Vector3(xSpawn, ySpawn), Quaternion.identity);
+                    spear.GetComponent<SpearMovement>().atk = Mathf.RoundToInt(character.GetComponent<CharacterStatus>().Atk * 1.5f);
                     spawnTimer.Run();
                 }
             }

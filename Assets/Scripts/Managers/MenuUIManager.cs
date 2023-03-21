@@ -6,62 +6,61 @@ using UnityEngine.UI;
 
 public class MenuUIManager : MonoBehaviour
 {
-    public Slider _musicSlider;
-    public static bool GameIsPaused = false;
-    public GameObject pauseMenuUI;
+    public GameObject OptionMenuUI;
+    public GameObject highScoreUI;
+    public GameObject GameOverUI;
+    public GameObject TutorialUI;
+    public GameObject AudioCanvas;
 
-    public void ToggleMusic()
-    {
-        Debug.Log("Pause Music");
-        AudioManager.instance.ToggleMusic();
-    }
-    public void MusicVolume()
-    {
-        _musicSlider.onValueChanged.AddListener(val => AudioManager.instance.MusicVolume(val));
-        AudioManager.instance.MusicVolume(_musicSlider.value);
-    }
-    public void Resume()
+
+
+    public void ResumeOptionMenu()
     {
         Debug.Log("Resume");
         Time.timeScale = 1f;
-        pauseMenuUI.SetActive(false);
-        GameIsPaused = false;//m? bi?n vi?t ra cho có à ?? má m
+        OptionMenuUI.SetActive(false);
 
     }
-    public void Pause()
+    public void PauseOptionMenu()
     {
-        pauseMenuUI.SetActive(true);//h m?i scene ph?i t?o cái uimanagwer ?? nems h?t script vào canvas thi có sao k thôi t làm m? luôn
+        OptionMenuUI.SetActive(true);
         Time.timeScale = 0f;
-        GameIsPaused = true;
         Debug.Log("Pause");
     }
-    public void MainMenu()
-    {
-        Time.timeScale = 1f;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-    }
+
     public void Quit()
     {
         Application.Quit();
     }
 
-    public void HighScore()
+    public void OpenHighScore()
     {
         Debug.Log("HighScore");
-        pauseMenuUI.SetActive(true);
+        highScoreUI.SetActive(true);
 
     }
-    public void Setting()
+    public void CloseHighScore()
     {
-        pauseMenuUI.SetActive(true);
+        Debug.Log("HighScore");
+        highScoreUI.SetActive(false);
+
     }
-    public void Tutorial()
+    public void OpenAudioSetting()
+    {
+        AudioCanvas.SetActive(true);
+    }
+    public void CloseAudioSetting()
+    {
+        AudioCanvas.SetActive(false);
+    }
+    public void OpenTutorial()
     {
         Debug.Log("Tutorial");
-        pauseMenuUI.SetActive(true);
+        TutorialUI.SetActive(true);
     }
-    public void PlayerDeadUI()
+    public void CloseTutorial()
     {
-        pauseMenuUI.SetActive(true);
+        Debug.Log("Tutorial");
+        TutorialUI.SetActive(false);
     }
 }

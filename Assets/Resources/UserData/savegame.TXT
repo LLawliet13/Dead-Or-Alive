@@ -1,6 +1,6 @@
 {
-  "level": 14,
-  "currentHp": -2,
+  "level": 2,
+  "currentHp": 0,
   "position": {
     "x": 0.0,
     "y": 0.0,
@@ -9,9 +9,9 @@
     "sqrMagnitude": 0.0
   },
   "skillList": [
-    "GarenUlti",
-    "BlackholeShot",
-    "MultipleShot"
+    "WeightShot",
+    "TornadoShot",
+    "GarenUlti"
   ],
   "CurrentPoint": 0
 }

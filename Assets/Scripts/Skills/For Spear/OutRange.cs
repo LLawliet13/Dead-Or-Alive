@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class OutRange : MonoBehaviour
     private float range;
     private GameObject player;
     private float distance;
+    [NonSerialized]
+    public int atk;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,13 @@ public class OutRange : MonoBehaviour
         if(distance >= range)
         {
             Destroy(spear);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            GetComponent<BasePlayerWeaponStatus>().AttackEnemy(atk, collision.GetComponent<EnemyStatus>());
         }
     }
 }

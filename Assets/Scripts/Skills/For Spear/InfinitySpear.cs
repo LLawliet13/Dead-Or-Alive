@@ -92,9 +92,10 @@ public class InfinitySpear : MonoBehaviour, BaseSkill
                 Vector3 direc = new Vector3(diff.x + anglex, diff.y + angley, diff.z);
                 float curAngle = Mathf.Atan2(direc.y, direc.x) * Mathf.Rad2Deg;
                 GameObject infSpear = Instantiate(spear, character.transform.position, Quaternion.Euler(0, 0, curAngle));
+                infSpear.GetComponent<OutRange>().atk = Mathf.RoundToInt(character.GetComponent<CharacterStatus>().Atk * 1.5f);
                 Rigidbody2D rb = infSpear.GetComponent<Rigidbody2D>();
                 rb.AddForce(direc.normalized * force, ForceMode2D.Impulse);
-                //Debug.Log(diff);
+                //Debug.Log("////////////////////////////////////////////////////////////////////////////////" + infSpear.GetComponent<MuiTenScript>().atk);
             }
         }
     }

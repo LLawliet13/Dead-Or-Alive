@@ -48,7 +48,6 @@ public class CharacterStatus : MonoBehaviour
         foreach (IPlayerObserver observer in observers)
         {
             observer.OnPlayerMaxHpChanged(MaxHP);
-            observer.OnPlayerLevelChanged(playerLevel);
         }
     }
     /// <summary>

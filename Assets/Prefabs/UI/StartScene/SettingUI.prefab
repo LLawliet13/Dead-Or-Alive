@@ -182,7 +182,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4283056949021780684}
   - {fileID: 4192861228117063527}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -267,7 +266,7 @@ RectTransform:
   - {fileID: 4800064142198753295}
   - {fileID: 8279725946674481525}
   m_Father: {fileID: 747047974345332214}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -426,8 +425,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6140344596527663290}
-        m_TargetAssemblyTypeName: MenuUIManager, Assembly-CSharp
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioUI, Assembly-CSharp
         m_MethodName: MusicVolume
         m_Mode: 1
         m_Arguments:
@@ -475,7 +474,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.93200004, y: 0}
   m_AnchorMax: {x: 1, y: 0.15924414}
-  m_AnchoredPosition: {x: -1, y: 0.16499329}
+  m_AnchoredPosition: {x: -1, y: 0.16500854}
   m_SizeDelta: {x: 10.7263, y: 0.33}
   m_Pivot: {x: 0.9999997, y: 0.5}
 --- !u!222 &1681928661599570223
@@ -560,7 +559,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6140344596527663290}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MenuUIManager, Assembly-CSharp
         m_MethodName: MainMenu
         m_Mode: 1
@@ -648,52 +647,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &3407876097956333032
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4283056949021780684}
-  - component: {fileID: 6140344596527663290}
-  m_Layer: 0
-  m_Name: UIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4283056949021780684
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3407876097956333032}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -531.6666, y: -63.697197, z: 0.000015258789}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 747047974345332214}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6140344596527663290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3407876097956333032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e718440a007b8446b71ab3265820013, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _musicSlider: {fileID: 4301711360949732168}
-  pauseMenuUI: {fileID: 1051128096484544810}
 --- !u!1 &3962076806569232397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,7 +1060,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6140344596527663290}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MenuUIManager, Assembly-CSharp
         m_MethodName: ToggleMusic
         m_Mode: 1

@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/GameScene/SuaUI.unity
+    guid: 26f4f6d0eefc58b4b877bf2e96d7a247
   m_configObjects: {}
