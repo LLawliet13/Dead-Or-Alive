@@ -41,9 +41,17 @@ MonoBehaviour:
   bossState3:
   - baseLv: 0
     angleRange: 25
-    numberOfRock: 5
+    numberOfRock: 10
+    ableToBounceBack: 1
+    existTime: 15
+    minSpeed: 10
+    maxSpeed: 15
   - baseLv: 10
     angleRange: 45
     numberOfRock: 10
+    ableToBounceBack: 1
+    existTime: 20
+    minSpeed: 15
+    maxSpeed: 20
   bossState4: []
   bossState5: []

@@ -33,7 +33,7 @@ namespace Assets.Scenes.Scripts.Managers
                 SceneManager sceneManager = GameObject.Find("GameMaster").GetComponent<SceneManager>();
                 if (sceneManager != null)
                 {
-                    UnityEvent<int, int, string[], ItemDropSaveGame[]> saveGameEvent = new UnityEvent<int, int, string[], ItemDropSaveGame[]>();
+                    UnityEvent<int, string, string[], ItemDropSaveGame[]> saveGameEvent = new UnityEvent<int, string, string[], ItemDropSaveGame[]>();
                     saveGameEvent.AddListener(SaveGameToFile);
                     sceneManager.SaveGameEvent = saveGameEvent;
 
@@ -78,12 +78,14 @@ namespace Assets.Scenes.Scripts.Managers
         {
         }
 
-        public void SaveGameToFile(int player_level, int currentHp, string[] skillnames, ItemDropSaveGame[] items)
+        public void SaveGameToFile(int player_level, string currentHpandcurrentExpAndCurrentPoint, string[] skillnames, ItemDropSaveGame[] items)
         {
             CharacterSaveGame characterData = new CharacterSaveGame
             {
                 level = player_level,
-                currentHp = currentHp,
+                currentHp = int.Parse(currentHpandcurrentExpAndCurrentPoint.Split(",")[0]),
+                currentExp = int.Parse(currentHpandcurrentExpAndCurrentPoint.Split(",")[1]),
+                CurrentPoint = int.Parse(currentHpandcurrentExpAndCurrentPoint.Split(",")[2]),
                 skillList = skillnames,
                 items = items
             };
@@ -177,10 +179,7 @@ namespace Assets.Scenes.Scripts.Managers
     {
         public int level;
         public int currentHp;
-        /// <summary>
-        /// co them position khong ?
-        /// </summary>
-        public Vector3 position;
+        public int currentExp;
         public string[] skillList;
         public int CurrentPoint;
         public ItemDropSaveGame[] items;

@@ -14,6 +14,7 @@ TagManager:
   - SpearHole
   - PanelSelectSkill
   - GameMaster
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -22,7 +23,7 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - 
+  - Wall
   - 
   - 
   - 

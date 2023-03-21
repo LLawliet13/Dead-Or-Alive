@@ -50,6 +50,7 @@ public class CharacterStatus : MonoBehaviour
             observer.OnPlayerMaxHpChanged(MaxHP);
         }
     }
+
     /// <summary>
     /// viec load skill se uu tien doc tu game truoc khi bien nay duoc scenemanager set bang true
     /// </summary>
@@ -62,6 +63,15 @@ public class CharacterStatus : MonoBehaviour
         originColor = sr.color;
         if (!loadFromLastGame)
             ConfigStatus();
+
+        foreach (IPlayerObserver observer in observers)
+        {
+            observer.OnPlayerMaxHpChanged(MaxHP);
+        }
+        foreach (IPlayerObserver observer in observers)
+        {
+            observer.OnPlayerDamaged(CurrentHp);
+        }
     }
     /// <summary>
     /// ham duoc goi de chinh lai sao lieu nguoi choi khi thang cap

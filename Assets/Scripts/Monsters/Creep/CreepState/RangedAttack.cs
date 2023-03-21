@@ -65,7 +65,11 @@ public class RangedAttack : CreepBaseState
 
         }
     }
-
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
     public override void UpdateSkillBaseOnCharacterLv()
     {
         SceneManager sceneManager = GameObject.Find("GameMaster").GetComponent<SceneManager>();

@@ -49,8 +49,14 @@ public class AttackState : CreepBaseState
             if (inRange.Length > 0)
                 player.GetComponent<CharacterStatus>().TakeDamage(enemyStatus.Atk);
             attackTime = Time.time + delayTime;
+            Debug.Log(inRange.Length + " Attack");
         }
         ExitState();
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
     public override void UpdateSkillBaseOnCharacterLv()
     {
