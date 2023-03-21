@@ -117,7 +117,6 @@ public class UI_HP_EXP_SCORE_Manager : MonoBehaviour, IPlayerObserver
         }
         float expFraction = (float)currentExp / maxExp;
         float fillF = frontExpBar.fillAmount;
-        Debug.Log(expFraction + "//////" + currentExp + "/////" + maxExp +"/////" + fillF);
         if(fillF < expFraction)
         {
             delayTimer += Time.deltaTime;

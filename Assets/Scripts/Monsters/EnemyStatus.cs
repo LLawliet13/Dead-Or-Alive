@@ -32,7 +32,6 @@ public abstract class EnemyStatus : MonoBehaviour
     public void caculateDamageTaken(int damage)
     {
         CurrentHp -= Mathf.RoundToInt((damage * (1 - Def / 100f)));
-        Debug.Log("atk: "+ Mathf.RoundToInt((damage * (1 - Def / 100f)))+ ",Current EnemyHP: " + CurrentHp);
         beingAttackedEffect();
     }
     private Quaternion initialRotation;

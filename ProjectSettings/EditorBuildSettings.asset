@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScene/StartScene.unity
     guid: 44dc7c6ba78036c49b264be71389046c
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/GameScene/Scene_Dung_Boss_Rock Nam ADD MENU.unity
-    guid: e0b3486acac84e1458ca79d3246eef9e
+    path: Assets/Scenes/GameScene/Dung_HUDUpdate.unity
+    guid: 059b8c9aec18a634193958c3d17da8e3
   m_configObjects: {}

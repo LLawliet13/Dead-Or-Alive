@@ -21,6 +21,7 @@ public class BossStatus : EnemyStatus
     {
         if (CurrentHp <= 0)
         {
+            NotifyBossStageEnd();
             Destroy(gameObject);
             DestroyMySelf();//chi de cho co vi o day khong co pool quan ly boss
         }
@@ -80,5 +81,10 @@ public class BossStatus : EnemyStatus
 
         // restore origin color
         sr.color = originColor;
+    }
+    private void NotifyBossStageEnd()
+    {
+        GameObject.FindGameObjectWithTag("GameMaster").GetComponent<SceneManager>().isBossStageEnd = true;
+
     }
 }

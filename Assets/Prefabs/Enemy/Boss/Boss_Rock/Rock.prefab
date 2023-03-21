@@ -50,6 +50,7 @@ MonoBehaviour:
   speedAddition: 0
   speed: 0
   timeDestroy: 10
+  ableToBounceBack: 0
 --- !u!212 &8243911785265602189
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -112,7 +113,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.00043733916, y: 0}

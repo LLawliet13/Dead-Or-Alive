@@ -44,6 +44,10 @@ public class BossUpgradeController : ScriptableObject
         public int baseLv;
         public float angleRange;
         public int numberOfRock;
+        public bool ableToBounceBack;
+        public float existTime;
+        public float minSpeed;
+        public float maxSpeed;
     }
     [System.Serializable]
     public class BossState4

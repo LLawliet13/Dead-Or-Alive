@@ -12,7 +12,7 @@ public abstract class GenericEnemyFactory<T> : MonoBehaviour where T : EnemyStat
     /// <summary>
     /// so luong quai se tao ra, spawner se quyet dinh dieu nay
     /// </summary>
-    [Header("Khong can thiet lap")]
+    [HideInInspector]
     public int TotalGenerateMonster;
     //khoi chay factory
     public abstract void Enable();

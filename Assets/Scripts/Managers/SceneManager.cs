@@ -9,10 +9,10 @@ using UnityEngine.Events;
 
 public class SceneManager : MonoBehaviour
 {
-    private int CurrentExp;
+    private int CurrentExp = 0;
     private int TotalExpToNextLevel;
     public int Point { get; private set; } = 0;
-    private int PlayerLevel;
+    private int PlayerLevel = 1;
     private GameObject Player;
     private List<IPlayerObserver> observers = new List<IPlayerObserver>();
     public void AddObserver(IPlayerObserver observer)
@@ -37,14 +37,29 @@ public class SceneManager : MonoBehaviour
         Debug.Log("TO-DO: Them function cho nhan vat die");
         IsPlayerDie = true;
     }
+    public void PlayerLevelUIUpdate()
+    {
+        foreach (IPlayerObserver observer in observers)
+        {
+            observer.OnPlayerLevelChanged(PlayerLevel);
+        }
+    }
+    public void HpUIUpdate()
+    {
+
+    }
+    public void ExpUIUpdate()
+    {
+        foreach (IPlayerObserver observer in observers)
+        {
+            observer.OnPlayerExperienceGained(CurrentExp);
+        }
+    }
 
     public void PlayerLevelUp()
     {
         PlayerLevel += 1;
-        foreach(IPlayerObserver observer in observers)
-        {
-            observer.OnPlayerLevelChanged(PlayerLevel);
-        }
+        PlayerLevelUIUpdate();
         GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatus>().LevelEffect();
         getTotalExpToLevelUp();
     }
@@ -69,11 +84,11 @@ public class SceneManager : MonoBehaviour
     private BossSpawner bossSpawner;
     private void Start()
     {
-        PlayerLevelUp();
+        PlayerLevelUIUpdate();
         getTotalExpToLevelUp();
         AddExp(0);
+        PointUiUpdate();
     }
-    private int LevelTriggerBoss = 0;
     /// <summary>
     /// khi tat game co kha nang nhan vat bi disable dan toi khong lay duoc hp cua nhan vat
     /// </summary>
@@ -81,25 +96,37 @@ public class SceneManager : MonoBehaviour
     ItemDropSaveGame[] allItems;
     public UnityEvent GameOverEvent;
     public bool isNotifyDie = false;
+    public bool isBossStageEnd = true;
+    private int spawnBossLevel = 0;
+    private int levelPerBoss = 5;
     private void Update()
     {
         CharacterStatus characterStatus = Player.GetComponent<CharacterStatus>();
         currentPlayerHp = characterStatus.CurrentHp;
-        
+
         //spawn boss moi khi nhan vat tang 5 level
-        if (PlayerLevel % 5 == 0)
+        if (isBossStageEnd)
         {
-            creepSpawner.SettingController(BaseSpawner.Controller.TurnOff);
-            if (LevelTriggerBoss != PlayerLevel)
+            if (PlayerLevel % levelPerBoss == 0)
             {
-                bossSpawner.SettingController(BaseSpawner.Controller.TurnOn);
-                LevelTriggerBoss = PlayerLevel;
+
+                if (PlayerLevel != spawnBossLevel)
+                {
+                    creepSpawner.SettingController(BaseSpawner.Controller.TurnOff);
+                    bossSpawner.SettingController(BaseSpawner.Controller.TurnOn);
+                    isBossStageEnd = false;
+                }
+            }
+            else
+            {
+                creepSpawner.SettingController(BaseSpawner.Controller.TurnOn);
+                bossSpawner.SettingController(BaseSpawner.Controller.TurnOff);
             }
         }
         else
         {
-            creepSpawner.SettingController(BaseSpawner.Controller.TurnOn);
-            bossSpawner.SettingController(BaseSpawner.Controller.TurnOff);
+            //cover truong hop danh xong boss level van o level spawn boss khien cho boss lai xuat hien // giai phap la sau khi giet boss tang luon len 1 level// hoi tuan ham tang 1 level
+            Debug.Log("cover truong hop danh xong boss ,level ng choi van o level spawn boss khien cho boss lai xuat hien");
         }
         if (IsPlayerDie && !isNotifyDie)
         {
@@ -133,7 +160,9 @@ public class SceneManager : MonoBehaviour
             {
                 CharacterSaveGame data = saveGameManager.LoadGameFromFile();
                 PlayerLevel = data.level;
-                PlayerLevelUp();
+                CurrentExp = data.currentExp;
+                Point = data.CurrentPoint;
+                GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatus>().LevelEffect();
                 characterStatus.loadFromLastGame = true;
                 characterStatus.SetCurrentHp(data.currentHp);
                 character_Skill.loadFromLastGame = true;
@@ -164,7 +193,7 @@ public class SceneManager : MonoBehaviour
     private void SaveData()
     {
         CharacterManager character_Skill = GetComponent<CharacterManager>();
-        SaveGameEvent.Invoke(PlayerLevel, currentPlayerHp, character_Skill.skill_usings, allItems);
+        SaveGameEvent.Invoke(PlayerLevel, currentPlayerHp + "," + CurrentExp + "," + Point, character_Skill.skill_usings, allItems);
 
     }
     private void SaveHighScore()
@@ -174,7 +203,7 @@ public class SceneManager : MonoBehaviour
     }
 
     public UnityEvent<DateTime, int> SaveHighscoreEvent;
-    public UnityEvent<int, int, string[], ItemDropSaveGame[]> SaveGameEvent;
+    public UnityEvent<int, string, string[], ItemDropSaveGame[]> SaveGameEvent;
 
     private void OnDisable()
     {
@@ -193,12 +222,23 @@ public class SceneManager : MonoBehaviour
             CurrentExp = CurrentExp - TotalExpToNextLevel;
             PlayerLevelUp();
         }
+        ExpUIUpdate();
+    }
+    private void TotalExpUIUpdate()
+    {
         foreach (IPlayerObserver observer in observers)
         {
-            observer.OnPlayerExperienceGained(CurrentExp);
+            observer.OnPlayerTotalExperienceChanged(TotalExpToNextLevel);
+
         }
     }
-
+    private void PointUiUpdate()
+    {
+        foreach (IPlayerObserver observer in observers)
+        {
+            observer.OnPlayerScoreChanged(Point);
+        }
+    }
     internal int getTotalExpToLevelUp()
     {
         Debug.Log("TO-DO: Them ham tra ve tong exp de len level tiep theo");
@@ -208,12 +248,8 @@ public class SceneManager : MonoBehaviour
             solveForRequiredExp += (int)Mathf.Floor(levelCylce + 300 * Mathf.Pow(2, levelCylce / 7));
         }
         TotalExpToNextLevel = solveForRequiredExp / 4;
-        Debug.Log("total level:"+TotalExpToNextLevel);
-        foreach (IPlayerObserver observer in observers)
-        {
-            observer.OnPlayerTotalExperienceChanged(TotalExpToNextLevel);
-            
-        }
+        Debug.Log("total level:" + TotalExpToNextLevel);
+        TotalExpUIUpdate();
         return TotalExpToNextLevel;
     }
     public void increaseExpPointForEnemy(EnemyStatus enemyStatus)
@@ -242,10 +278,7 @@ public class SceneManager : MonoBehaviour
             expForEachEnemy = TotalExpToNextLevel / numberOfEnemy;
         }
         AddExp(expForEachEnemy);
-        foreach(IPlayerObserver observer in observers)
-        {
-            observer.OnPlayerScoreChanged(Point);
-        }
+        PointUiUpdate();
     }
 
 }

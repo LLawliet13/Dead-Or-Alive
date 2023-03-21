@@ -41,11 +41,25 @@ public class ThrowRockSkill : BaseSkillBoss
     // Update is called once per frame
     [SerializeField]
     [Header("Chi so nang cap")]
-    float angleRange = 30;// sai lech 10 do ve moi phai va goc cua player hien tai - chi so se nang cap
+    private float angleRange = 30;// sai lech 10 do ve moi phai va goc cua player hien tai 
 
     [SerializeField]
     [Header("Chi so nang cap")]
-    int numberOfRock = 8;//- chi so se nang cap
+    private int numberOfRock = 8;
+
+    [SerializeField]
+    [Header("Chi so nang cap")]
+    private bool ableToBounceBack = false;
+    [SerializeField]
+
+    [Header("Chi so nang cap")]
+    private float timeDestroy = 10;
+
+    [Header("Chi so nang cap")]
+    private float minSpeed = 3;
+
+    [Header("Chi so nang cap")]
+    private float maxSpeed = 7.5f;
     public GameObject rock;
     void Update()
     {
@@ -60,6 +74,10 @@ public class ThrowRockSkill : BaseSkillBoss
         BossState3 stateBasedLv = bossUpgradeController.bossState3.OrderByDescending<BossState3, int>(bs => bs.baseLv).Where(b => b.baseLv <= playerLv).First();
         angleRange = stateBasedLv.angleRange;
         numberOfRock = stateBasedLv.numberOfRock;
+        timeDestroy = stateBasedLv.existTime;
+        ableToBounceBack = stateBasedLv.ableToBounceBack;
+        minSpeed = stateBasedLv.minSpeed;
+        maxSpeed = stateBasedLv.maxSpeed;
         return;
     }
 
@@ -81,8 +99,10 @@ public class ThrowRockSkill : BaseSkillBoss
                 GameObject a = Instantiate(rock, transform.position, Quaternion.identity);
                 Rock r = a.GetComponent<Rock>();
                 r.setVector(targetAngle * new Vector3(1, 0, 0));
-                r.setSpeed(Random.Range(3f, 7.5f));
+                r.setSpeed(Random.Range(minSpeed, maxSpeed));
                 r.SetATK(Mathf.RoundToInt(bossStatus.Atk * 0.5f));
+                r.ableToBounceBack = ableToBounceBack;
+                r.timeDestroy = timeDestroy;
             }
             ExitState();
         }
