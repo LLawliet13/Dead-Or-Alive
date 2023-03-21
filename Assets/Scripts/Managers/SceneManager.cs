@@ -2,6 +2,7 @@ using Assets.Scenes.Scripts.Managers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Events;
@@ -10,9 +11,9 @@ public class SceneManager : MonoBehaviour
 {
     private int CurrentExp;
     private int TotalExpToNextLevel;
-    public int Point { get; private set; }
+    public int Point { get; private set; } = 0;
     private int PlayerLevel;
-
+    private GameObject Player;
     private List<IPlayerObserver> observers = new List<IPlayerObserver>();
     public void AddObserver(IPlayerObserver observer)
     {
@@ -46,14 +47,13 @@ public class SceneManager : MonoBehaviour
         }
         GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatus>().LevelEffect();
         getTotalExpToLevelUp();
-        Debug.Log("PlayerLevel: " + PlayerLevel + "      TotalExp: " + TotalExpToNextLevel);
     }
 
     private float SimulateTime;
     private bool IsPlayerDie = false;
     private void Awake()
     {
-        Debug.Log("Scenemanger");
+        Player = GameObject.FindGameObjectWithTag("Player");
         Time.timeScale = 1f;
         PlayerLevel = 0;
         IsPlayerDie = false;
@@ -78,14 +78,13 @@ public class SceneManager : MonoBehaviour
     /// khi tat game co kha nang nhan vat bi disable dan toi khong lay duoc hp cua nhan vat
     /// </summary>
     private int currentPlayerHp;
+    ItemDropSaveGame[] allItems;
     public UnityEvent GameOverEvent;
     public bool isNotifyDie = false;
     private void Update()
     {
-        //CharacterStatus characterStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatus>();
-        //currentPlayerHp = characterStatus.CurrentHp;
-        //Debug.Log(PlayerLevel);
-
+        CharacterStatus characterStatus = Player.GetComponent<CharacterStatus>();
+        currentPlayerHp = characterStatus.CurrentHp;
 
         //spawn boss moi khi nhan vat tang 5 level
         if (PlayerLevel % 5 == 0)
@@ -108,7 +107,14 @@ public class SceneManager : MonoBehaviour
             Debug.Log("TO-DO: Them hanh dong cho viec nguoi choi die");
             GameOverEvent.Invoke();
         }
+
+        ItemDropSaveGame[] expItems = GameObject.FindObjectsOfType<ExpItem>().Select(e => new ItemDropSaveGame { itemName = e.Name, value = e.value, position = e.transform.position - Player.transform.position }).ToArray();
+        ItemDropSaveGame[] healItems = GameObject.FindObjectsOfType<HealItem>().Select(e => new ItemDropSaveGame { itemName = e.Name, value = e.value, position = e.transform.position - Player.transform.position }).ToArray();
+        allItems = expItems.Concat(healItems).ToArray();
     }
+    [SerializeField]
+    private GameObject ExpItem, HealItem;
+
     /// <summary>
     /// check xem nguoi choi chon load game hay choi moi o main menu sau do thuc hien hanh dong tuong ung
     /// recommend man 1 luu xuong PlayerPrefs 1 bien ten isLoadGame
@@ -116,45 +122,67 @@ public class SceneManager : MonoBehaviour
     private void CheckIfLoadGame()
     {
         SaveGameManager saveGameManager = GetComponent<SaveGameManager>();
-        CharacterStatus characterStatus = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterStatus>();
+        CharacterStatus characterStatus = Player.GetComponent<CharacterStatus>();
         CharacterManager character_Skill = GetComponent<CharacterManager>();
         if (saveGameManager != null)
+
             if (PlayerPrefs.HasKey("LoadGame"))
             {
                 if (PlayerPrefs.GetInt("LoadGame") == 1 && saveGameManager.CheckIfDataExist())
                 {
-
-                    CharacterSaveGame data = saveGameManager.LoadGameFromFile();
-                    PlayerLevel = data.level;
-                    PlayerLevelUp();
-                    characterStatus.loadFromLastGame = true;
-                    characterStatus.SetCurrentHp(data.currentHp);
-                    character_Skill.loadFromLastGame = true;
-                    character_Skill.skill_usings = data.skillList;
-                    if (data.currentHp <= 0) IsPlayerDie = true;
-                    PlayerPrefs.DeleteKey("LoadGame");
-                    PlayerPrefs.Save();
+                    if (saveGameManager.CheckIfDataExist())//fake cu co du lieu la load
+                    {
+                        CharacterSaveGame data = saveGameManager.LoadGameFromFile();
+                        PlayerLevel = data.level;
+                        PlayerLevelUp();
+                        characterStatus.loadFromLastGame = true;
+                        characterStatus.SetCurrentHp(data.currentHp);
+                        character_Skill.loadFromLastGame = true;
+                        character_Skill.skill_usings = data.skillList;
+                        ItemDropSaveGame[] allItems = data.items;
+                        if (allItems != null)
+                            foreach (var i in allItems)
+                            {
+                                if (i.itemName == "ExpItem")
+                                {
+                                    var item = Instantiate(ExpItem, i.position, Quaternion.identity);
+                                    item.GetComponent<ExpItem>().value = i.value;
+                                    item.GetComponent<ExpItem>().DropPlace = i.position;
+                                    item.GetComponent<ExpItem>().DestroyEvent = null;
+                                }
+                                else
+                                {
+                                    var item = Instantiate(HealItem, i.position, Quaternion.identity);
+                                    item.GetComponent<HealItem>().value = i.value;
+                                    item.GetComponent<HealItem>().DropPlace = i.position;
+                                    item.GetComponent<HealItem>().DestroyEvent = null;
+                                }
+                            }
+                        if (data.currentHp <= 0) IsPlayerDie = true;
+                        PlayerPrefs.DeleteKey("LoadGame");
+                        PlayerPrefs.Save();
+                    }
                 }
             }
     }
     private void SaveData()
     {
         CharacterManager character_Skill = GetComponent<CharacterManager>();
-        SaveGameEvent.Invoke(PlayerLevel, currentPlayerHp, character_Skill.skill_usings);
+        SaveGameEvent.Invoke(PlayerLevel, currentPlayerHp, character_Skill.skill_usings, allItems);
 
     }
     private void SaveHighScore()
     {
         Debug.Log("TO-DO:Setting Lay so diem va luu");
-        SaveHighscoreEvent.Invoke(DateTime.Now, 10);
+        SaveHighscoreEvent.Invoke(DateTime.Now, Point);
     }
 
     public UnityEvent<DateTime, int> SaveHighscoreEvent;
-    public UnityEvent<int, int, string[]> SaveGameEvent;
+    public UnityEvent<int, int, string[], ItemDropSaveGame[]> SaveGameEvent;
 
     private void OnDisable()
     {
-        if (IsPlayerDie)
+        if (!IsPlayerDie)
             SaveData();
         else
             SaveHighScore();

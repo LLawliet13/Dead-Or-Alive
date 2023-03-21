@@ -29,7 +29,7 @@ public class InfinitySpear : MonoBehaviour, BaseSkill
 
     public float GetCD()
     {
-        return 0;
+        return 8;
     }
 
     public string GetName()
@@ -84,7 +84,7 @@ public class InfinitySpear : MonoBehaviour, BaseSkill
         if (time >= timeDelay)
         {
             time = 0f;
-            if(Time.time < timeToStopFire)
+            if (Time.time < timeToStopFire)
             {
                 diff = MovementSetting.CalculateMoveVector(character.transform.position, character.transform.Find("WeaponParent").Find("Weapon").position);
                 float anglex = Random.Range(-0.5f, 0.5f);

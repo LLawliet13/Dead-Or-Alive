@@ -124,8 +124,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e718440a007b8446b71ab3265820013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _musicSlider: {fileID: 5144615859529575082}
-  pauseMenuUI: {fileID: 5144615857998189904}
+  OptionMenuUI: {fileID: 0}
+  highScoreUI: {fileID: 0}
+  GameOverUI: {fileID: 0}
+  TutorialUI: {fileID: 0}
+  AudioCanvas: {fileID: 0}
 --- !u!1 &5144615857819904941
 GameObject:
   m_ObjectHideFlags: 0
@@ -1680,6 +1683,8 @@ GameObject:
   - component: {fileID: 462167362439246539}
   - component: {fileID: 142841487552145328}
   - component: {fileID: 3858957270211139425}
+  - component: {fileID: 8750107699198833765}
+  - component: {fileID: 861149827700414407}
   m_Layer: 5
   m_Name: ButtonMenuCanvas
   m_TagString: Untagged
@@ -1771,3 +1776,33 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8750107699198833765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072760696208234301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e718440a007b8446b71ab3265820013, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OptionMenuUI: {fileID: 0}
+  highScoreUI: {fileID: 0}
+  GameOverUI: {fileID: 0}
+  TutorialUI: {fileID: 0}
+  AudioCanvas: {fileID: 0}
+--- !u!114 &861149827700414407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7072760696208234301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af218daf6a874c649b1f073cefa51769, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonLoadGame: {fileID: 0}

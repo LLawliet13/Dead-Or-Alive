@@ -130,4 +130,8 @@ public  class JumpSkill : BaseSkillBoss
         if (jump)
             transform.position = Vector3.MoveTowards(transform.position, target, speed * 2f * Time.deltaTime);
     }
+    private void OnDisable()
+    {
+        if (targetO != null) Destroy(targetO);
+    }
 }

@@ -110,6 +110,10 @@ public class CharacterStatus : MonoBehaviour
         CurrentHp += value;
         if (CurrentHp > MaxHP)
             CurrentHp = MaxHP;
+        foreach (IPlayerObserver observer in observers)
+        {
+            observer.OnPlayerDamaged(CurrentHp);
+        }
         Debug.Log("TO-DO: Add UI Event cho hieu ung hoi hp");
     }
     protected  void beingAttackedEffect()

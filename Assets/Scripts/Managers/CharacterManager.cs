@@ -81,7 +81,7 @@ public class CharacterManager : MonoBehaviour
                         Debug.Log(nameOfSkill + " Actived");
                         //Thong bao UI o day
                     });
-                    uIManager.AddSkillListener(skills[i].getPathOfImage(), skills[i].GetCD(), skills[i], (c) =>
+                    uIManager.AddSkill(skills[i].getPathOfImage(), skills[i].GetCD(), skills[i], (c) =>
                     {
                         Debug.Log(nameOfSkill + " Actived");
                         //Thong bao UI o day

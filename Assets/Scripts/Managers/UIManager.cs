@@ -11,9 +11,8 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    // Start is called before the first frame update
-    [HideInInspector]
-    public List<Button> buttons;
+    private List<Button> skillButtons;
+    private LinkedList<BaseSkill> skills;
     public Button SelectSkills;
     SceneManager sceneManager;
     public GameObject canvasSelectSkills;
@@ -51,22 +50,13 @@ public class UIManager : MonoBehaviour
         skills.ElementAt(index).RunSkill(GameObject.FindGameObjectWithTag("Player"));
         if (!skills.ElementAt(index).IsActive())
         {
-            buttons[index].interactable = false;
-            //StartCoroutine(CheckCoolDown(buttons[index], skills.ElementAt(index).GetCD()));
-            StartCoroutine(CoolDownControl(buttons[index], skills.ElementAt(index).GetCD() + Time.time, Time.time));
+            skillButtons[index].interactable = false;
+            StartCoroutine(CoolDownControl(skillButtons[index], skills.ElementAt(index).GetCD() + Time.time, Time.time));
         }
 
 
     }
-    IEnumerator CheckCoolDown(Button button, float cd)
-    {
-        float timeToStop = Time.time + cd;
-        yield return new WaitForSeconds(cd);
-        if (timeToStop <= Time.time)
-        {
-            button.interactable = true;
-        }
-    }
+
     IEnumerator CoolDownControl(Button button, float endtime, float startTime)
     {
         yield return new WaitForSeconds(Time.deltaTime);
@@ -81,8 +71,7 @@ public class UIManager : MonoBehaviour
             StartCoroutine(CoolDownControl(button, endtime, startTime));
         }
     }
-    LinkedList<BaseSkill> skills;
-    public void AddSkillListener(string imageSkill, float CD, BaseSkill skill, params UnityAction<GameObject>[] action)
+    public void AddSkill(string imageSkill, float CD, BaseSkill skill, params UnityAction<GameObject>[] action)
     {
         //if (skills.Count > 5) throw new System.Exception("So luong skill duoc su dung vuot qua gioi han");
         UnityEvent<GameObject> unityEvent = new UnityEvent<GameObject>();
@@ -95,7 +84,7 @@ public class UIManager : MonoBehaviour
         skills.AddLast(skill);
         //"Sprites/Skills/For Bow/NameOfImage"
         //ref: https://docs.unity3d.com/ScriptReference/Resources.Load.html
-        buttons.ElementAt(skills.Count - 1).GetComponent<Image>().sprite = Resources.Load<Sprite>(imageSkill);
+        skillButtons.ElementAt(skills.Count - 1).GetComponent<Image>().sprite = Resources.Load<Sprite>(imageSkill);
     }
     public GameObject GameOverUI;
     public TextMeshProUGUI textMeshProUGUI;
@@ -143,8 +132,23 @@ public class UIManager : MonoBehaviour
     }
     public bool AreSkillsCoolDown()
     {
-        Debug.Log("To-Do: dmm thk dung code check skill cooldown, check ui weight shot, still use but change skill and it still be there");
-        return false;
+
+        // skill chua dc click lan nao
+        bool isAllSkillReady = false;
+        //check skill chi bam 1 lan la cd
+        foreach(var b in skillButtons)
+            if (b.interactable == false) { 
+                isAllSkillReady = true;
+                break;
+            }
+        //check cac skill bam 2 lan moi cd
+        foreach(var s in skills)
+            if(s.IsActive() == true)
+            {
+                isAllSkillReady = true;
+                break;
+            }
+        return isAllSkillReady;
     }
     private void Start()
     {

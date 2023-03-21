@@ -6,6 +6,10 @@ using UnityEngine.Events;
 public abstract class BaseDropItem : MonoBehaviour
 {
     /// <summary>
+    /// ten cua item
+    /// </summary>
+    public string Name;
+    /// <summary>
     /// ham trien khai khi nguoi choi cham vao vat pham
     /// </summary>
     protected abstract void Action();
@@ -13,7 +17,7 @@ public abstract class BaseDropItem : MonoBehaviour
     /// gia tri ma vat pham dem lai cho nguoi choi
     /// </summary>
     public int value;
-    public UnityEvent<BaseDropItem> DestroyEvent;
+    public UnityEvent<BaseDropItem> DestroyEvent ;
     public Vector3 DropPlace;
     private void OnTriggerEnter2D(Collider2D collision)
     {

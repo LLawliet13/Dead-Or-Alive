@@ -74,7 +74,7 @@ public class UI_HP_EXP_SCORE_Manager : MonoBehaviour, IPlayerObserver
     {
         scoreText.text = "Point: " + score;
     }
-    
+
 
     public void OnPlayerLevelChanged(int lv)
     {
@@ -109,7 +109,7 @@ public class UI_HP_EXP_SCORE_Manager : MonoBehaviour, IPlayerObserver
 
     public void UpdateExpUI()
     {
-        if(oldLevel < level)
+        if (oldLevel < level)
         {
             frontExpBar.fillAmount = 0f;
             backExpBar.fillAmount = 0f;
@@ -117,12 +117,11 @@ public class UI_HP_EXP_SCORE_Manager : MonoBehaviour, IPlayerObserver
         }
         float expFraction = (float)currentExp / maxExp;
         float fillF = frontExpBar.fillAmount;
-        Debug.Log(expFraction + "//////" + currentExp + "/////" + maxExp +"/////" + fillF);
-        if(fillF < expFraction)
+        if (fillF < expFraction)
         {
             delayTimer += Time.deltaTime;
             backExpBar.fillAmount = expFraction;
-            if(delayTimer > 1)
+            if (delayTimer > 1)
             {
                 lerpTimerExp += Time.deltaTime;
                 float percentComplete = lerpTimerExp / 4;

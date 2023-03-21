@@ -28,7 +28,7 @@ public class SpearMovement : MonoBehaviour
         min_y = bounds.min.y;
         max_y = bounds.max.y;
     }
-
+    public float TimeToGoBack;
     protected bool isMoving()
     {
         return gameObject.transform.position.x != target_x || gameObject.transform.position.y != target_y;
@@ -36,42 +36,36 @@ public class SpearMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PlayerPrefs.HasKey("RunSkillSpearManipulation"))
+        if (isMoving())
         {
-            if (isMoving())
+            Vector2 targetPoint = new Vector2();
+            if (Time.time > TimeToGoBack)
             {
-                Vector2 targetPoint = new Vector2();
-                if (PlayerPrefs.HasKey("Turnback"))
-                {
-                    GameObject spearHole = GameObject.FindGameObjectWithTag("SpearHole");
-                    targetPoint = new Vector2(spearHole.transform.position.x, spearHole.transform.position.y);
-                    if (gameObject.transform.position == spearHole.transform.position)
-                    {
-                        Destroy(gameObject);
-                        PlayerPrefs.DeleteKey("Turnback");
-                    }
-                }
-                else
-                {
-                    targetPoint = new Vector2(target_x, target_y);
-                }
-                Vector2 direction = targetPoint - (Vector2)gameObject.transform.position;
-                direction = direction.normalized;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-                gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, rotation, speed * Time.deltaTime);
-                gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, targetPoint, speed * Time.deltaTime);
+                GameObject spearHole = GameObject.FindGameObjectWithTag("SpearHole");
+                targetPoint = new Vector2(spearHole.transform.position.x, spearHole.transform.position.y);
             }
             else
             {
-                target_x = UnityEngine.Random.Range(min_x, max_x);
-                target_y = UnityEngine.Random.Range(min_y, max_y);
+                targetPoint = new Vector2(target_x, target_y);
             }
+            Vector2 direction = targetPoint - (Vector2)gameObject.transform.position;
+            direction = direction.normalized;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, rotation, speed * Time.deltaTime);
+            gameObject.transform.position = Vector2.MoveTowards(gameObject.transform.position, targetPoint, speed * Time.deltaTime);
         }
-        
+        else
+        {
+            target_x = UnityEngine.Random.Range(min_x, max_x);
+            target_y = UnityEngine.Random.Range(min_y, max_y);
+        }
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("SpearHole") && Time.time > TimeToGoBack)
+            Destroy(gameObject);
         if (collision.CompareTag("Enemy"))
         {
             GetComponent<BasePlayerWeaponStatus>().AttackEnemy(atk, collision.GetComponent<EnemyStatus>());

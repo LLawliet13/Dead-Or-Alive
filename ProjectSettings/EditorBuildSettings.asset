@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GameScene/SuaUI.unity
     guid: 26f4f6d0eefc58b4b877bf2e96d7a247
+  - enabled: 1
+    path: Assets/Scenes/GameScene/Dung_HUDUpdate.unity
+    guid: 059b8c9aec18a634193958c3d17da8e3
   m_configObjects: {}

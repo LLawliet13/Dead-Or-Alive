@@ -11,13 +11,16 @@ public class Blackhole : MonoBehaviour
 {
     // Start is called before the first frame update
     CircleCollider2D cc;
+    float worldRadius;
     void Start()
     {
         cc = GetComponent<CircleCollider2D>();
         Destroy(gameObject, 2);
         timeToDamage = Time.time;
+        worldRadius = cc.radius * transform.lossyScale.x;
+
     }
-    private float speed = 4;
+    private float speed = 1f;
     private float timeToDamage;
     private float delayTime = 0.5f;
     private int atk;
@@ -28,26 +31,31 @@ public class Blackhole : MonoBehaviour
     // Update is called once per frame
     public LayerMask enemy;
     Collider2D[] inRange;
-    private float speedAngle = 6;
+    private float speedAngle = 360;
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, worldRadius);
+    }
 
     void Update()
     {
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x,
            transform.rotation.eulerAngles.y,
            transform.rotation.eulerAngles.z + 50 * Time.deltaTime);
-        inRange = Physics2D.OverlapCircleAll(transform.position, cc.radius / 2, enemy);
-
+        inRange = Physics2D.OverlapCircleAll(transform.position, worldRadius, enemy);
+        
 
         foreach (var c in inRange)
         {
             if (c.GetComponent<BossStatus>() != null)
             {
                 if (isAffectBoss)
-                    c.transform.position += MovementSetting.CalculateSlopeMoveVector(transform.position, c.gameObject, speedAngle) * speed * Time.deltaTime;
+                    c.transform.position = MovementSetting.CalculateCircleMoveVector(transform.position, c.transform.position, speedAngle*Time.deltaTime, speed * Time.deltaTime,1f);
             }
             else {
-                c.transform.position += MovementSetting.CalculateSlopeMoveVector(transform.position, c.gameObject, speedAngle) * speed * Time.deltaTime;
-                c.GetComponent<BaseStateManager>().status = BaseStateManager.Controller.TurnOff;// tat cac kha nang cua quai
+                c.GetComponent<BaseStateManager>().status = BaseStateManager.Controller.TurnOff;//tam dung state cua quai nam trong vung anh huong ki nang
+                c.transform.position = MovementSetting.CalculateCircleMoveVector(transform.position, c.transform.position, speedAngle * Time.deltaTime, speed * Time.deltaTime, 1f);
             }
             if (Time.time > timeToDamage)
             {

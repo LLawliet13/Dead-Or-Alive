@@ -48,7 +48,7 @@ public class ReverseControlPlayer : BaseSkillBoss
     // Start is called before the first frame update
     void Start()
     {
-        firstTimeUse = Time.time + 10;
+        firstTimeUse = Time.time + 5;
         joystick = GameObject.Find("CanvasJoyStick");
         sr = transform.Find("Effect").GetComponent<SpriteRenderer>();
     }

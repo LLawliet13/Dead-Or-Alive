@@ -32,7 +32,6 @@ public abstract class EnemyStatus : MonoBehaviour
     public void caculateDamageTaken(int damage)
     {
         CurrentHp -= Mathf.RoundToInt((damage * (1 - Def / 100f)));
-        Debug.Log("atk: "+ Mathf.RoundToInt((damage * (1 - Def / 100f)))+ ",Current EnemyHP: " + CurrentHp);
         beingAttackedEffect();
     }
     private Quaternion initialRotation;
@@ -47,7 +46,7 @@ public abstract class EnemyStatus : MonoBehaviour
     }
     //ham de tra creep ve pool or destroy hoan toan
     public UnityEvent<EnemyStatus> onDestroy;
-    
+
 
     public void DestroyMySelf()
     {
@@ -57,5 +56,5 @@ public abstract class EnemyStatus : MonoBehaviour
         onDestroy.Invoke(this);
     }
     protected abstract void beingAttackedEffect();
-    
+
 }

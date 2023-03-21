@@ -35,9 +35,16 @@ public class SceneSwitcher : MonoBehaviour
     }
     public void CanLoadGame()
     {
-        if (GetComponent<SaveGameManager>().CheckIfDataExist())
-            ButtonLoadGame.SetActive(true);
-        else
-            ButtonLoadGame.SetActive(false);
+        try
+        {
+            if (GetComponent<SaveGameManager>().CheckIfDataExist())
+                ButtonLoadGame.SetActive(true);
+            else
+                ButtonLoadGame.SetActive(false);
+        }
+        catch
+        {
+            return;
+        }
     }
 }
