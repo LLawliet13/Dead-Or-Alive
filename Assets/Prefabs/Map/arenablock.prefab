@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   arenaBlockPrefab: {fileID: 8629054807736874048, guid: 2ab28ed4fcdcd704081f5f2ff66ccb29, type: 3}
   playerReference: {fileID: 0}
-  _arenaBlockWidth: -20.9
-  _arenaBlockHeight: 10.8
+  _arenaBlockWidth: -50
+  _arenaBlockHeight: 30
   _playerArenaBlockPosition: 0

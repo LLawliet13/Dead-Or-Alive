@@ -22,7 +22,7 @@ public class SpearManipulation : MonoBehaviour, BaseSkill
     GameObject character;
     public string description()
     {
-        return "nanana";
+        return "Summons spears that fly around the character";
     }
 
     public int getButtonIndex()
@@ -32,7 +32,7 @@ public class SpearManipulation : MonoBehaviour, BaseSkill
 
     public float GetCD()
     {
-        return 10;
+        return 15;
     }
 
     public string GetName()

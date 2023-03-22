@@ -26,7 +26,7 @@ public class SelectSkill : MonoBehaviour
         BaseSkill[] skills = (BaseSkill[])gameMaster.GetComponents<BaseSkill>();
         for (int i = 0; i < skills.Length; i++)
         {
-            Skill skill = new Skill(skills[i].getPathOfImage(), skills[i].GetName(), skills[i].description());
+            Skill skill = new Skill(skills[i].getPathOfImage(), skills[i].GetName(), skills[i].description(), skills[i].GetCD());
             skillList.Add(skill);
         }
 
@@ -46,6 +46,7 @@ public class SelectSkill : MonoBehaviour
             buttonClone.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(skillList[i].image);
             buttonClone.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = skillList[i].name;
             buttonClone.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = skillList[i].description;
+            buttonClone.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "CD: " + skillList[i].coolDown;
             foreach (string skillName in savedSkills)
             {
                 if (skillList[i].name.Equals(skillName))
@@ -81,7 +82,9 @@ public class SelectSkill : MonoBehaviour
         {
             savedSkills.Clear();
             Transform[] allChild = transform.GetComponentsInChildren<Transform>();
-            for (int i = 1; i < allChild.Length; i += 4)
+
+            //Debug.Log(allChild.Length);
+            for (int i = 1; i < allChild.Length; i += 5)
             {
                 if (allChild[i].GetComponent<Image>().color == Color.red)
                 {
