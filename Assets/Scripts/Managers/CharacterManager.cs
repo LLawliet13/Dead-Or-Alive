@@ -1,7 +1,6 @@
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -13,7 +12,7 @@ public class CharacterManager : MonoBehaviour
     //nen can test skill nao cu tao class va them ten class vo day
 
 
-    public string[] skill_usings = { "name1", "name2", "name3" };
+    public string[] skill_usings;
     /// <summary>
     /// viec load skill se uu tien doc tu game truoc khi bien nay duoc scenemanager set bang true
     /// </summary>
@@ -47,16 +46,19 @@ public class CharacterManager : MonoBehaviour
     void loadData()
     {
         string path = Application.dataPath;
-        string jsonFilePathListSkill = $"{path}/Scripts/Skills/SelectSkill/SkillChosen.json";
-        string json = File.ReadAllText(jsonFilePathListSkill);
-        skill_usings = JsonConvert.DeserializeObject<string[]>(json);
+        string SaveChosenSkillName = "SaveSkillList";
+        string json = PlayerPrefs.GetString(SaveChosenSkillName);
+        if (string.IsNullOrEmpty(json))
+            skill_usings = null;
+        else
+            skill_usings = JsonConvert.DeserializeObject<string[]>(json);
     }
     public void addSkill()
     {
         Character_SkillController cs = GameObject.FindGameObjectWithTag("Player").GetComponent<Character_SkillController>();
         UIManager uIManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
         BaseSkill[] skills = (BaseSkill[])gameObject.GetComponents<BaseSkill>();
-        if (skills == null)
+        if (skills == null || skill_usings == null)
         {
             Debug.Log("no Skill");
             return;

@@ -13,6 +13,7 @@ public class SceneSwitcher : MonoBehaviour
     }
     public void Playgame()
     {
+        GetComponent<SaveGameManager>().ClearAllData();
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
     public void LoadGame()

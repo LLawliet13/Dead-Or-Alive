@@ -23,5 +23,5 @@ MonoBehaviour:
   HeSoNangCapAtk: 1.1
   HeSoNangCapDef: 1.02
   HeSoNangCapSpeed: 1
-  AttackRange: 2
+  AttackRange: 0.3
   state_ids: 01000000020000000300000004000000

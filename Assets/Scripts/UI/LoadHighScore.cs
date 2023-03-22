@@ -24,6 +24,7 @@ public class LoadHighScore : MonoBehaviour
         }
         catch
         {
+            //truong hop high score chua co nen bi null
             return;
         }
         float tableHeight = 2f;
