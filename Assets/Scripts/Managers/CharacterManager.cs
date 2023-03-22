@@ -1,7 +1,6 @@
 using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -47,8 +46,8 @@ public class CharacterManager : MonoBehaviour
     void loadData()
     {
         string path = Application.dataPath;
-        string jsonFilePathListSkill = $"{path}/Scripts/Skills/SelectSkill/SkillChosen.json";
-        string json = File.ReadAllText(jsonFilePathListSkill);
+        string SaveChosenSkillName = "SaveSkillList";
+        string json = PlayerPrefs.GetString(SaveChosenSkillName);
         skill_usings = JsonConvert.DeserializeObject<string[]>(json);
     }
     public void addSkill()

@@ -1,14 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Text;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEditor.Progress;
 
 namespace Assets.Scenes.Scripts.Managers
 {
@@ -56,29 +52,23 @@ namespace Assets.Scenes.Scripts.Managers
         }
 
 
-
+        string saveSceneName = "Game";
+        string SaveHighScoreName= "HighScore";
         public bool CheckIfDataExist()
         {
-            if (new FileInfo(path).Length == 0)
-                return false;
-            return true;
+            if (PlayerPrefs.HasKey(saveSceneName) && PlayerPrefs.GetString(saveSceneName).Length > 0)
+                return true;
+            return false;
         }
         public bool CheckIfHighScoreExist()
         {
-            if (new FileInfo(hightScorePath).Length == 0)
-                return false;
-            return true;
-        }
-        public void SaveGameToPlayerPrefs(int player_level, int currentHp, string[] skillnames)
-        {
+            if (PlayerPrefs.HasKey(SaveHighScoreName) && PlayerPrefs.GetString(SaveHighScoreName).Length > 0)
+                return true;
+            return false;
         }
 
 
-        public void LoadGameFromPlayerPrefs()
-        {
-        }
-
-        public void SaveGameToFile(int player_level, string currentHpandcurrentExpAndCurrentPoint, string[] skillnames,ItemDropSaveGame[] items)
+        public void SaveGameToFile(int player_level, string currentHpandcurrentExpAndCurrentPoint, string[] skillnames, ItemDropSaveGame[] items)
         {
             CharacterSaveGame characterData = new CharacterSaveGame
             {
@@ -94,10 +84,9 @@ namespace Assets.Scenes.Scripts.Managers
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
-            FileInfo fi = new FileInfo(path);
-            StreamWriter writer = new StreamWriter(fi.Open(FileMode.Truncate));
-            writer.WriteLine(data);
-            writer.Close();
+
+            PlayerPrefs.SetString(saveSceneName, data);
+            PlayerPrefs.Save();
         }
         /// <summary>
         /// tra ve trang thai man choi gan nhat, neu lan choi truoc game chua ket thuc. Co the tra ve null neu khong co data
@@ -105,11 +94,10 @@ namespace Assets.Scenes.Scripts.Managers
         /// <returns></returns>
         public CharacterSaveGame LoadGameFromFile()
         {
-            StreamReader reader = new StreamReader(path);
-            string data = reader.ReadToEnd();
-            reader.Close();
+            string data = PlayerPrefs.GetString(saveSceneName);
             //xoa du lieu sau khi load file
-            File.WriteAllText(path, String.Empty);
+            PlayerPrefs.SetString(saveSceneName, "");
+            PlayerPrefs.Save();
             if (String.IsNullOrEmpty(data))
                 return null;
 
@@ -118,9 +106,7 @@ namespace Assets.Scenes.Scripts.Managers
         }
         public void SaveHighScore(DateTime date, int score)
         {
-            StreamReader reader = new StreamReader(hightScorePath);
-            string data = reader.ReadToEnd();
-            reader.Close();
+            string data = PlayerPrefs.GetString(SaveHighScoreName);
 
             List<HighScore> highScores;
             if (String.IsNullOrEmpty(data))
@@ -132,10 +118,8 @@ namespace Assets.Scenes.Scripts.Managers
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
-            FileInfo fi = new FileInfo(hightScorePath);
-            StreamWriter writer = new StreamWriter(fi.Open(FileMode.Truncate));
-            writer.WriteLine(saveData);
-            writer.Close();
+            PlayerPrefs.SetString(saveSceneName, saveData);
+            PlayerPrefs.Save();
         }
         /// <summary>
         /// tra ve bang so diem cao nhat. Co the tra ve null neu khong co data
@@ -143,12 +127,9 @@ namespace Assets.Scenes.Scripts.Managers
         /// <returns></returns>
         public List<HighScore> LoadHightScore()
         {
-            StreamReader reader = new StreamReader(hightScorePath);
-            string data = reader.ReadToEnd();
-            reader.Close();
+            string data = PlayerPrefs.GetString(SaveHighScoreName);
             if (String.IsNullOrEmpty(data))
                 return null;
-            FileInfo fi = new FileInfo(hightScorePath);
             List<HighScore> highScores = JsonConvert.DeserializeObject<List<HighScore>>(data);
             return highScores;
         }
