@@ -27,7 +27,6 @@ public class HealItem : BaseDropItem
         }
         else {
             //truong hop load tu save game len se khong tra ve pool
-            Debug.Log("Destroy Event chua duoc thiet lap");
             Destroy(gameObject);
         }
     }

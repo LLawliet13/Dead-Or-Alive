@@ -22,7 +22,7 @@ public class Blackhole : MonoBehaviour
     }
     private float speed = 1f;
     private float timeToDamage;
-    private float delayTime = 0.5f;
+    private float delayTime = 0.7f;
     private int atk;
     public void SetAtk(int atk)
     {
@@ -32,6 +32,7 @@ public class Blackhole : MonoBehaviour
     public LayerMask enemy;
     Collider2D[] inRange;
     private float speedAngle = 360;
+    bool attacked = false;
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
@@ -59,12 +60,15 @@ public class Blackhole : MonoBehaviour
             }
             if (Time.time > timeToDamage)
             {
+                attacked = true;
                 GetComponent<BasePlayerWeaponStatus>().AttackEnemy(atk, c.GetComponent<EnemyStatus>());
             }
 
         }
-        if (inRange.Length > 0)
+        if (inRange.Length > 0 && attacked) { 
             timeToDamage = Time.time +  delayTime;
+            attacked = false;
+        }
     }
     public bool isAffectBoss = false;
     private void OnDisable()

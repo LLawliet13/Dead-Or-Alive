@@ -78,7 +78,7 @@ public class CharacterManager : MonoBehaviour
                 {
                     //using anonymous method : (para) =>{}
 
-                    cs.AddSkillListener(skills[i].RunSkill, (c) =>
+                    cs.AddSkill(skills[i].RunSkill, (c) =>
                     {
                         Debug.Log(nameOfSkill + " Actived");
                         //Thong bao UI o day

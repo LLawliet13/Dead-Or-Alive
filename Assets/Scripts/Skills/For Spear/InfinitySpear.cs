@@ -78,7 +78,6 @@ public class InfinitySpear : MonoBehaviour, BaseSkill
             Rigidbody2D rb = infSpear.GetComponent<Rigidbody2D>();
             rb.AddForce(diff.normalized * force, ForceMode2D.Impulse);
             count++;
-            Debug.Log(count);
         }*/
         time = time + 0.1f * Time.deltaTime;
         if (time >= timeDelay)
@@ -95,7 +94,6 @@ public class InfinitySpear : MonoBehaviour, BaseSkill
                 infSpear.GetComponent<OutRange>().atk = Mathf.RoundToInt(character.GetComponent<CharacterStatus>().Atk * 1.5f);
                 Rigidbody2D rb = infSpear.GetComponent<Rigidbody2D>();
                 rb.AddForce(direc.normalized * force, ForceMode2D.Impulse);
-                //Debug.Log("////////////////////////////////////////////////////////////////////////////////" + infSpear.GetComponent<MuiTenScript>().atk);
             }
         }
     }

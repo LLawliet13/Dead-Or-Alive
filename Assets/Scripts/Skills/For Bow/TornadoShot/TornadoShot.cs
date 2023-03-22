@@ -71,7 +71,6 @@ public class TornadoShot : MonoBehaviour, BaseSkill
             if (endMoveTime > Time.time)
             {
                 targetEdge +=  numberOfRotation*360* delayTimeShot / duration;
-                //Debug.Log(targetEdge);
                 MoveCharacter(character);
                 if (Time.time > nextSpawnTime )
                 {
@@ -79,7 +78,7 @@ public class TornadoShot : MonoBehaviour, BaseSkill
                     arrowSpawn.SetVector(CaculateVectorB(new Vector3(1,0,0), targetEdge));
                     arrowSpawn.GetComponent<TornadoArrow>().atk = Mathf.RoundToInt(1.5f * character.GetComponent<CharacterStatus>().Atk);
                     nextSpawnTime = Time.time + delayTimeShot;
-                    delayTimeShot = 2 * Time.deltaTime;
+                    delayTimeShot = 1.2f * Time.deltaTime;
                 }
             }
             else
@@ -111,6 +110,6 @@ public class TornadoShot : MonoBehaviour, BaseSkill
 
     public string description()
     {
-        return "ki? n?ng cho phe?p ng???i ch?i di chuyê?n nhanh h?n bi?nh th???ng va? liên tu?c b??n ra dagger theo vo?ng tro?ng";
+        return "Shoot out knives in a circular pattern, dealing damage to monsters.";
     }
 }

@@ -11,7 +11,7 @@ public class Dashingskill : BaseSkillBoss
 
     public override float CD_Skill()
     {
-        return 20;
+        return 6;
     }
 
     public override int LVToUse()
@@ -101,12 +101,13 @@ public class Dashingskill : BaseSkillBoss
                     if (timeRunSkill == ableToDo)
                     {
                         timeRunSkill = 0;
+                        GetComponent<BossStatus>().AtkState = bossStatus.Atk; //tra ve atk base
                         ExitState();
                     }
                     else
                     {
                         focusTarget = true;// thuc hien run skill lai cho den khi du so luot
-                        timeToRepeatSkill = Time.time + 1.5f;
+                        timeToRepeatSkill = Time.time + 1f;
                     }
                 }
             }

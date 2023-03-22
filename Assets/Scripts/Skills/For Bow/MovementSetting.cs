@@ -51,7 +51,6 @@ public interface MovementSetting
         float singleStep = speedRotation * Time.deltaTime;
         //Vector3 globalRotation = childRotation.transform.TransformDirection(childTransform.rotation.eulerAngles);
         childRotation.transform.rotation = Quaternion.Slerp(childRotation.transform.rotation, q, singleStep);
-        //Debug.Log(childRotation.transform.rotation+" "+ childRotation.transform.rotation * new Vector3(1, 0, 0));
         return (childRotation.transform.rotation * new Vector3(1, 0, 0)).normalized;
     }
 

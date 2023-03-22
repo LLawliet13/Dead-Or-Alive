@@ -17,7 +17,7 @@ public class BaseRange : MonoBehaviour
     }
     static List<float> m_Range = new List<float>()
     {
-        10,20,30,40,50,60
+        5,10,15,20,25,30
     };
     public static float Range(int index)
     {

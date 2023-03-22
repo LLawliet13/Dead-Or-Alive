@@ -75,6 +75,6 @@ public class MultipleShot : MonoBehaviour, BaseSkill
 
     public string description()
     {
-        return "b??n ra 1 tru?m mu?i tên t?? truy ?uô?i, nh??m t??i mu?c tiêu gâ?n ca?c mu?i tên nhâ?t";
+        return "Summon 25 arrows and aim at the targets closest to them.";
     }
 }

@@ -29,6 +29,7 @@ public  class JumpSkill : BaseSkillBoss
 
     void DestroyEarthQuake()
     {
+        GetComponent<BossStatus>().AtkState = bossStatus.Atk;
         ExitState();
     }
     public GameObject EarthQuake;
@@ -117,12 +118,12 @@ public  class JumpSkill : BaseSkillBoss
             Destroy(targetO);
             transform.localScale /= 2.5f;
             GameObject a = Instantiate(EarthQuake, target, Quaternion.identity);
-            a.GetComponent<EarthQuakeRockBoss>().setScaleTarget(EarthQuakeRadiusRatio);
-            a.GetComponent<EarthQuakeRockBoss>().atk = Mathf.RoundToInt(bossStatus.Atk * 2.5f);
-            a.GetComponent<EarthQuakeRockBoss>().DelayCollisionDamageTime = DelayCollisionDamageTime;
+            a.GetComponent<EarthQuakeBoss>().setScaleTarget(EarthQuakeRadiusRatio);
+            a.GetComponent<EarthQuakeBoss>().atk = Mathf.RoundToInt(bossStatus.Atk * 2.5f);
+            a.GetComponent<EarthQuakeBoss>().DelayCollisionDamageTime = DelayCollisionDamageTime;
             UnityEvent destroyEvent = new UnityEvent();
             destroyEvent.AddListener(DestroyEarthQuake);
-            a.GetComponent<EarthQuakeRockBoss>().DestroyEvent = destroyEvent;
+            a.GetComponent<EarthQuakeBoss>().DestroyEvent = destroyEvent;
             jump = false;
             createEarthQuake = false;
             return;

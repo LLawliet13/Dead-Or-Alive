@@ -29,25 +29,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    //private void Start()
-    //{
-    //    PlayMusic("Theme");
-    //}
-    //public void PlayMusic(string name)
-    //{
-    //    Sound s = Array.Find(musicSound, x => x.name == name);
-    //    if (s == null)
-    //    {
-
-    //        Debug.Log("Sound Not Found");
-    //    }
-    //    else
-
-    //    {
-    //        musicSources.clip = s.clip;
-    //        musicSources.Play();
-    //    }
-    //}
+  
     public void ToggleMusic()
     {
         musicSources.mute = !musicSources.mute;

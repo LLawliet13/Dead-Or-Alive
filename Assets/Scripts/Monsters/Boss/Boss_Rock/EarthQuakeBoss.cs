@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class EarthQuakeRockBoss : MonoBehaviour
+public class EarthQuakeBoss : MonoBehaviour
 {
     float earthQuakeRadiusRatio;
     Vector3 targetLocalScale;

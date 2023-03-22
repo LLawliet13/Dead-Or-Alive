@@ -22,7 +22,6 @@ public class BossSpawner : BaseSpawner
     //status: hien tai sau khi sinh boss spawner se duoc tat
     public void TriggerSpawn()
     {
-        Debug.Log("TO-DO: Viet dieu kien check level nhan vat de goi boss");
         SceneManager sceneManager = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<SceneManager>();
         BossStatus bossStatus = factory.GetNewInstance();
         bossStatus.caculateStatus();

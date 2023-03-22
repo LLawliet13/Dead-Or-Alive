@@ -34,12 +34,26 @@ public class BossStatus : EnemyStatus
         Def = (int)(BaseStats.Def * Mathf.Pow(BaseStats.HeSoNangCapSpeed, currentPlayerLevel - 1));
         Speed = BaseStats.Speed;
     }
-
-    public int AtkState = 0;
+    [SerializeField]
+    public int AtkState = 0;// trang thai cac skill dac biet khong trien khai thi atk = base
     private float nextCollisionDamageTime;
     [SerializeField]
     private float DelayCollisionDamageTime;
     private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") && Time.time > nextCollisionDamageTime)
+        {
+            CharacterStatus cs = collision.GetComponent<CharacterStatus>();
+            if (AtkState == 0)
+                cs.TakeDamage(Atk);
+            else
+                cs.TakeDamage(AtkState);
+            nextCollisionDamageTime = Time.time + DelayCollisionDamageTime;
+
+        }
+
+    }
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && Time.time > nextCollisionDamageTime)
         {
@@ -58,7 +72,7 @@ public class BossStatus : EnemyStatus
         if (spriteRenderer != null)
             spriteRenderer.color = originColor;
     }
-    protected override void beingAttackedEffect()
+    public override void beingAttackedEffect()
     {
         StartCoroutine(DamageEffectSequence(spriteRenderer, originColor, Color.red, 0.7f, 0));
     }

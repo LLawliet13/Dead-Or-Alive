@@ -11,6 +11,7 @@ public class CharacterStatus : MonoBehaviour
     public int CurrentHp { get; private set; }
     public int Def { get; private set; }
     public int Atk { get; private set; }
+    public float Speed { get; private set; }
 
     /// <summary>
     /// Subject
@@ -44,7 +45,7 @@ public class CharacterStatus : MonoBehaviour
         MaxHP = CurrentHp = Mathf.RoundToInt(baseStatus.MaxHp * Mathf.Pow(baseStatus.HeSoLevelUpMaxHp, playerLevel));
         Def = Mathf.RoundToInt(baseStatus.Def * Mathf.Pow(baseStatus.HeSoLevelUpDef, playerLevel));
         Atk = Mathf.RoundToInt(baseStatus.Atk * Mathf.Pow(baseStatus.HeSoLevelUpAtk, playerLevel));
-
+        Speed = baseStatus.Speed;
         foreach (IPlayerObserver observer in observers)
         {
             observer.OnPlayerMaxHpChanged(MaxHP);
@@ -83,7 +84,6 @@ public class CharacterStatus : MonoBehaviour
     public void TakeDamage(float Damage)
     {
         CurrentHp -= Mathf.RoundToInt((Damage * (1 - Def / 100f)));
-        //Debug.Log(CurrentHp);
 
         CheckIfPlayerDie();
         SetCurrentHp(CurrentHp);
@@ -124,7 +124,6 @@ public class CharacterStatus : MonoBehaviour
         {
             observer.OnPlayerDamaged(CurrentHp);
         }
-        Debug.Log("TO-DO: Add UI Event cho hieu ung hoi hp");
     }
     protected  void beingAttackedEffect()
     {

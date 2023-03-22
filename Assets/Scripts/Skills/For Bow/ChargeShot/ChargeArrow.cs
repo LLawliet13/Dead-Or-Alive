@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using UnityEngine;
 
-public class WeightArrow : MonoBehaviour
+public class ChargeArrow : MonoBehaviour
 {
     bool fire;
     Vector3 baseScale;
@@ -64,7 +64,6 @@ public class WeightArrow : MonoBehaviour
     bool isTriggerDestroy = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (fire == true)
             if (collision.CompareTag("Enemy"))
             {
                 //mui ten bi pha huy sau 1 khoang thoi gian sau khi cham vao 1 dot quai dau tien

@@ -63,6 +63,7 @@ public class UIManager : MonoBehaviour
         if (endtime <= Time.time)
         {
             button.interactable = true;
+            button.image.fillAmount = 1;
         }
         else
         {

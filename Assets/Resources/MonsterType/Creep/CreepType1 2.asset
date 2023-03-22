@@ -15,7 +15,7 @@ MonoBehaviour:
   Atk: 4
   Hp: 20
   Def: 6
-  Speed: 3
+  Speed: 1.5
   AvatarPath: Sprites/Creep/Creep1_3
   EnemyType: 1
   EnemyName: QuaiDanhGan3

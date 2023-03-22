@@ -16,7 +16,7 @@ public abstract class EnemyStatus : MonoBehaviour
 
     public int Def { get; protected set; }
 
-    public int Speed { get; protected set; }
+    public float Speed { get; protected set; }
 
     protected int currentPlayerLevel;
     protected int typeEnemy;// dung de thong bao cho Scene Manager biet tinh toan exp cho nhan vat
@@ -32,7 +32,6 @@ public abstract class EnemyStatus : MonoBehaviour
     public void caculateDamageTaken(int damage)
     {
         CurrentHp -= Mathf.RoundToInt((damage * (1 - Def / 100f)));
-        beingAttackedEffect();
     }
     private Quaternion initialRotation;
 
@@ -55,6 +54,6 @@ public abstract class EnemyStatus : MonoBehaviour
         dropManager.DropMechanism(transform.position, isBoss);
         onDestroy.Invoke(this);
     }
-    protected abstract void beingAttackedEffect();
+    public abstract void beingAttackedEffect();
 
 }

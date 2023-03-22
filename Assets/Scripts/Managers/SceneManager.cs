@@ -34,7 +34,6 @@ public class SceneManager : MonoBehaviour
     }
     public void NotifyPlayerDie()
     {
-        Debug.Log("TO-DO: Them function cho nhan vat die");
         IsPlayerDie = true;
     }
     public void PlayerLevelUIUpdate()
@@ -89,6 +88,10 @@ public class SceneManager : MonoBehaviour
         getTotalExpToLevelUp();
         AddExp(0);
         PointUiUpdate();
+        if (PlayerPrefs.GetInt("BossAppear") == 1)
+        {
+            forceToSummonBoss = true;
+        }
     }
     /// <summary>
     /// khi tat game co kha nang nhan vat bi disable dan toi khong lay duoc hp cua nhan vat
@@ -100,6 +103,7 @@ public class SceneManager : MonoBehaviour
     public bool isBossStageEnd = true;
     private int spawnBossLevel = 0;
     private int levelPerBoss = 5;
+    private bool forceToSummonBoss = false;//trong truong hop ng choi o level khong % levelPerBoss = 0 va thoat game
     private void Update()
     {
         CharacterStatus characterStatus = Player.GetComponent<CharacterStatus>();
@@ -108,7 +112,7 @@ public class SceneManager : MonoBehaviour
         //spawn boss moi khi nhan vat tang 5 level
         if (isBossStageEnd)
         {
-            if (PlayerLevel % levelPerBoss == 0)
+            if (PlayerLevel % levelPerBoss == 0||forceToSummonBoss)
             {
 
                 if (PlayerLevel != spawnBossLevel)
@@ -127,12 +131,10 @@ public class SceneManager : MonoBehaviour
         else
         {
             //cover truong hop danh xong boss level van o level spawn boss khien cho boss lai xuat hien // giai phap la sau khi giet boss tang luon len 1 level// hoi tuan ham tang 1 level
-            Debug.Log("cover truong hop danh xong boss ,level ng choi van o level spawn boss khien cho boss lai xuat hien");
         }
         if (IsPlayerDie && !isNotifyDie)
         {
             isNotifyDie = true;
-            Debug.Log("TO-DO: Them hanh dong cho viec nguoi choi die");
             GameOverEvent.Invoke();
         }
 
@@ -202,7 +204,6 @@ public class SceneManager : MonoBehaviour
     }
     private void SaveHighScore()
     {
-        Debug.Log("TO-DO:Setting Lay so diem va luu");
         SaveHighscoreEvent.Invoke(DateTime.Now, Point);
     }
 
@@ -211,15 +212,24 @@ public class SceneManager : MonoBehaviour
 
     private void OnDisable()
     {
-        if (!IsPlayerDie)
+        if (!IsPlayerDie) { 
             SaveData();
+            if (!isBossStageEnd)
+            {
+                PlayerPrefs.SetInt("BossAppear", 1);
+            }
+            else
+            {
+                PlayerPrefs.SetInt("BossAppear", 0);
+            }
+            PlayerPrefs.Save();
+        }
         else
             SaveHighScore();
     }
 
     internal void AddExp(int value)
     {
-        Debug.Log("TO-DO: Them kha nang tang exp tu drop item");
         CurrentExp += value;
         if (CurrentExp >= TotalExpToNextLevel)
         {
@@ -245,14 +255,12 @@ public class SceneManager : MonoBehaviour
     }
     internal int getTotalExpToLevelUp()
     {
-        Debug.Log("TO-DO: Them ham tra ve tong exp de len level tiep theo");
         int solveForRequiredExp = 0;
         for (int levelCylce = 1; levelCylce <= PlayerLevel; levelCylce++)
         {
             solveForRequiredExp += (int)Mathf.Floor(levelCylce + 300 * Mathf.Pow(2, levelCylce / 7));
         }
         TotalExpToNextLevel = solveForRequiredExp / 4;
-        Debug.Log("total level:" + TotalExpToNextLevel);
 
         TotalExpUIUpdate();
         return TotalExpToNextLevel;
@@ -261,7 +269,6 @@ public class SceneManager : MonoBehaviour
     {
         int numberOfEnemy = 0;
         int expForEachEnemy;
-        Debug.Log("To-do: tinh exp cho quai tuy loai");
         bool isBoss = enemyStatus.GetType() == typeof(BossStatus);
         if (isBoss)
         {

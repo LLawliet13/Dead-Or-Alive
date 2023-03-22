@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using static AudioManager;
 
-public class Rock : MonoBehaviour
+public class EnemyBullet : MonoBehaviour
 {
     Vector3 moveVector;
    
@@ -72,36 +72,5 @@ public class Rock : MonoBehaviour
     private void checkBound(Vector3 inNormalVector)
     {
         moveVector = Vector3.Reflect(moveVector, inNormalVector);
-        //bounds = ScreenHelper.OrthographicBounds(Camera.main);
-
-        //float up_distance = bounds.max.y - transform.position.y;
-        //if (up_distance <= 0.05 && up_distance > -0.05)
-        //{
-        //    moveVector = Vector3.Reflect(moveVector, new Vector3(0, -1, 0));
-        //    Debug.Log("Check Bound: UpDistance: " + up_distance);
-        //    return;
-        //}
-        //float down_distance = transform.position.y - bounds.min.y;
-        //if (down_distance <= 0.05 && down_distance > -0.05)
-        //{
-        //    moveVector = Vector3.Reflect(moveVector, new Vector3(0, 1, 0));
-        //    Debug.Log("Check Bound: down_distance: " + down_distance);
-        //    return;
-        //}
-        //float right_distance = bounds.max.x - transform.position.x;
-        //if (right_distance <= 0.05 && right_distance > 0)
-        //{
-        //    moveVector = Vector3.Reflect(moveVector, new Vector3(-1, 0, 0));
-        //    Debug.Log("Check Bound: right_distance: " + right_distance);
-        //    return;
-        //}
-        //float left_distance = transform.position.x - bounds.min.x;
-        //if (left_distance <= 0.05 && left_distance > 0)
-        //{
-        //    moveVector = Vector3.Reflect(moveVector, new Vector3(1, 0, 0));
-        //    Debug.Log("Check Bound: left_distance: " + left_distance);
-        //    return;
-        //}
-
     }
 }

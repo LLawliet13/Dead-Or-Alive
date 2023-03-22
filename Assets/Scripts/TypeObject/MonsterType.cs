@@ -8,7 +8,7 @@ public class MonsterType : ScriptableObject
     public int Atk;
     public int Hp;
     public int Def;
-    public int Speed;
+    public float Speed;
     public string AvatarPath;
     public int EnemyType;
     public string EnemyName;

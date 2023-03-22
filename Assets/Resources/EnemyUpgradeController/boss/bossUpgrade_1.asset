@@ -23,8 +23,8 @@ MonoBehaviour:
   - baseLv: 0
     ableToDo: 1
   - baseLv: 5
-    ableToDo: 3
-  - baseLv: 20
+    ableToDo: 2
+  - baseLv: 10
     ableToDo: 4
   - baseLv: 50
     ableToDo: 5
@@ -32,26 +32,40 @@ MonoBehaviour:
   - baseLv: 0
     delayCollisionDamge: 2
     EarthQuakeRatio: 10
-  - baseLv: 5
-    delayCollisionDamge: 1
-    EarthQuakeRatio: 25
   - baseLv: 10
+    delayCollisionDamge: 1.5
+    EarthQuakeRatio: 25
+  - baseLv: 20
     delayCollisionDamge: 0.9
     EarthQuakeRatio: 40
   bossState3:
   - baseLv: 0
     angleRange: 25
-    numberOfRock: 10
+    numberOfRock: 5
     ableToBounceBack: 1
-    existTime: 15
-    minSpeed: 10
-    maxSpeed: 15
+    existTime: 5
+    minSpeed: 7
+    maxSpeed: 8
   - baseLv: 10
     angleRange: 45
     numberOfRock: 10
     ableToBounceBack: 1
-    existTime: 20
+    existTime: 10
     minSpeed: 15
     maxSpeed: 20
+  - baseLv: 20
+    angleRange: 45
+    numberOfRock: 15
+    ableToBounceBack: 1
+    existTime: 10
+    minSpeed: 20
+    maxSpeed: 25
+  - baseLv: 40
+    angleRange: 45
+    numberOfRock: 30
+    ableToBounceBack: 1
+    existTime: 20
+    minSpeed: 20
+    maxSpeed: 25
   bossState4: []
   bossState5: []

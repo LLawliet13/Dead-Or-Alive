@@ -97,7 +97,7 @@ public class ThrowRockSkill : BaseSkillBoss
             {
                 Quaternion targetAngle = Quaternion.Euler(0, 0, Random.Range(angle.eulerAngles.z - angleRange + 90, angle.eulerAngles.z + angleRange + 90));
                 GameObject a = Instantiate(rock, transform.position, Quaternion.identity);
-                Rock r = a.GetComponent<Rock>();
+                EnemyBullet r = a.GetComponent<EnemyBullet>();
                 r.setVector(targetAngle * new Vector3(1, 0, 0));
                 r.setSpeed(Random.Range(minSpeed, maxSpeed));
                 r.SetATK(Mathf.RoundToInt(bossStatus.Atk * 0.5f));

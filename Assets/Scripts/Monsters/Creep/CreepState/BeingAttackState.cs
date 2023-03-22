@@ -7,12 +7,9 @@ using static CreepUpgradeController;
 public class BeingAttackState : CreepBaseState
 {
     private int previousHp;
-    float delayTime;
-    float exitTime;
     private void Start()
     {
         previousHp = enemyStatus.CurrentHp;
-        delayTime = 0.2f;
     }
     public override bool EnterState()
     {
@@ -20,7 +17,6 @@ public class BeingAttackState : CreepBaseState
         {
             UpdateSkillBaseOnCharacterLv();
             previousHp = enemyStatus.CurrentHp;
-            exitTime = Time.time + delayTime;
             return true;
         }
         return false;
@@ -32,13 +28,12 @@ public class BeingAttackState : CreepBaseState
 
     public override void UpdateState()
     {
-        if (Time.time < exitTime)
-            Debug.Log("TO-DO:Hieu ung mat hp");
-        else
-            ExitState();
+        GetComponent<EnemyStatus>().beingAttackedEffect();
+        ExitState();
     }
+   
     public override void UpdateSkillBaseOnCharacterLv()
     {
-       
+
     }
 }

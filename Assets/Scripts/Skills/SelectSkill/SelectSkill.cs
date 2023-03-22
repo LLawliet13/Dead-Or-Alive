@@ -81,10 +81,8 @@ public class SelectSkill : MonoBehaviour
         {
             savedSkills.Clear();
             Transform[] allChild = transform.GetComponentsInChildren<Transform>();
-            //Debug.Log(allChild.Length);
             for (int i = 1; i < allChild.Length; i += 4)
             {
-                //Debug.Log(allChild[i] + "////" + i);
                 if (allChild[i].GetComponent<Image>().color == Color.red)
                 {
                     savedSkills.Add(allChild[i + 2].GetComponent<TextMeshProUGUI>().text);

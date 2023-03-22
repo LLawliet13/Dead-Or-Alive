@@ -17,7 +17,7 @@ public class Character_SkillController : MonoBehaviour
         skills = new LinkedList<UnityEvent<GameObject>>();
     }
     //ref:https://stackoverflow.com/questions/489317/how-to-pass-an-arbitrary-number-of-parameters-in-c-sharp
-    public void AddSkillListener(params UnityAction<GameObject>[] action)
+    public void AddSkill(params UnityAction<GameObject>[] action)
     {
         if (skills.Count >= 3)
         {
@@ -44,7 +44,6 @@ public class Character_SkillController : MonoBehaviour
             //dua vao cac phim dc an ma kich hoat skill da duoc dang ki truoc do
             if (Input.GetKeyDown(buttons[i]))
             {
-                //Debug.Log("clicked");
                 skills.ElementAt(i).Invoke(gameObject);
             }
         }

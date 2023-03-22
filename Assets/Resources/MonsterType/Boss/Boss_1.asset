@@ -16,7 +16,7 @@ MonoBehaviour:
   Hp: 1000
   Def: 10
   Speed: 3
-  AvatarPath: Sprites/Boss/Boss_Rock
+  AvatarPath: Sprites/Boss/monster_tentackle
   EnemyType: 0
   EnemyName: Boss_Rock
   HeSoNangCapHp: 1.03
@@ -24,4 +24,4 @@ MonoBehaviour:
   HeSoNangCapDef: 1.03
   HeSoNangCapSpeed: 1
   AttackRange: 0
-  state_ids: 000000000100000002000000030000000400000005000000
+  state_ids: 00000000010000000200000003000000040000000500000006000000

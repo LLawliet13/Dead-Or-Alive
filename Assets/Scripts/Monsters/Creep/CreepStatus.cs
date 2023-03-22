@@ -56,7 +56,7 @@ public class CreepStatus : EnemyStatus
         Speed = BaseStats.Speed;
     }
 
-    protected override void beingAttackedEffect()
+    public override void beingAttackedEffect()
     {
         StartCoroutine(DamageEffectSequence(spriteRenderer, originColor, Color.red, 0.5f, 0));
     }

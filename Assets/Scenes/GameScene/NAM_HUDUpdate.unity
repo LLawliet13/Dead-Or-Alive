@@ -355,7 +355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6056632632371558753, guid: 2ccf125dd6949c54387bcee492ced920, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.9998779
+      value: 1.9999084
       objectReference: {fileID: 0}
     - target: {fileID: 6056632632826520498, guid: 2ccf125dd6949c54387bcee492ced920, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -670,6 +670,14 @@ PrefabInstance:
       propertyPath: totalAngle
       value: 360
       objectReference: {fileID: 0}
+    - target: {fileID: 2601000010908209800, guid: 84828ac26f68b7543a7b70e99e91c128, type: 3}
+      propertyPath: baseArrowAmount
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601000010908209801, guid: 84828ac26f68b7543a7b70e99e91c128, type: 3}
+      propertyPath: numberOfRotation
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2601000010908209803, guid: 84828ac26f68b7543a7b70e99e91c128, type: 3}
       propertyPath: Bar
       value: 
@@ -683,8 +691,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 825979577}
     - target: {fileID: 2601000010908209803, guid: 84828ac26f68b7543a7b70e99e91c128, type: 3}
+      propertyPath: timeCharge
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601000010908209803, guid: 84828ac26f68b7543a7b70e99e91c128, type: 3}
       propertyPath: ScaleOfArrow
-      value: 20
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2601000010908209803, guid: 84828ac26f68b7543a7b70e99e91c128, type: 3}
+      propertyPath: ScaleAtkOfArrow
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2601000010908209804, guid: 84828ac26f68b7543a7b70e99e91c128, type: 3}
       propertyPath: m_RootOrder
@@ -1120,7 +1136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1265365159554364171, guid: 97a556411c1f3cd42a35ce359af96a4e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2.5
+      value: -2.5000153
       objectReference: {fileID: 0}
     - target: {fileID: 2853254543180554891, guid: 97a556411c1f3cd42a35ce359af96a4e, type: 3}
       propertyPath: m_Pivot.x
@@ -1811,7 +1827,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 59.15
+  m_fontSize: 27.55
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1

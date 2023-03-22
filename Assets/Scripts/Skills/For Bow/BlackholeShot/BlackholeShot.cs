@@ -8,7 +8,7 @@ public class BlackholeShot : MonoBehaviour, BaseSkill
     private GameObject blackholeBullet;
     public string description()
     {
-        return "ban ra 1 tia dan, trung vao quai gan nhat ";
+        return "Shoot a bullet that can summon a black hole. The black hole will swept monsters(except boss), inflict damage, and disable their abilities(except boss)";
     }
 
     public int getButtonIndex()

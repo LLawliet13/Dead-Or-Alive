@@ -27,9 +27,7 @@ namespace UI.Pagination
             float totalSize = ScrollRect.GetTotalSize();
             float offset = ScrollRect.GetOffset();
 
-            //Debug.Log(offset + " ~~ " + pageSize);
-
-            //Debug.Log("Distance from start " + offset + ". Distance from end " + (totalSize - offset));
+         
 
             // let's give it a bit more breathing room (if we have enough pages to do so)
             if (NumberOfPages > 3) pageSize *= 1.5f;

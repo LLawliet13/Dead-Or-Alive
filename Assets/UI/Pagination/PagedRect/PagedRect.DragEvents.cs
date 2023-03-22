@@ -30,9 +30,6 @@ namespace UI.Pagination
             if (!UsingScrollRect) return;
             if (lastEndDragData == data)
             {
-                Debug.Log(data);
-                Debug.Log(lastEndDragData);
-                Debug.Log("HUH?");
                 return; // ignore repeated OnEndDrag calls
             }
 

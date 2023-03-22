@@ -15,7 +15,7 @@ MonoBehaviour:
   Atk: 6
   Hp: 20
   Def: 2
-  Speed: 3
+  Speed: 1.3
   AvatarPath: Sprites/Creep/Creep2_1
   EnemyType: 2
   EnemyName: QuaiDanhXa
@@ -23,5 +23,5 @@ MonoBehaviour:
   HeSoNangCapAtk: 1.1
   HeSoNangCapDef: 1.02
   HeSoNangCapSpeed: 1
-  AttackRange: 10
+  AttackRange: 7
   state_ids: 01000000020000000300000005000000

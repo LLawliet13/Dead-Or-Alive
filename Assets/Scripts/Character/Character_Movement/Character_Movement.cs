@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Character_Movement : MonoBehaviour
 {
-    public int speed;
+    [HideInInspector]
+    public float speed;
     public int rotationSpeed;
     public GameObject weaponParent;
     public GameObject playerSprite;
@@ -14,6 +15,7 @@ public class Character_Movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speed = GetComponent<CharacterStatus>().Speed;
         _mngrJoystick = GameObject.Find("imgJoystickBg").GetComponent<ManageJoystick>();
         if(playerSprite == null || weaponParent == null)
         {

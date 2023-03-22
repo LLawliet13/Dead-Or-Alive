@@ -14,7 +14,7 @@ public class BlackholeBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject,1.5f);
+        Destroy(gameObject, 1.5f);
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class BlackholeBullet : MonoBehaviour
     private bool isBlackHoleCreated = false;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy") && collision.GetComponent<EnemyStatus>() != null)
+        if (collision.CompareTag("Enemy") && collision.GetComponent<EnemyStatus>() != null && !isBlackHoleCreated)
         {
             GameObject b = Instantiate(blackhole, transform.position, Quaternion.identity);
             b.GetComponent<Blackhole>().SetAtk(atk);
@@ -42,8 +42,15 @@ public class BlackholeBullet : MonoBehaviour
     {
         if (!isBlackHoleCreated)
         {
-            Instantiate(blackhole, transform.position, Quaternion.identity).GetComponent<Blackhole>().SetAtk(atk);
-        }   
+            try
+            {
+                Instantiate(blackhole, transform.position, Quaternion.identity).GetComponent<Blackhole>().SetAtk(atk);
+            }
+            catch
+            {
+                Debug.Log("khong the tao doi tuong vi game end");
+            }
+        }
     }
 
     internal void setMoveVector(Vector3 moveVector)

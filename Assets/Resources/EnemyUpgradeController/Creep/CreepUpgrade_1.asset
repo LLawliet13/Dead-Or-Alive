@@ -17,20 +17,20 @@ MonoBehaviour:
   creepState3: []
   creepState4:
   - baseLv: 0
-    delayTime: 0.8
+    delayTime: 1
   - baseLv: 10
-    delayTime: 0.7
+    delayTime: 0.9
   - baseLv: 30
-    delayTime: 0.5
+    delayTime: 0.6
   creepState5:
   - baseLv: 0
     delayTime: 3
     angleRange: 5
-    numberOfBullet: 2
-  - baseLv: 10
+    numberOfBullet: 1
+  - baseLv: 5
     delayTime: 2.8
     angleRange: 7
-    numberOfBullet: 3
+    numberOfBullet: 2
   - baseLv: 20
     delayTime: 2.5
     angleRange: 7

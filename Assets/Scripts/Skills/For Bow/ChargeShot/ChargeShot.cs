@@ -6,7 +6,7 @@ using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 
-public class WeightShot : MonoBehaviour, BaseSkill
+public class ChargeShot : MonoBehaviour, BaseSkill
 {
     [SerializeField]
     GameObject WeightArrow;
@@ -17,7 +17,7 @@ public class WeightShot : MonoBehaviour, BaseSkill
 
     public string GetName()
     {
-        return "WeightShot";
+        return "ChargeShot";
     }
     private bool isActive = false;
     public bool IsActive()
@@ -50,20 +50,22 @@ public class WeightShot : MonoBehaviour, BaseSkill
             float curAngle = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
             HoldArrow = Instantiate(WeightArrow, character.transform.position, Quaternion.Euler(0, 0, curAngle));
             HoldArrow.transform.parent = character.transform.Find("WeaponParent").Find("Weapon");
-            HoldArrow.GetComponent<WeightArrow>().SetScaleOfArrow(ScaleOfArrow, ScaleAtkOfArrow);
-            HoldArrow.GetComponent<WeightArrow>().SetChargeTime(timeCharge);
+            HoldArrow.GetComponent<ChargeArrow>().SetScaleOfArrow(ScaleOfArrow, ScaleAtkOfArrow);
+            HoldArrow.GetComponent<ChargeArrow>().SetChargeTime(timeCharge);
             HoldArrow.GetComponent<SpriteRenderer>().enabled = false;
+            HoldArrow.GetComponent<Collider2D>().enabled = false;
             character.transform.Find("WeaponParent").Find("Weapon").GetComponent<Animator>().Play("WeightBow_Charge");
-            HoldArrow.GetComponent<WeightArrow>().atk = character.GetComponent<CharacterStatus>().Atk;
+            HoldArrow.GetComponent<ChargeArrow>().atk = character.GetComponent<CharacterStatus>().Atk;
 
         }
         else
         {
             isActive = false;
             hold = false;
+            HoldArrow.GetComponent<Collider2D>().enabled = true;
             HoldArrow.GetComponent<SpriteRenderer>().enabled = true;
             character.transform.Find("WeaponParent").Find("Weapon").GetComponent<Animator>().Play("Normal");
-            HoldArrow.GetComponent<WeightArrow>().Fire(character);
+            HoldArrow.GetComponent<ChargeArrow>().Fire(character);
             HoldArrow.transform.parent = null;
 
         }
@@ -134,6 +136,6 @@ public class WeightShot : MonoBehaviour, BaseSkill
 
     public string description()
     {
-        return "t?? l??c b??n ra 1 light wave, tu?y theo th??i gian tu? l??c, light wave se? to dâ?n va? tô?n ta?i lâu h?n";
+        return "Pressing the skill once will accumulate energy, pressing it again will release a burst of light that deals a significant amount of damage to monsters.";
     }
 }

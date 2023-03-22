@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 6524356903658246425}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.8123, y: 4.957, z: 0.00085022557}
-  m_LocalScale: {x: 2.2971096, y: 2.2971096, z: 2.2971096}
+  m_LocalScale: {x: 10, y: 10, z: 2.2971096}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 98e3feff73f743a4b948cd80ed4039a8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ab9a8dad8f98de241a344ce6f0aec5e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   earthQuake: {fileID: 294710924750618894, guid: 98510a328e3cc8c45b4192fd9311df64, type: 3}
+  atk: 0
   speed: 50
 --- !u!114 &3459443876865901955
 MonoBehaviour:
