@@ -153,6 +153,7 @@ namespace Assets.Scenes.Scripts.Managers
         }
         public void ClearAllData()
         {
+            PlayerPrefs.SetInt("BossAppear", 0);
             PlayerPrefs.SetString(saveSceneName, "");
             PlayerPrefs.SetString(SaveChosenSkillName, "");
             PlayerPrefs.Save();

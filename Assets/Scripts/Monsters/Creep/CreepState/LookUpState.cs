@@ -22,6 +22,7 @@ public class LookUpState : CreepBaseState
     public override void UpdateState()
     {
         Flip();
+        ExitState();
     }
     private void Flip()
     {
