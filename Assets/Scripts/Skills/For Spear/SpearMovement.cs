@@ -43,6 +43,7 @@ public class SpearMovement : MonoBehaviour
             {
                 GameObject spearHole = GameObject.FindGameObjectWithTag("SpearHole");
                 targetPoint = new Vector2(spearHole.transform.position.x, spearHole.transform.position.y);
+                speed = speed * 2;
             }
             else
             {

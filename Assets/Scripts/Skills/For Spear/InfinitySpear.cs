@@ -19,7 +19,7 @@ public class InfinitySpear : MonoBehaviour, BaseSkill
     public float timeDelay = 0.03f;
     public string description()
     {
-        return "bbbbbbbbbbbbbb";
+        return "Summons spears that continuously stab forward within the propeller range in front of the character";
     }
 
     public int getButtonIndex()
