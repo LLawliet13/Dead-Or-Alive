@@ -93,7 +93,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18.15
+  m_fontSize: 23.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -244,8 +244,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.8361187, y: 0.179}
   m_AnchorMax: {x: 0.8837933, y: 0.273}
-  m_AnchoredPosition: {x: 0.23773193, y: -0.13330078}
-  m_SizeDelta: {x: 2.2745752, y: 2.9580054}
+  m_AnchoredPosition: {x: -21, y: 47}
+  m_SizeDelta: {x: 20.4523, y: 17.5862}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &635359282927618081
 CanvasRenderer:
@@ -489,8 +489,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.8361187, y: 0.3184218}
   m_AnchorMax: {x: 0.8837933, y: 0.42218083}
-  m_AnchoredPosition: {x: 0.098846436, y: -0.4057045}
-  m_SizeDelta: {x: 2.2796323, y: -0.24205804}
+  m_AnchoredPosition: {x: -21.186066, y: 67.549835}
+  m_SizeDelta: {x: 20.4591, y: 14.7144}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &754550245636418322
 CanvasRenderer:
@@ -701,10 +701,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36bdc15049ac1224fa344c49286a3c30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 9538542037358445}
-  - {fileID: 824036567611778408}
-  - {fileID: 2751182192694262238}
+  skillButtons: []
+  SelectSkills: {fileID: 0}
+  canvasSelectSkills: {fileID: 0}
+  GameOverUI: {fileID: 0}
+  textMeshProUGUI: {fileID: 0}
 --- !u!1 &7529429817682306783
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,8 +781,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.8361187, y: 0.03956967}
   m_AnchorMax: {x: 0.8837933, y: 0.14}
-  m_AnchoredPosition: {x: 0.09890747, y: 0.49320984}
-  m_SizeDelta: {x: 1.9954038, y: 0.8462429}
+  m_AnchoredPosition: {x: -21.185913, y: 28.096466}
+  m_SizeDelta: {x: 20.0784, y: 15.6896}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3094769501338412199
 CanvasRenderer:

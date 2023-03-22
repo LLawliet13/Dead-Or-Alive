@@ -1,14 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEditor.Progress;
 
 namespace Assets.Scenes.Scripts.Managers
 {
