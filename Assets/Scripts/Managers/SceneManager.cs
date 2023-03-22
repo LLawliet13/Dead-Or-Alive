@@ -121,6 +121,8 @@ public class SceneManager : MonoBehaviour
                     bossSpawner.SettingController(BaseSpawner.Controller.TurnOn);
                     isBossStageEnd = false;
                 }
+                if (forceToSummonBoss)//sau khi da trieu hoi r
+                    forceToSummonBoss = !forceToSummonBoss;
             }
             else
             {
