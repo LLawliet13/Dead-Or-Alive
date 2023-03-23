@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state_id: 1
-  AbleToTriggerWithOther: 0
+  AbleToTriggerWithOther: 1
   priority: 0
   creepUpgradeController: {fileID: 11400000, guid: fbed15fdb24569945beae5bd933670c7, type: 2}
   DoExitState:

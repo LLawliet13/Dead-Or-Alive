@@ -100,7 +100,7 @@ public class SceneManager : MonoBehaviour
     ItemDropSaveGame[] allItems;
     public UnityEvent GameOverEvent;
     public bool isNotifyDie = false;
-    public bool isBossStageEnd = true;
+    public bool isBossStageEnd = false;
     private int spawnBossLevel = 0;
     private int levelPerBoss = 5;
     private bool forceToSummonBoss = false;//trong truong hop ng choi o level khong % levelPerBoss = 0 va thoat game
