@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,7 +11,6 @@ public class BossSpawner : BaseSpawner
     void Start()
     {
         factory.Enable();
-        status = Controller.TurnOff;
     }
     [SerializeField]
     private GenericEnemyFactory<BossStatus> factory;
@@ -29,5 +30,6 @@ public class BossSpawner : BaseSpawner
         unityEvent.AddListener(sceneManager.increaseExpPointForEnemy);
         bossStatus.onDestroy = unityEvent;
         status = Controller.TurnOff;
+        
     }
 }

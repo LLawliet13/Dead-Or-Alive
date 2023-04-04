@@ -106,11 +106,6 @@ Library: lib_burst_generated
 --compilation-defines=NET_STANDARD_2_1
 --compilation-defines=NETSTANDARD
 --compilation-defines=NETSTANDARD2_1
---compilation-defines=DEVELOPMENT_BUILD
---compilation-defines=ENABLE_PROFILER
---compilation-defines=DEBUG
---compilation-defines=TRACE
---compilation-defines=UNITY_ASSERTIONS
 --compilation-defines=ENABLE_CUSTOM_RENDER_TEXTURE
 --compilation-defines=ENABLE_DIRECTOR
 --compilation-defines=ENABLE_LOCALIZATION
@@ -130,7 +125,6 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_ANIMATION_BURST
 --compilation-defines=ENABLE_SPRITESHAPE_BURST
 --generate-link-xml=Temp\burst.link.xml
---debug=Full
 --output=D:\PRU211\My2dGame\Infinity_game\Temp\StagingArea\tempburstlibs\armeabi-v7a\lib_burst_generated
 --root-assembly=D:\PRU211\My2dGame\Infinity_game\Temp\StagingArea\Data\Managed\UnityEngine.UI.dll
 --root-assembly=D:\PRU211\My2dGame\Infinity_game\Temp\StagingArea\Data\Managed\Unity.Services.Core.Telemetry.dll

@@ -20,7 +20,6 @@ public class CreepSpawner : BaseSpawner
         factory.Enable();
         pool = new ObjectPool<EnemyStatus>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool, OnDestroyPoolObject, collectionChecks, maxPoolSize, maxPoolSize);
         timeToSpawn = Time.time;
-        status = Controller.TurnOff;
     }
     [SerializeField]
     private GenericEnemyFactory<CreepStatus> factory;

@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,6 +15,26 @@ public class SceneManager : MonoBehaviour
     public int Point { get; private set; } = 0;
     private int PlayerLevel = 1;
     private GameObject Player;
+    private int currentPlayerHp;
+    ItemDropSaveGame[] allItems;
+    public UnityEvent GameOverEvent;
+    [HideInInspector]
+    public bool isNotifyDie = false;
+    [HideInInspector]
+    public bool isBossStageEnd;
+    private int spawnBossLevel = 0;
+    private int levelPerBoss = 5;
+    private bool forceToSummonBoss = false;//trong truong hop ng choi o level khong % levelPerBoss = 0 va thoat game
+    [SerializeField]
+    private GameObject ExpItem, HealItem;
+    private float SimulateTime;
+    private bool IsPlayerDie = false;
+    bool loadDataFromLastGame;
+    [SerializeField]
+    private CreepSpawner creepSpawner;
+    [SerializeField]
+    private BossSpawner bossSpawner;
+
     private List<IPlayerObserver> observers = new List<IPlayerObserver>();
     public void AddObserver(IPlayerObserver observer)
     {
@@ -64,8 +85,7 @@ public class SceneManager : MonoBehaviour
         getTotalExpToLevelUp();
     }
 
-    private float SimulateTime;
-    private bool IsPlayerDie = false;
+
     private void Awake()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
@@ -75,52 +95,44 @@ public class SceneManager : MonoBehaviour
         SimulateTime = Time.time;
         creepSpawner = Instantiate(creepSpawner);
         bossSpawner = Instantiate(bossSpawner);
+        creepSpawner.SettingController(BaseSpawner.Controller.TurnOff);
+        bossSpawner.SettingController(BaseSpawner.Controller.TurnOff);
         CheckIfLoadGame();
     }
-    bool loadDataFromLastGame;
-    [SerializeField]
-    private CreepSpawner creepSpawner;
-    [SerializeField]
-    private BossSpawner bossSpawner;
+
     private void Start()
     {
         PlayerLevelUIUpdate();
         getTotalExpToLevelUp();
         AddExp(0);
         PointUiUpdate();
+        isBossStageEnd = true;
         if (PlayerPrefs.GetInt("BossAppear") == 1)
         {
+            PlayerPrefs.SetInt("BossAppear", 0);
+            PlayerPrefs.Save();
             forceToSummonBoss = true;
         }
+        
     }
     /// <summary>
     /// khi tat game co kha nang nhan vat bi disable dan toi khong lay duoc hp cua nhan vat
     /// </summary>
-    private int currentPlayerHp;
-    ItemDropSaveGame[] allItems;
-    public UnityEvent GameOverEvent;
-    public bool isNotifyDie = false;
-    public bool isBossStageEnd = false;
-    private int spawnBossLevel = 0;
-    private int levelPerBoss = 5;
-    private bool forceToSummonBoss = false;//trong truong hop ng choi o level khong % levelPerBoss = 0 va thoat game
+    /// 
+
     private void Update()
     {
         CharacterStatus characterStatus = Player.GetComponent<CharacterStatus>();
         currentPlayerHp = characterStatus.CurrentHp;
-
+        
         //spawn boss moi khi nhan vat tang 5 level
         if (isBossStageEnd)
         {
-            if (PlayerLevel % levelPerBoss == 0||forceToSummonBoss)
+            if (PlayerLevel % levelPerBoss == 0 || forceToSummonBoss)
             {
-
-                if (PlayerLevel != spawnBossLevel)
-                {
-                    creepSpawner.SettingController(BaseSpawner.Controller.TurnOff);
-                    bossSpawner.SettingController(BaseSpawner.Controller.TurnOn);
-                    isBossStageEnd = false;
-                }
+                creepSpawner.SettingController(BaseSpawner.Controller.TurnOff);
+                bossSpawner.SettingController(BaseSpawner.Controller.TurnOn);
+                isBossStageEnd = false;
                 if (forceToSummonBoss)//sau khi da trieu hoi r
                     forceToSummonBoss = !forceToSummonBoss;
             }
@@ -144,8 +156,6 @@ public class SceneManager : MonoBehaviour
         ItemDropSaveGame[] healItems = GameObject.FindObjectsOfType<HealItem>().Select(e => new ItemDropSaveGame { itemName = e.Name, value = e.value, position = e.transform.position - Player.transform.position }).ToArray();
         allItems = expItems.Concat(healItems).ToArray();
     }
-    [SerializeField]
-    private GameObject ExpItem, HealItem;
 
     /// <summary>
     /// check xem nguoi choi chon load game hay choi moi o main menu sau do thuc hien hanh dong tuong ung
@@ -192,7 +202,6 @@ public class SceneManager : MonoBehaviour
                                 item.GetComponent<HealItem>().DestroyEvent = null;
                             }
                         }
-                    if (data.currentHp <= 0) IsPlayerDie = true;
                     PlayerPrefs.DeleteKey("LoadGame");
                     PlayerPrefs.Save();
                 }
@@ -214,7 +223,8 @@ public class SceneManager : MonoBehaviour
 
     private void OnDisable()
     {
-        if (!IsPlayerDie) { 
+        if (!IsPlayerDie)
+        {
             SaveData();
             if (!isBossStageEnd)
             {
@@ -228,6 +238,8 @@ public class SceneManager : MonoBehaviour
         }
         else
             SaveHighScore();
+
+     
     }
 
     internal void AddExp(int value)

@@ -12,6 +12,33 @@ using UnityEngine.Events;
 public abstract class BaseSkillBoss : MonoBehaviour
 {
     /// <summary>
+    /// ckeck dieu kien xem state nay kich hoat duoc khong
+    /// </summary>
+    /// <returns></returns>
+    public bool EnterState()
+    {
+        SceneManager sceneManager = GameObject.Find("GameMaster").GetComponent<SceneManager>();
+        int playerLv = sceneManager.GetPlayerLevel();
+        //Khong dc vi tri 2 ham( vi ham able trigger trien khai cac dieu kien de enter state)
+        if (((playerLv >= LVToUse()) && Time.time > FirstTimeUse()) && !isSkillCoolDown() && AbleToTrigger())
+        {
+            availableSkillTime = Time.time + CD_Skill();
+            SetAtkSkill();
+            return true;
+        };
+        return false;
+    }
+
+    //thuc thi hanh dong cua state
+    public abstract void UpdateState();
+
+    //thong bao exitState
+    public UnityEvent<UnityAction> DoExitState;
+    public void ExitState()
+    {
+        DoExitState.Invoke(UpdateState);
+    }
+    /// <summary>
     /// moi skill se co 1 cooldown de boss co the dung 1 luc nhieu skill hoac lan luot( vi du skill co cd cao se dung sau cd thap)
     /// </summary>
     /// <returns></returns>
@@ -82,31 +109,5 @@ public abstract class BaseSkillBoss : MonoBehaviour
     public int priority;
 
     protected EnemyStatus enemyStatus;
-    /// <summary>
-    /// ckeck dieu kien xem state nay kich hoat duoc khong
-    /// </summary>
-    /// <returns></returns>
-    public bool EnterState()
-    {
-        SceneManager sceneManager = GameObject.Find("GameMaster").GetComponent<SceneManager>();
-        int playerLv = sceneManager.GetPlayerLevel();
-        //Khong dc vi tri 2 ham( vi ham able trigger trien khai cac dieu kien de enter state)
-        if (((playerLv>=LVToUse())&&Time.time > FirstTimeUse()) && !isSkillCoolDown() && AbleToTrigger())
-        {
-            availableSkillTime = Time.time + CD_Skill();
-            SetAtkSkill();
-            return true;
-        };
-        return false;
-    }
-
-    //thuc thi hanh dong cua state
-    public abstract void UpdateState();
-
-    //thong bao exitState
-    public UnityEvent<UnityAction> DoExitState;
-    public void ExitState()
-    {
-        DoExitState.Invoke(UpdateState);
-    }
+   
 }

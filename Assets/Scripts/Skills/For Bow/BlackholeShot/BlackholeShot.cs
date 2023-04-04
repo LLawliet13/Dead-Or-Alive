@@ -28,7 +28,7 @@ public class BlackholeShot : MonoBehaviour, BaseSkill
 
     public string getPathOfImage()
     {
-        return "Sprites/Skills/For Bow/AurelionSolE";
+        return "Sprites/Skills/For Bow/AurelionSolEF";
     }
 
     public bool IsActive()
